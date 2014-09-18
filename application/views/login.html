@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs" >
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Login - BeClouds.com</title>
+  
+  <!-- Free google font -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600' rel='stylesheet' type='text/css' />
+  <link href="{$static_server}/assets/app/css/form-style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='logo'>
+      <a href='#'><img src='{$static_server}/{$img_path}/logos/beclouds.png' class='logo' alt='logo' /></a>
+    </div>
+    <div class='form'>
+      <h1>Sign in</h1>
+      <div class='line'></div>
+      <form class='input-form' action='#'>
+        <span class='ie-placeholders'>Login:</span><input type='text' placeholder='Login' />
+        <span class='ie-placeholders'>Password:</span><input type='password' placeholder='Password' />
+        <a class='forgotten-password-link' href='#'>Forgotten password</a>
+        <input type='submit' class='btn-sign-in btn-facebook' value='Sign in' />
+      </form>
+      
+      <div class='forgotten-password-box'>
+        <form class='input-form'>
+          <span class='ie-placeholders'>Email:</span><input type='text' class='forgotten-password-email' placeholder='E-mail' />
+          <input type='submit' class='btn-facebook' value='Send' /><br /><br />
+        </form>
+      </div>
+      <div class='error-box red'>
+        <span class='error-message'><b>Incorrect</b> login or password.</span>
+      </div>
+           
+      <div class='sign-link'>
+        Don't have an account? <a href='{$static_server}users/registration'>Sign up</a>
+      </div> 
+    </div>
+    
+  </body>
+</html>
