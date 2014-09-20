@@ -115,12 +115,11 @@
 	background-image: url(../img/tw-icon.png), -ms-linear-gradient(top, #00aced, #00aced);
 	background-image: url(../img/tw-icon.png), -o-linear-gradient(top, #00aced, #00aced)
 }
-.btn-facebook:active,.btn-twitter:active 
-{
-	margin-top: 1px;
-	margin-bottom: -1px
+input[type='button'] { 
+cursor: pointer; 
+background-color: transparent; 
 }
-	form
+form
 {
 	margin: 0 0 0 30px
 }

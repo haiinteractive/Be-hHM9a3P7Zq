@@ -1,0 +1,8 @@
+{if $filename != 'login.html' AND $filename !='registration.html' }
+	{include file='layout/header.html'}
+
+{/if}
+	{include file=$filename}
+{if $filename != 'login' AND $filename !='registration' }
+	{include file='layout/footer.html'}
+{/if}

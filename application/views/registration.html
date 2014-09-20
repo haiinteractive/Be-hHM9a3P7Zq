@@ -5,6 +5,9 @@
   <title>Registration - BeClouds.com</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600' rel='stylesheet' type='text/css'>
   <link href="{$static_server}/assets/app/css/form-style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/notification/ns-default.css" />
+    <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/notification/ns-style-other.css" />
+
   </head>
   <body>
     <div class='logo'>
@@ -14,12 +17,14 @@
       <h1>Registration</h1>
       <div class='line'></div>
       <form class='input-form'>
-        <span class='ie-placeholders'>Login:</span><input type='text' placeholder='Login' />
-        <span class='ie-placeholders'>E-mail:</span><input type='text' placeholder='E-mail' />
-        <span class='ie-placeholders'>Password:</span><input type='password' placeholder='Password' />
-        <span class='ie-placeholders'>Retype Pass:</span><input type='password' placeholder='Retype password' /><br />
+        <span class='ie-placeholders'>Login:</span><input type='text'  name='username' id='username' placeholder='Company Name' />
+        <span class='ie-placeholders'>E-mail:</span><input type='text' name='email' id='email' placeholder='E-mail' />
+        <span class='ie-placeholders'>Password:</span><input type='password' id='userpwd' name='userpwd' placeholder='Password' />
+        <span class='ie-placeholders'>Retype Pass:</span><input type='password' id='retypeuserpwd' name='retypeuserpwd' placeholder='Retype password' /><br />
         <input type='checkbox' id='tac-checkbox' /><label for='tac-checkbox'>I agree with <a href='#'>terms and conditions</a></label>
-        <input type='submit' class='btn-register btn-facebook' value='Register' />
+        <input type='button' class='btn-register btn-facebook' id='btn-register' value='Register' />
+                    <span class="progress"></span>
+
       </form>
       <div class='error-box red'>
         <span class='error-message'><b>Incorrect</b> login or password.</span>
@@ -29,4 +34,10 @@
       </div>
     </div>
   </body>
+
+    <script src="{$static_server}/assets/app/js/jquery-2.1.1.min.js"></script>
+    <script src="{$static_server}/assets/app/js/notification/modernizr.custom.js"></script>
+    <script src="{$static_server}/assets/app/js/notification/classie.js"></script>
+    <script src="{$static_server}/assets/app/js/notification/notificationFx.js"></script>
+    <script src="{$static_server}/assets/app/js/beclouds.js"></script>
 </html>
