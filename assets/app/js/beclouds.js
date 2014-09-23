@@ -1,10 +1,17 @@
 
 var base_url = '/media';
       $(document).ready(function(){
+        
               $('#btn-register').on('click', function(){
                   //$(this).attr('disabled', 'disabled');
                   var params = 'username='+$("#username").val()+'&email='+$("#email").val()+'&userpwd='+$('#userpwd').val()+'&retypeuserpwd='+$('#retypeuserpwd').val()+"&purpose=registration";
                   var request_url = base_url+'/users/registration';
+                  call( params, request_url );
+              });
+
+              $("#btn-employee-add").on('click', function(){
+                  var params = 'user_first_name='+$("#user_first_name").val()+'&user_last_name='+$("#user_last_name").val()+'&email='+$("#user_email").val()+'&userpwd='+$("#userpwd").val()+'&user_role='+$("#user_roles").val()+'&purpose=employee';
+                  var request_url = base_url+'/employee/add';
                   call( params, request_url );
               });
 
