@@ -4,15 +4,19 @@
 		"selected_items":
 		[
 			[
-				"subs",
-				"subscriber"
-			],
-			[
 				"user",
-				"user_info"
+				"userdata"
 			],
 			[
 				"sub",
+				"subscriber_password"
+			],
+			[
+				"subscriber",
+				"subscriber_email"
+			],
+			[
+				"subs",
 				"subscriber"
 			],
 			[
@@ -36,10 +40,10 @@
 	"buffers":
 	[
 		{
-			"file": "application/views/registration.html",
+			"file": "application/views/employee/add.html",
 			"settings":
 			{
-				"buffer_size": 2558,
+				"buffer_size": 1920,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,7 +51,15 @@
 			"file": "assets/app/js/beclouds.js",
 			"settings":
 			{
-				"buffer_size": 1865,
+				"buffer_size": 2659,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/controllers/employee.php",
+			"settings":
+			{
+				"buffer_size": 3084,
 				"line_ending": "Unix"
 			}
 		},
@@ -55,31 +67,31 @@
 			"file": "application/controllers/users.php",
 			"settings":
 			{
-				"buffer_size": 4998,
+				"buffer_size": 6390,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/config/autoload.php",
+			"file": "application/libraries/core/validation.php",
 			"settings":
 			{
-				"buffer_size": 3152,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/libraries/be_users.php",
-			"settings":
-			{
-				"buffer_size": 1881,
+				"buffer_size": 1591,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "application/models/users_model.php",
+			"file": "application/libraries/employee/be_employee.php",
 			"settings":
 			{
-				"buffer_size": 1811,
+				"buffer_size": 922,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/models/employee/employee_model.php",
+			"settings":
+			{
+				"buffer_size": 1108,
 				"line_ending": "Windows"
 			}
 		}
@@ -111,7 +123,74 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/login.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/footer.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/header.html",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/notification/ns-style-other.css",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/home.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/employee/list.html",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/form-style.css",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/users_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/be_users.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/User_agent.php",
+		"/E/PHP/Projectz/skillsweet/application/web_default/models/sys/app/sh_games_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/database.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/users.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/employee/add.html",
+		"/E/PHP/Projectz/skillsweet/application/web_default/models/sys/app/sh_db_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/dashboard/dashboard.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/libraries.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/employee/employee_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/employee/employee.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/form_validation.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/helpers/form_helper.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Form_validation.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/helpers/form_helper.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/forge.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Log.php",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/dashboard.js",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/employee.php",
+		"/C/wamp/www/Hai_interactive/design/beclouds/footer.html",
+		"/C/wamp/www/Hai_interactive/design/beclouds/header.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/doc_style/template.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/examples.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/language/english/email_lang.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/language/english/migration_lang.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/hooks.php",
+		"/C/wamp/www/Hai_interactive/design/beclouds/datatables.html",
+		"/C/wamp/www/Plugins/jquery-bootpag-master/index.html",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/lib/jquery.simplePagination.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/beclouds.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/vendor/morris/morris.js",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/plugins/function.html_options.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Ftp.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/helpers.html",
+		"/C/wamp/www/Hai_interactive/demo/media/license.txt",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/controllers/users.php",
+		"/C/wamp/www/Hai_interactive/demo/musicestore/protected/config/main.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/home.html",
+		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/MySmarty.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/smartyci.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/SmartyBC.class.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/Smarty.class.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/config.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/53956ff262215b41aeabe48762ab7f8a87c7fcfa.file.home.html.cache.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/82df9ace1838dacb8df2793610fdb7a0c728e8bb.file.list.html.cache.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/debug.tpl",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/1a19b0b0940b7472b198d2a1a3fe646a6dab3f2c.file.login.html.cache.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/cache/53956ff262215b41aeabe48762ab7f8a87c7fcfa.home.html.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/my.php",
+		"/C/wamp/www/Hai_interactive/design/beclouds/index.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/core_classes.html",
+		"/C/wamp/www/Hai_interactive/demo/sales/application/views/site/home.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/registration.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/autoload.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Output.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/migration.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/benchmark.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Benchmark.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/views.html",
 		"/C/wamp/www/Product/rightern/application/controllers/home.php",
 		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/home.php",
 		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/site.php",
@@ -119,14 +198,10 @@
 		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/language.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/userguide.css",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/sh_updates.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/models/users_model.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/config.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/core/validation.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/sh_users.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/database.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/models/users_model.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/changelog.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/autoload.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Session.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/sysplugins/smarty_internal_compile_eval.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/config/smileys.php",
@@ -134,7 +209,6 @@
 		"/C/wamp/www/Hai_interactive/demo/sales/application/config/database.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/config/config.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/menu.php",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/form-style.css",
 		"/C/wamp/www/Plugins/NotificationStyles/other-boxspinner.html",
 		"/C/wamp/www/Hai_interactive/demo/sales/files/js/main.js",
 		"/C/wamp/www/Hai_interactive/demo/media/system/core/Controller.php",
@@ -147,7 +221,7 @@
 	],
 	"find":
 	{
-		"height": 51.0
+		"height": 59.0
 	},
 	"find_in_files":
 	{
@@ -161,6 +235,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"user_first_name",
+			"btn-employee-add",
+			"GetUserInfo",
+			"input",
+			"GetUserRoles",
+			"dash",
+			"col-xs-6",
+			"link",
+			"demo2",
+			"search",
+			"seach",
+			"datatable",
+			"cache",
+			"cache/",
+			"cache",
+			"cache/",
+			"cache",
+			"subscriber",
+			"{$static_server}app/",
+			"{$static_server}/app/",
+			"wind",
 			"login",
 			"uni",
 			"login",
@@ -177,6 +272,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"user",
+			"{$static_server}assets/app/",
+			"{$static_server}app/"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -194,37 +292,36 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/views/registration.html",
+					"file": "application/views/employee/add.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2558,
+						"buffer_size": 1920,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1845,
-								1845
+								1465,
+								1465
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 661.0,
+						"translation.y": 903.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -233,15 +330,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1865,
+						"buffer_size": 2659,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								668,
+								654
 							]
 						],
 						"settings":
@@ -251,115 +348,85 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1161.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "application/controllers/users.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4998,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2375,
-								2375
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3010.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "application/config/autoload.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3152,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1991,
-								1991
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": -0.0,
-						"translation.y": 2580.0,
+						"translation.y": 260.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "application/libraries/be_users.php",
+					"buffer": 2,
+					"file": "application/controllers/employee.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1881,
+						"buffer_size": 3084,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1000,
-								1000
+								2196,
+								2196
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1392.0,
+						"translation.y": 2483.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/controllers/users.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6390,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3865,
+								3865
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4386.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "application/models/users_model.php",
+					"buffer": 4,
+					"file": "application/libraries/core/validation.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1811,
+						"buffer_size": 1591,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1655,
-								1655
+								1343,
+								1343
 							]
 						],
 						"settings":
@@ -369,10 +436,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1607.0,
+						"translation.y": 1521.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/libraries/employee/be_employee.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								870,
+								882
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 983.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/models/employee/employee_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1108,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								343,
+								343
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 516.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -425,6 +552,126 @@
 		"selected_items":
 		[
 			[
+				"ns-style-other.css",
+				"assets\\app\\css\\notification\\ns-style-other.css"
+			],
+			[
+				"hea",
+				"application\\views\\layout\\header.html"
+			],
+			[
+				"login.hm",
+				"application\\views\\login.html"
+			],
+			[
+				"validation",
+				"application\\libraries\\core\\validation.php"
+			],
+			[
+				"footer",
+				"application\\views\\layout\\footer.html"
+			],
+			[
+				"users",
+				"application\\controllers\\users.php"
+			],
+			[
+				"becloud",
+				"assets\\app\\js\\beclouds.js"
+			],
+			[
+				"be_use",
+				"application\\libraries\\be_users.php"
+			],
+			[
+				"login",
+				"application\\views\\login.html"
+			],
+			[
+				"data",
+				"application\\config\\database.php"
+			],
+			[
+				"emploe",
+				"application\\models\\employee\\employee_model.php"
+			],
+			[
+				"libeem",
+				"application\\libraries\\employee\\be_employee.php"
+			],
+			[
+				"emply",
+				"application\\controllers\\employee.php"
+			],
+			[
+				"form",
+				"assets\\app\\css\\form-style.css"
+			],
+			[
+				"headr",
+				"application\\views\\layout\\header.html"
+			],
+			[
+				"empl",
+				"application\\controllers\\employee.php"
+			],
+			[
+				"home",
+				"application\\controllers\\home.php"
+			],
+			[
+				"foot",
+				"application\\views\\layout\\footer.html"
+			],
+			[
+				"dash",
+				"application\\views\\dashboard\\dashboard.html"
+			],
+			[
+				"header",
+				"application\\views\\layout\\header.html"
+			],
+			[
+				"dashbo",
+				"assets\\app\\js\\common\\dashboard.js"
+			],
+			[
+				"em",
+				"application\\controllers\\employee.php"
+			],
+			[
+				"emplo",
+				"application\\views\\employee\\list.html"
+			],
+			[
+				"list",
+				"application\\views\\employee\\list.html"
+			],
+			[
+				"emp",
+				"application\\controllers\\employee.php"
+			],
+			[
+				"my.php",
+				"application\\libraries\\my.php"
+			],
+			[
+				"confi",
+				"application\\config\\config.php"
+			],
+			[
+				"modeluse",
+				"application\\models\\users_model.php"
+			],
+			[
+				"be",
+				"application\\libraries\\be_users.php"
+			],
+			[
+				"viewlog",
+				"application\\views\\login.html"
+			],
+			[
 				"auto",
 				"application\\config\\autoload.php"
 			],
@@ -439,10 +686,6 @@
 			[
 				"au",
 				"application\\config\\autoload.php"
-			],
-			[
-				"data",
-				"application\\config\\database.php"
 			],
 			[
 				"contusers",
