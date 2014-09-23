@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 	        $this->load->library('core/validation');
 	        $this->load->library('be_users');
 		$userdata = (object)$this->session->userdata('user');
-		if( empty( $userdata->subscriber_id ) ){
+		if( empty( $userdata->user_id ) ){
 			redirect('/users/login');
 		}
 
@@ -31,9 +31,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-	        $filename = 'dashboard/dashboard.html';
-	        $this->smartyci->assign('filename',$filename);
-	        $this->smartyci->display('layout/home.html'); 
+	        $this->smartyci->display('dashboard/dashboard.html'); 
 
 	}
 

@@ -6,7 +6,7 @@
 <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
  
-<title>Cameo | Responsive Admin Dashboard</title>
+<title>Dashboard | BeClouds.com</title>
  
 <link rel="stylesheet" href="{$static_server}assets/app/css/vendor/offline/theme.css">
 <link rel="stylesheet" href="{$static_server}assets/app/css/vendor/pace/theme.css">
@@ -20,9 +20,11 @@
 <link rel="stylesheet" href="{$static_server}assets/app/css/common/skins/palette.1.css" id="skin">
 <link rel="stylesheet" href="{$static_server}assets/app/css/common/fonts/style.1.css" id="font">
 <link rel="stylesheet" href="{$static_server}assets/app/css/common/main.css">
- 
+   <link href="{$static_server}/assets/app/css/form-style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{$static_server}assets/app/css/common/panel.css">
- 
+     <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/notification/ns-default.css" />
+    <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/notification/ns-style-other.css" />
+
 <script src="{$static_server}assets/app/css/vendor/modernizr.js"></script>
 </head>
  
@@ -32,12 +34,31 @@
 <header class="header header-fixed navbar">
 <a href="javascript:;" class="fa fa-bars navbar-toggle off-left visible-xs" data-toggle="collapse" data-target="#hor-menu"></a>
 <div class="brand">
-<a href="index.html" class="navbar-brand">
-	<img src='img/small-3748-1640458.png'   />
+<a href="{$static_server}home/index" class="navbar-brand">
+	<img src='{$static_server}assets/app/images/logos/beclouds.png'   />
 </a>
 </div>
 <div class="collapse navbar-collapse pull-left no-padding" id="hor-menu">
 <ul class="nav navbar-nav">
+	<li class="dropdown show-on-hover">
+		<a href="javascript:;" data-toggle="dropdown">
+		<span>Employees</span>
+		<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="{$static_server}employee/add">
+				<span>Add New Employee</span>
+				</a>
+			</li>
+			<li>
+				<a href="{$static_server}employee/index">
+				<span>Employees Report</span>
+				</a>
+			</li>
+		</ul>
+	</li>
+
 <li class="dropdown show-on-hover">
 <a href="javascript:;" data-toggle="dropdown">
 <span>Interface</span>
@@ -224,14 +245,6 @@
 </li>
 </ul>
 </div>
-<form class="navbar-form navbar-left hidden-xs" role="search">
-<div class="form-group">
-<button class="btn btn-white no-border no-margin bg-none" type="submit">
-<i class="fa fa-search"></i>
-</button>
-<input type="text" class="form-control no-border no-padding search" placeholder="Search Workspace">
-</div>
-</form>
 <ul class="nav navbar-nav navbar-right hidden-xs">
 <li class="notifications dropdown">
 <a href="javascript:;" data-toggle="dropdown">
@@ -301,14 +314,14 @@
 </li>
 <li class="quickmenu">
 <a href="javascript:;" data-toggle="dropdown">
-<img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="user" title="user">
+<img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="{$user.company_name}" title="user">
 <i class="caret mg-l-xs hidden-xs no-margin"></i>
 </a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
 <a href="javascript:;">
 <div class="pd-t-sm">
-gerald@morris.com
+	{$user.user_email}
 <br>
 <small class="text-muted">4.2 MB of 51.25 GB used</small>
 </div>

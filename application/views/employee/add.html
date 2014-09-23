@@ -1,0 +1,43 @@
+
+	{include file='../layout/header.html'}
+
+<section class="main-content">
+<div class="content-wrap" style="margin-top:50px;">
+	<section class="panel panel-info">
+		<header class="panel-heading">Employee Details</header>
+		<div class="panel-body">
+			<div class='form' style="">
+			      <h1>Add New Employee</h1>
+			      <div class='line'></div>
+			      <form class='employee-form' action='#'>
+			      <div class='form-group'>
+			        	<label class='col-sm-2 control-label'>First Name:</label>
+			        	<input type='text' name='user_first_name' id='user_first_name' placeholder='First Name' />
+			        </div>
+			      <div class='form-group'>
+			        	<label class='col-sm-2 control-label'>Last Name:</label>
+				<input type='text' name='user_last_name' id='user_last_name' placeholder='Last Name' />
+			       </div>
+			      <div class='form-group'>
+			        	<label class='col-sm-2 control-label'>Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			        	<input type='text' name='user_email' id='user_email' placeholder='User Email' />
+			        </div>
+			      <div class='form-group'>
+			        	<label class='col-sm-2 control-label'>Password: &nbsp;&nbsp;</label>
+			        	<input type='password' name='userpwd' id='userpwd' placeholder='Password' />
+			        </div>
+			      <div class='form-group'>
+			        	<label class='col-sm-2 control-label'>Roles: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			        	<select name='user_roles' id='user_roles' >
+			        		{foreach from=$roles item=role}
+			        			<option value='{$role.user_type_id}'>{$role.user_type_name}</option>
+			        		{/foreach}
+			        	</select>
+			        </div>
+			        <input type='button' class='btn-sign-in btn-facebook' id='btn-employee-add' value='Add' />
+			      </form>
+		</div>
+	</section>
+</div>
+</section>
+	{include file='../layout/footer.html'}

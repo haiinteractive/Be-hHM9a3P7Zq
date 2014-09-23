@@ -23,7 +23,7 @@ class Users extends CI_Controller {
 	        $this->load->library('core/validation');
 	        $this->load->library('be_users');
 		$userdata = (object)$this->session->userdata('user');
-		if( !empty( $userdata->subscriber_id ) ){
+		if( !empty( $userdata->user_id ) ){
 			redirect('/home/index');
 		}
 
@@ -31,6 +31,12 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
+		$userdata = (object)$this->session->userdata('user');
+		if( !empty( $userdata->user_id ) ){
+			redirect('/home/index');
+		}else{
+			redirect('/users/login');
+		}
 	}
 
 	public function login()
@@ -95,9 +101,12 @@ class Users extends CI_Controller {
 	public function InputValidation()
 	{
 		$output = '';
+		if( $this->security->xss_clean( $this->input->post("purpose") )== 'login'){	
 			( $this->validation->EmailValid( $this->security->xss_clean( $this->input->post("email") ), 'Email Address' )  !='')   ? $output  .= $this->validation->EmailValid( $this->security->xss_clean( $this->input->post("email") ), 'Email Address' ).'<br />' : '';
 			( $this->validation->PwdValid( $this->security->xss_clean( $this->input->post("userpwd") ), 'Password' )  !='')   ? $output  .= $this->validation->PwdValid( $this->security->xss_clean( $this->input->post("userpwd") ), 'Password' ).'<br />' : '';
-		if( $this->security->xss_clean( $this->input->post("purpose") )== 'registration'){	
+		}else if( $this->security->xss_clean( $this->input->post("purpose") )== 'registration'){	
+			( $this->validation->EmailValid( $this->security->xss_clean( $this->input->post("email") ), 'Email Address' )  !='')   ? $output  .= $this->validation->EmailValid( $this->security->xss_clean( $this->input->post("email") ), 'Email Address' ).'<br />' : '';
+			( $this->validation->PwdValid( $this->security->xss_clean( $this->input->post("userpwd") ), 'Password' )  !='')   ? $output  .= $this->validation->PwdValid( $this->security->xss_clean( $this->input->post("userpwd") ), 'Password' ).'<br />' : '';
 			(  $this->validation->StringValid( $this->security->xss_clean( $this->input->post("username") ), 'User Name' )  != '')  ? $output .=$this->validation->StringValid( $this->security->xss_clean( $this->input->post("username") ) , ' User Name ').'<br />' : '';
 			( $this->validation->CompareValid( $this->security->xss_clean( $this->input->post("userpwd") ), $this->security->xss_clean( $this->input->post("retypeuserpwd") ), 'Password' )  !='')   ? $output  .= $this->validation->CompareValid( $this->security->xss_clean( $this->input->post("userpwd") ), $this->security->xss_clean( $this->input->post("retypeuserpwd") ), 'Password' ).'<br />' : '';
 		}
@@ -107,14 +116,15 @@ class Users extends CI_Controller {
 
 	public function setsession( $user_info ){
 					$session_data = array(
-							'subscriber_id'	=>$user_info->subscriber_id,
+							'user_id'	=>$user_info->subscriber_id,
 							'uniqueid'	=> $user_info->subscriber_unique_id,
-							'subscriber_first_name'	=> $user_info->subscriber_first_name,
-							'subscriber_last_name'	=> $user_info->subscriber_last_name,
+							'user_first_name'	=> $user_info->subscriber_first_name,
+							'user_last_name'	=> $user_info->subscriber_last_name,
 							'company_name'	=> $user_info->company_name,
-							'subscriber_email'	=> $user_info->subscriber_email,
-							'subscriber_logo'	=> $user_info->subscriber_logo,
-							'subscribe_package'	=> $user_info->subscribe_package,
+							'user_email'	=> $user_info->subscriber_email,
+							'user_type'	=> 'admin',
+							'user_logo'	=> $user_info->subscriber_logo,
+							'user_package'	=> $user_info->subscribe_package,
 							'subscribed_on'	=> $user_info->subscribed_on,
 						);
 					$this->session->unset_userdata('user');    

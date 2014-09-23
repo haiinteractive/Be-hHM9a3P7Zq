@@ -12,5 +12,19 @@
 
 
 
+$hook['pre_controller'][] = array(
+                                'class'    => 'AppProcessor',
+                                'function' => 'index',
+                                'filename' => 'AppProcessor.php',
+                                'filepath' => 'hooks'
+                                ); 
+                                
+$hook['post_controller_constructor'] = array(
+                                'class'    => 'AppConstructor',
+                                'function' => 'doConstruct',
+                                'filename' => 'AppConstructor.php',
+                                'filepath' => 'hooks'
+                                );
+
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

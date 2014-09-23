@@ -54,6 +54,13 @@ class Be_Users
                 $response = $this->_CI->users_model->CheckExist( $email );
                 return $response;
         }
+        
+        function  CheckUserExist( $email )
+        {
+                $response = false;
+                $response = $this->_CI->users_model->CheckUserExist( $email );
+                return $response;
+        }
 
         function GetUserInfo( $user_id )
         {

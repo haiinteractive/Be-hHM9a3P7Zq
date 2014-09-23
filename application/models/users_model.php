@@ -36,6 +36,20 @@ class Users_Model extends CI_Model
                         }
             }
 
+            function CheckUserExist( $user_email ){
+                        $this->db->select("user_id");
+                        $this->db->from('t_users');      
+                        $this->db->where(array('t_users.user_email'=>$user_email));        
+                        $query = $this->db->get();
+                        $db_results = $query->result_array();                   
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results[0]['user_id'];
+                        }else{
+                                return '';
+                        }
+                    }
+
             function GetUserInfo( $user_id )
             {
                         $this->db->select("*");

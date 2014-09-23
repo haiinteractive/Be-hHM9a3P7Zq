@@ -30,7 +30,11 @@ class Validation
     
     function StringValid( $input, $string )
     {
-            (!preg_match("/^[A-Za-z\\- \']+$/",$input))  ? $message = $string. " is not Valid." : $message ='' ;
+            if(strlen( $input ) != 0 || !empty($input)){
+                    (!preg_match("/^[A-Za-z\\- \']+$/",$input))  ? $message = $string. " is not Valid." : $message ='' ;
+            }else{
+                $message = 'Please enter' .$string;
+            }
             return $message;
     }
 
@@ -40,7 +44,7 @@ class Validation
     }
 
     function PwdValid( $input , $string ){
-        ( strlen( trim($input) ) < 6  ) ? $message = $string. ' is week. Enter More than 6 Characters ' : $message = '';     
+        ( strlen( trim($input) ) < 6  ) ? $message = $string. ' is not valid. Enter More than 6 Characters ' : $message = '';     
         return $message;
     }
 

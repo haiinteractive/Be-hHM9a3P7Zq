@@ -45,7 +45,9 @@
 | the active record class
 */
 
-define('SUBSCRIBER_DB_NAME', 'rightern_beclouds');
+if (!defined('SUBSCRIBER_DB_NAME')) define('SUBSCRIBER_DB_NAME', 'rightern_beclouds');
+if (!defined('REPORT_DB_NAME')) define('REPORT_DB_NAME', 'rightern_reports');
+
 $active_group = 'default';
 $active_record = TRUE;
 
@@ -72,6 +74,29 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
+/*$db['media']['hostname'] = "localhost";
+$db['media']['username'] = "root";
+$db['media']['password'] = "";
+$db['media']['database'] = "rightern_media";
+*/
+
+$db['media']['hostname'] = "localhost";
+$db['default']['username'] = 'rightern_news';
+$db['default']['password'] = 'M0nster.com';
+$db['media']['database'] = "rightern_reports";
+
+$db['media']['dbdriver'] = "mysqli";
+$db['media']['dbprefix'] = "";
+$db['media']['pconnect'] = TRUE;
+$db['media']['db_debug'] = FALSE;
+$db['media']['cache_on'] = FALSE;
+$db['media']['cachedir'] = "";
+$db['media']['char_set'] = "utf8";
+$db['media']['dbcollat'] = "utf8_general_ci";
+$db['media']['swap_pre'] = "";
+$db['media']['autoinit'] = TRUE;
+$db['media']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
