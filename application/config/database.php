@@ -78,7 +78,7 @@ $db['default']['stricton'] = FALSE;
 /*$db['media']['hostname'] = "localhost";
 $db['media']['username'] = "root";
 $db['media']['password'] = "";
-$db['media']['database'] = "rightern_media";
+$db['media']['database'] = "rightern_reports";
 */
 
 $db['media']['hostname'] = "localhost";

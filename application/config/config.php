@@ -360,6 +360,10 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 $config['img_path']	=  'assets/app/images';
+$config['clients_file_path'] = 'assets/clients/';
 
+$config['company']	= array('company_name', 'company name', 'Company Name', 'Company name', 'company Name', 'CompanyName', 'companyname', 'Companyname');
+$config['ro_number']	= array('ro_number', 'ro number', 'RO number', 'rnumber', 'ronumber', 'roNumber', 'Ro Number', 'Ro number');
+$config['city']	= array('city', 'City');
 /* End of file config.php */
 /* Location: ./application/config/config.php */

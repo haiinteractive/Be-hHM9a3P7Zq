@@ -53,5 +53,18 @@ class Validation
         ( trim( $one ) === trim( $two ) && strlen( trim($one) ) > 5  ) ? $message = '' : $message = $string ." doesn't match ";
         return $message;
     }
+    function replaceslashes( $data ){
+        return str_replace(array('/', '\\'), '', $data); 
+    }
+
+    function CheckEmptyValue( $row ){
+            $response = array( );
+                foreach ($row as $key => $value) {
+                    $value = trim($value);
+                    if (empty($value) && $key != 12 )
+                            $response[] =  $key.' cell  should not be empty';
+           }
+               return $response;         
+    }
 
 }

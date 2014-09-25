@@ -81,6 +81,7 @@ class Users extends CI_Controller {
 				$response = $this->be_users->Registration( $this->security->xss_clean( $this->input->post("username") ), $this->security->xss_clean( $this->input->post("email") ), $this->security->xss_clean( $this->input->post("userpwd") ));			// Storing User Information
 				if($response > 0){
 					$user_info = $this->be_users->GetUserInfo( $response );	// Getting Registreted Information
+					mkdir("assets/clients/$userdata->uniqueid");
 					$this->setsession( $user_info );	// SET session
 				}
 				echo json_encode($response);

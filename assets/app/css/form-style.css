@@ -126,7 +126,7 @@ form
 {
 	margin: 0 0 0 30px
 }
-	form input[type="text"], input[type="password"], select 
+	form input[type="text"], input[type="password"], input[type="file"], select 
 {
 	padding: 7px 14px 12px;
 	background-color: #f2f2f2;
