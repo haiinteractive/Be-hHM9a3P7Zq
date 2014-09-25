@@ -30,7 +30,7 @@ class Upload extends CI_Controller {
 				if( ( !in_array( $data[0], $this->config->item('company')) ) && (!in_array($data[1], $this->config->item('ro_number') ) ) && (!in_array($data[2], $this->config->item('city') ) ) && (is_numeric($data[1])) ){
 					$row = $this->validation->replaceslashes( $data );
 					$valid = $this->validation->CheckEmptyValue( $row );
-					if( ($valid != '') || (!empty($valid) ) ){
+					if( count($valid)  ){
 						$notice[] = $valid;
 					}
 				}
