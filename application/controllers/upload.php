@@ -30,14 +30,13 @@ class Upload extends CI_Controller {
 				if( ( !in_array( $data[0], $this->config->item('company')) ) && (!in_array($data[1], $this->config->item('ro_number') ) ) && (!in_array($data[2], $this->config->item('city') ) ) && (is_numeric($data[1])) ){
 					$row = $this->validation->replaceslashes( $data );
 					$valid = $this->validation->CheckEmptyValue( $row );
-					if($valid == '' || empty($valid) ){
-    						move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->uniqueid."/". time().$_FILES["file_data"]["name"]);
-					}else{
+					if( ($valid != '') || (!empty($valid) ) ){
 						$notice[] = $valid;
 					}
 				}
 			}
 			if(count($notice) <= 0 ){
+				move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->uniqueid."/". time().$_FILES["file_data"]["name"]);
 				echo 'Successfully Uploaded';
 				die;
 			}else{
