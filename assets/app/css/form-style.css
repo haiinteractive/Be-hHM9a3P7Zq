@@ -205,3 +205,8 @@ form
 {
 	display: none
 }
+
+
+.content-wrap {
+    overflow-y:hidden;
+}

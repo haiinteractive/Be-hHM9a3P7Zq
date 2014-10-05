@@ -8,6 +8,11 @@ var base_url = '/media';
                   var request_url = base_url+'/users/registration';
                   call( params, request_url );
               });
+                $('.user_editsss').on('click', function(){
+                          alert('asdasdasd');
+                          return false;
+              });
+
 
               $("#btn-employee-add").on('click', function(){
                   var params = 'user_first_name='+$("#user_first_name").val()+'&user_last_name='+$("#user_last_name").val()+'&email='+$("#user_email").val()+'&userpwd='+$("#userpwd").val()+'&user_role='+$("#user_roles").val()+'&purpose=employee';
