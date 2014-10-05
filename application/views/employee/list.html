@@ -18,30 +18,40 @@
 				</tr>
 				</thead>
 				<tbody class='list_content'>
+					<div id='loading-image' style="text-align: center"><img src="{$static_server}assets/app/images/framely.gif" align="middle" style="height:75px; width:75px;"/></div>
 				</tbody>
 				</table>
 			</div>
 		</div>
-		                        <p class="demo demo2"></p>
-
+		                        <p class="pagination"></p>
+		                        <div class='modal' style="display:none;">
+		                        		{include file='employee/edit.html'}
+		                        </div>
 	</section>
 </div>
 </section>
 	{include file='../layout/footer.html'}
 	<script type="text/javascript" src="{$static_server}assets/app/js/lib/jquery.simplePagination.js"></script>
 	<link type="text/css" rel="stylesheet" href="{$static_server}assets/app/css/lib/simplePagination.css"/>
+
 {literal}
+<style type="text/css">
+	.pm-content{
+		height:600px;
+	}
+</style>
 <script type='text/javascript'>
 		$(function() {
-		    $('.demo2').pagination({
-		        items: 0{/literal}{$pagination}{literal},
-		        itemsOnPage: 10,
+		    $('.pagination').pagination({
+		        items: 0{/literal}{$arg.total_items}{literal},
+		        itemsOnPage: {/literal}{$arg.pagination}{literal},
 		        cssStyle: 'light-theme',
 		        onPageClick: function(){
 		        	Collect_Info();
 		        }
 		    });
 		    Collect_Info();
+		    
 		});
 		function Collect_Info(){
 			var current_page = $('.current').text();
@@ -49,8 +59,15 @@
 		                            type: "POST",
 		                            data: 'current_page='+current_page,
 		                            dataType:'JSON',
+		                            beforeSend: function(){
+		                            		$("#loading-image").show();
+		                            },
 		                            url: base_url+'/employee/list_info',
+		                            beforeSend: function() {
+			              $("#loading-image").show();
+			           },
 		                            success: function(sresponse) {
+		                            	$("#loading-image").hide();
 		                            	var objdata = new Array() ;
 					$.each(sresponse, function(i, obj) {
 					  //use obj.id and obj.name here, for example:
@@ -58,8 +75,9 @@
 					  	objdata += '<td>'+obj.user_first_name+'</td>'; 
 					  	objdata += '<td>'+obj.user_last_name+'</td>'; 
 					  	objdata += '<td>'+obj.user_email+'</td>'; 
-					  	objdata += '<td>'+obj.created_by+'</td>'; 
+					  	objdata += '<td>'+obj.user_type_name+'</td>'; 
 					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_editsss" onClick="edit_user_info('+obj.user_id+');">Edit</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);

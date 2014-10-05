@@ -37,10 +37,10 @@ class Be_Employee
         return $response;
     }
 
-    function Get_Employee_Details( $user_id, $perpage, $current_date )
+    function Get_Employee_Details( $user_id, $perpage, $start_no )
     {
         $response = false;
-                $response = $this->_CI->employee_model->Get_Employee_Details(  $user_id, $perpage, $current_date );
+                $response = $this->_CI->employee_model->Get_Employee_Details(  $user_id, $perpage, $start_no );
         return $response;
     }
 

@@ -51,17 +51,17 @@ if (!defined('REPORT_DB_NAME')) define('REPORT_DB_NAME', 'rightern_reports');
 $active_group = 'default';
 $active_record = TRUE;
 
-/*$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'rightern_beclouds';
-*/
 
-$db['default']['hostname'] = 'localhost';
+
+/*$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'rightern_news';
 $db['default']['password'] = 'M0nster.com';
 $db['default']['database'] = 'rightern_beclouds';
-
+*/
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -75,17 +75,17 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-/*$db['media']['hostname'] = "localhost";
+$db['media']['hostname'] = "localhost";
 $db['media']['username'] = "root";
 $db['media']['password'] = "";
 $db['media']['database'] = "rightern_reports";
-*/
 
-$db['media']['hostname'] = "localhost";
+
+/*$db['media']['hostname'] = "localhost";
 $db['default']['username'] = 'rightern_news';
 $db['default']['password'] = 'M0nster.com';
 $db['media']['database'] = "rightern_reports";
-
+*/
 $db['media']['dbdriver'] = "mysqli";
 $db['media']['dbprefix'] = "";
 $db['media']['pconnect'] = TRUE;

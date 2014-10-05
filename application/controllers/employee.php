@@ -13,7 +13,7 @@ class Employee extends CI_Controller {
 			redirect('/users/login');
 		}
 
-		$this->perPage = 10;
+		$this->perPage = 5;
 
 	}
 
@@ -24,9 +24,13 @@ class Employee extends CI_Controller {
 			$this->smartyci->useCached( 'list.html' );
 		}else{
 			        $userdata = (object)$this->session->userdata('user');
-  			        $total = $this->be_employee->Get_Employees_Count( $userdata->user_id );
+  			        $total_users = $this->be_employee->Get_Employees_Count( $userdata->user_id );
+  			        $arg = array(
+  			        		'total_items'	=> $total_users,
+  			        		'pagination'	=> $this->perPage
+  			        	);
 			        $filename = 'employee/list.html';
-			        $this->smartyci->assign('pagination', $total );
+			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('filename',$filename);
 			        $this->smartyci->display('employee/list.html'); 
 		}
@@ -80,8 +84,13 @@ class Employee extends CI_Controller {
 	public function list_info()
 	{
 		$userdata = (object)$this->session->userdata('user');
-		$current_page = $this->security->xss_clean( $this->input->post("current_page") );
-		$data = $this->be_employee->Get_Employee_Details( $userdata->user_id, $this->perPage, $current_page );
+		$current_page = str_replace(array('Prev', 'Next'), '',  $this->security->xss_clean( $this->input->post("current_page") ) );
+	            if(empty($current_page) || $current_page == 1){
+	                 $start_no = 0;
+	            }else{
+	                $start_no = ($current_page-1) * $this->perPage;
+	            }
+		$data = $this->be_employee->Get_Employee_Details( $userdata->user_id, $this->perPage, $start_no );
 		echo json_encode($data);
 		die;
 

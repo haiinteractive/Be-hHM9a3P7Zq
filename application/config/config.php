@@ -365,5 +365,6 @@ $config['clients_file_path'] = 'assets/clients/';
 $config['company']	= array('company_name', 'company name', 'Company Name', 'Company name', 'company Name', 'CompanyName', 'companyname', 'Companyname');
 $config['ro_number']	= array('ro_number', 'ro number', 'RO number', 'rnumber', 'ronumber', 'roNumber', 'Ro Number', 'Ro number');
 $config['city']	= array('city', 'City');
+$config['EG_total_fields'] = 15;
 /* End of file config.php */
 /* Location: ./application/config/config.php */

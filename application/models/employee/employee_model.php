@@ -37,12 +37,11 @@ class Employee_Model extends CI_Model
                             return $this->db->insert_id(); 
             }
 
-            function Get_Employee_Details( $user_id, $perpage, $current_date ){
-                        $this->db->select("*");
-                        $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_users');      
-                        $this->db->where(array('user_is_active'=>'1', 'created_by' => $user_id));        
-                        $query = $this->db->get();
-                        $db_results = $query->result_array();                   
+            function Get_Employee_Details( $user_id, $perpage, $start_no ){
+                        $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
+                       $db_results = $result->result_array();
+                       $result->next_result(); // Dump the extra resultset.
+                        $result->free_result(); // Does what it says.
                          if (count($db_results) > 0 )
                         {            
                                 return $db_results;
