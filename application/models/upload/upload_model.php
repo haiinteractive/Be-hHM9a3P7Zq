@@ -14,7 +14,7 @@ class Upload_Model extends CI_Model
 {
  	 public $_dataMap = ''; 
             function __construct(){
-                  // $media = $this->load->database('media', TRUE);
+                  // $media = $this->load->database('REPORT_DB_NAME', TRUE);
                }
             function GetFormType(  )
             {
@@ -36,7 +36,17 @@ class Upload_Model extends CI_Model
                             $this->db->insert(SUBSCRIBER_DB_NAME.'.t_users', $arg );
                             return $this->db->insert_id(); 
             }
+            function InsertTempInformation( $arg )
+            {
+                            $this->db->insert(REPORT_DB_NAME.'.'.'temp_pub_information', $arg );
+                            return $this->db->insert_id(); 
+            }
 
+            function InsertTempAdData( $arg )
+            {
+                            $this->db->insert_batch(REPORT_DB_NAME.'.'.'temp_ad_data', $arg );
+                            return $this->db->insert_id(); 
+            }
             function Get_Employee_Details( $user_id, $perpage, $current_date ){
                         $this->db->select("*");
                         $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_users');      
