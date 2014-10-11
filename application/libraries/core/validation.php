@@ -1,4 +1,5 @@
 <?php
+ 
 /**
  * The Users class file.
  *
@@ -9,7 +10,7 @@
  * @link     models/users_model.php
  * 
  */
- 
+  
 class Validation
 {
     private $_CI;    
