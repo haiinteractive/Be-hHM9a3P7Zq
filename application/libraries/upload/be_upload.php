@@ -65,4 +65,47 @@ class Be_Upload
                 $response = $this->_CI->employee_model->AddNewUser(  $arg );
         return $response;
     }
+
+    public function InsertTempInformation( $arg )
+    {
+        $response = false;
+                $response = $this->_CI->upload_model->InsertTempInformation(  $arg );
+                if($response){
+                    $this->InsertTempAdData( $response, $arg );
+                }
+        return $response;
+    }
+
+    public function InsertTempAdData( $pubid, $arg )
+    {
+                $response = false;
+                $ad_arg = array();
+                $net_pays = explode(';', $arg['net_amount']);
+                $pub_format = explode(';', $arg['session']);
+                $offered_rate = explode(';', $arg['offered_amount']);
+                $publish_dates = explode(';', $arg['frequency']);
+                $ad_codes = explode(';', $arg['ad_code']);
+                $total_arg = count($net_pays);
+                for( $starts_with = 0; $starts_with < $total_arg; $starts_with++)
+                {
+                            $dat = explode("-", trim($publish_dates[$starts_with]));
+                            $ordered_month = date('m', strtotime($dat[1]));
+                            $ordered_year = date('Y', strtotime($dat[2]));
+                            $publish_date = $ordered_year."-".$ordered_month."-01";
+                            $ad_info = array(
+                                'temp_pub_informationid'    => $pubid, 
+                                'month' => $ordered_month,
+                                'year'  => $ordered_year,
+                                'session' => $dat[0],
+                                'city'    => $arg['city'],
+                                'publish_date' => $publish_date,
+                                'publish_type' => 1,
+                                'offered_rate' => $offered_rate[$starts_with],
+                                'created_on'        => $this->current_date
+                            );
+                            $ad_arg[] = $ad_info;
+                }
+                $response = $this->_CI->upload_model->InsertTempAdData(  $ad_arg );
+                return $response;
+    }
 }
