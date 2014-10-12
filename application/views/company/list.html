@@ -4,19 +4,20 @@
 <section class="main-content">
 <div class="content-wrap" style="margin-top:50px;">
 	<section class="panel panel-info">
-		<header class="panel-heading">Employee Details</header>
+		<header class="panel-heading">Company Details</header>
 		<div class="panel-body">
 			<div class="table-responsive no-border">
 			
-			<p id="employee_onclick" style=" width:151px;">Add New Employee</p>
+			<p id="company_onclick" style=" width:151px;">Add New Company</p>
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Companies</th>
+				<th>Contact person</th>
+				<th>Address</th>
+				<th>Phone</th>
 				<th>Email</th>
-				<th>User Role</th>
-				<th>User From</th>
+				<th>Actions</th>
 				</tr>
 				</thead>
 				<tbody class='list_content'>
@@ -26,9 +27,7 @@
 			</div>
 		</div>
 		                        <p class="pagination"></p>
-		                        <div class='modal' style="display:none;">
-		                        		{include file='employee/edit.html'}
-		                        </div>
+		                      
 	</section>
 </div>
 </section>
@@ -52,7 +51,13 @@
 margin:5px;
 padding:0px;
 height: 33px;
+width:265px;
 }
+
+label {
+    width: 156px;
+}
+
 input[type=button]{
     background-color:#123456;
     border:1px solid white;
@@ -62,7 +67,7 @@ input[type=button]{
     color:white;
     width:22%;
 }
-label { width: 88px;}
+
 
 .form{
     border-radius:2px;
@@ -74,6 +79,8 @@ label { width: 88px;}
     margin:20px 250px 0 35px;
     float:left;
 }
+
+#login{ margin-top:-230px; }
 
 h3 {margin-top :0px;}
 
@@ -102,7 +109,7 @@ h3 {margin-top :0px;}
 		                            beforeSend: function(){
 		                            		$("#loading-image").show();
 		                            },
-		                            url: base_url+'/employee/list_info',
+		                            url: base_url+'/company/list_info',
 		                            beforeSend: function() {
 			              $("#loading-image").show();
 			           },
@@ -112,12 +119,12 @@ h3 {margin-top :0px;}
 					$.each(sresponse, function(i, obj) {
 					  //use obj.id and obj.name here, for example:
 					  	objdata += '<tr>';
-					  	objdata += '<td>'+obj.user_first_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_last_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_email+'</td>'; 
-					  	objdata += '<td>'+obj.user_type_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
-					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_editsss" onClick="edit_user_info('+obj.user_id+');">Edit</a></td>'; 
+					  	objdata += '<td>'+obj.c_name+'</td>'; 
+					  	objdata += '<td>'+obj.c_person+'</td>'; 
+					  	objdata += '<td>'+obj.c_address+'</td>'; 
+					  	objdata += '<td>'+obj.c_phone+'</td>'; 
+						objdata += '<td>'+obj.c_email+'</td>';
+					  	objdata += '<td><a href="#" id="'+obj.comp_id+'" class="user_edit" onClick="edit_company_info('+obj.comp_id+');">Edit</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -126,25 +133,27 @@ h3 {margin-top :0px;}
 		}
 		
 		
-			function edit_user_info(id)
+			function edit_company_info(id)
 			{
-				 $("#edit_empdiv").css("display", "block");
-				 var request_ur = base_url+'/employee/edit';
+				 $("#edit_companydiv").css("display", "block");
+				 var request_ur = base_url+'/company/edit';
 				  $.ajax({
 								type: "POST",
-								data: 'user_id='+id,
+								data: 'company_id='+id,
 								dataType:'JSON',
 								url: request_ur,
 								success: function(sresponse) {
 									$.each(sresponse, function(i, obj) {
 									 
-									  $("#use_first_name").val(obj.user_first_name);
-									   $("#use_last_name").val(obj.user_last_name);
-									    $("#use_email").val(obj.user_email);
-										$("#use_roles").val(obj.user_type);
-										$("#use_status").val(obj.user_is_active);
-									  $("#usereid").val(id);
-									});
+									  $("#co_name").val(obj.c_name);
+									   $("#co_person").val(obj.c_person);
+									    $("#caddress").val(obj.c_address);
+										$("#cpin_code").val(obj.c_pincode);
+										$("#cphone").val(obj.c_phone);
+									  $("#cemail").val(obj.c_email);
+									   $("#comp_status").val(obj.c_status);
+									    $("#comp_id").val(obj.comp_id);
+									}); 
 							}
 				});
 			}
@@ -153,97 +162,92 @@ h3 {margin-top :0px;}
 
 {/literal}
 
-
-
-
- <div id="contactdiv">			
+<div id="companydiv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Employee</h3>
+                <h3>Add New Company</h3>
                 <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='us_first_name' id='us_first_name' placeholder="First Name"/><br/>
                 
-                <label>Last Name : </label>
+                <label>Company Name : </label>
                
-                <input type="text" name='us_last_name' id='us_last_name' placeholder="Last Name"/><br/>
+                <input type="text" name='c_name' id='c_name' placeholder="Company Name"/><br/>
+				
+				 <label>Contact Person : </label>
+               
+                <input type="text" name='c_person' id='c_person' placeholder="Cotact Person"/><br/>
+				
+				 <label>Address : </label>
+				 
+				 <textarea name="address" id="address" cols="25" rows="2" placeholder="Address" ></textarea><br />
+               
+                 <label>Pin Code : </label>
+               
+                <input type="text" name='pin_code' id='pin_code' placeholder="Pin Code"/><br/>
+				
+				 <label>Phone : </label>
+               
+                <input type="text" name='phone' id='phone' placeholder="Phone"/><br/>
+				
+				 <label>Alternative Phone : </label>
+               
+                <input type="text" name='alt_phone' id='alt_phone' placeholder="Alternative Phone"/><br/>
 				
 				 <label>Email : </label>
                
-                <input type="text" name='us_email' id='us_email' placeholder="User Email"/><br/>
+                <input type="text" name='email' id='email' placeholder="Email"/><br/>
 				
-				 <label>Password : </label>
+				 <label>Alternative Email : </label>
                
-                <input type="password" name='uspwd' id='uspwd' placeholder="Password"/><br/>
+                <input type="text" name='alt_email' id='alt_email' placeholder="Alternative Email"/><br/>
 				
-				 <label>Roles : </label>
-
-                <select name='us_roles' id='us_roles' >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-                
-                <input type="button" id="loginbtn" value="Add"/>
-               
-                
+                <input type="button" id="companybtn" value="Add"/>
 
             </form>
-
-			
         </div>
 
 
 
-		<div id="edit_empdiv">			
+		<div id="edit_companydiv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit New Employee</h3>
-                <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='use_first_name' id='use_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
                
-                <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name"/><br/>
+			    <h3>Edit Company</h3>
+                <hr/>
+                
+                <label>Company Name : </label>
+               
+                <input type="text" name='co_name' id='co_name' placeholder="Company Name"/><br/>
 				
+				 <label>Contact Person : </label>
+               
+                <input type="text" name='co_person' id='co_person' placeholder="Cotact Person"/><br/>
+				
+				 <label>Address : </label>
+				 
+				 <textarea name="caddress" id="caddress" cols="25" rows="2" placeholder="Address" ></textarea><br />
+               
+                 <label>Pin Code : </label>
+               
+                <input type="text" name='cpin_code' id='cpin_code' placeholder="Pin Code"/><br/>
+				
+				 <label>Phone : </label>
+               
+                <input type="text" name='cphone' id='cphone' placeholder="Phone"/><br/>
+				
+				 <input type="hidden" name='comp_id' id='comp_id' />
+				 
 				 <label>Email : </label>
                
-                <input type="text" name='use_email' id='use_email' placeholder="User Email"/><br/>
+                <input type="text" name='cemail' id='cemail' placeholder="Email"/><br/>
 				
-				
-				
-				 <input type="hidden" name='usereid' id='usereid' />
-				
-				 <label>Roles : </label>
-
-                <select name='use_roles' id='use_roles' >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-				 
-				 <label>Status: </label>
-				 <select name='use_status' id='use_status' >
+				 <label>Client Status: </label>
+				 <select name='comp_status' id='comp_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-                
-                <input type="button" id="edit_loginbtn" value="Update"/>
-               
-                
-
+				 
+                <input type="button" id="edit_companybtn" value="Update"/>
             </form>
-
-			
-        </div>
-
-
+   </div>

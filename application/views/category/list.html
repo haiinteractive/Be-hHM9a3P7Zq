@@ -4,19 +4,18 @@
 <section class="main-content">
 <div class="content-wrap" style="margin-top:50px;">
 	<section class="panel panel-info">
-		<header class="panel-heading">Employee Details</header>
+		<header class="panel-heading">Category Details</header>
 		<div class="panel-body">
 			<div class="table-responsive no-border">
 			
-			<p id="employee_onclick" style=" width:151px;">Add New Employee</p>
+			<p id="category_onclick" style=" width:151px;">Add New Category</p>
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>User Role</th>
-				<th>User From</th>
+				<th>Category Name</th>
+				<th>Created On</th>
+				<th>Category Status</th>
+				<th>Action</th>
 				</tr>
 				</thead>
 				<tbody class='list_content'>
@@ -26,9 +25,7 @@
 			</div>
 		</div>
 		                        <p class="pagination"></p>
-		                        <div class='modal' style="display:none;">
-		                        		{include file='employee/edit.html'}
-		                        </div>
+		                      
 	</section>
 </div>
 </section>
@@ -52,6 +49,7 @@
 margin:5px;
 padding:0px;
 height: 33px;
+width :243px;
 }
 input[type=button]{
     background-color:#123456;
@@ -62,7 +60,7 @@ input[type=button]{
     color:white;
     width:22%;
 }
-label { width: 88px;}
+label { width: 127px;}
 
 .form{
     border-radius:2px;
@@ -102,7 +100,7 @@ h3 {margin-top :0px;}
 		                            beforeSend: function(){
 		                            		$("#loading-image").show();
 		                            },
-		                            url: base_url+'/employee/list_info',
+		                            url: base_url+'/category/list_info',
 		                            beforeSend: function() {
 			              $("#loading-image").show();
 			           },
@@ -112,12 +110,10 @@ h3 {margin-top :0px;}
 					$.each(sresponse, function(i, obj) {
 					  //use obj.id and obj.name here, for example:
 					  	objdata += '<tr>';
-					  	objdata += '<td>'+obj.user_first_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_last_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_email+'</td>'; 
-					  	objdata += '<td>'+obj.user_type_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
-					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_editsss" onClick="edit_user_info('+obj.user_id+');">Edit</a></td>'; 
+					  	objdata += '<td>'+obj.cat_name+'</td>'; 
+					  	objdata += '<td>'+obj.created_on+'</td>'; 
+					  	objdata += '<td>'+obj.status+'</td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.cat_id+'" class="user_editsss" onClick="edit_category_info('+obj.cat_id+');">Edit</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -126,25 +122,22 @@ h3 {margin-top :0px;}
 		}
 		
 		
-			function edit_user_info(id)
+			function edit_category_info(id)
 			{
-				 $("#edit_empdiv").css("display", "block");
-				 var request_ur = base_url+'/employee/edit';
+				 $("#edit_categorydiv").css("display", "block");
+				 var request_ur = base_url+'/category/edit';
 				  $.ajax({
 								type: "POST",
-								data: 'user_id='+id,
+								data: 'category_id='+id,
 								dataType:'JSON',
 								url: request_ur,
 								success: function(sresponse) {
 									$.each(sresponse, function(i, obj) {
 									 
-									  $("#use_first_name").val(obj.user_first_name);
-									   $("#use_last_name").val(obj.user_last_name);
-									    $("#use_email").val(obj.user_email);
-										$("#use_roles").val(obj.user_type);
-										$("#use_status").val(obj.user_is_active);
-									  $("#usereid").val(id);
-									});
+									  $("#cate_name").val(obj.cat_name);
+									   $("#cate_id").val(obj.cat_id);
+									    $("#cat_status").val(obj.status);
+									}); 
 							}
 				});
 			}
@@ -156,94 +149,43 @@ h3 {margin-top :0px;}
 
 
 
- <div id="contactdiv">			
+ <div id="categorydiv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Employee</h3>
+                <h3>Add New Category</h3>
                 <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='us_first_name' id='us_first_name' placeholder="First Name"/><br/>
                 
-                <label>Last Name : </label>
+                <label>Category Name: </label>
                
-                <input type="text" name='us_last_name' id='us_last_name' placeholder="Last Name"/><br/>
+                <input type="text" name='cat_name' id='cat_name' placeholder="Name"/><br/>
 				
-				 <label>Email : </label>
-               
-                <input type="text" name='us_email' id='us_email' placeholder="User Email"/><br/>
-				
-				 <label>Password : </label>
-               
-                <input type="password" name='uspwd' id='uspwd' placeholder="Password"/><br/>
-				
-				 <label>Roles : </label>
-
-                <select name='us_roles' id='us_roles' >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-                
-                <input type="button" id="loginbtn" value="Add"/>
-               
-                
+                <input type="button" id="categorybtn" value="Add"/>
 
             </form>
-
-			
         </div>
 
 
 
-		<div id="edit_empdiv">			
+		<div id="edit_categorydiv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit New Employee</h3>
+                <h3>Edit Category</h3>
                 <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='use_first_name' id='use_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
+				
+               	<label>Category Name: </label>
                
-                <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name"/><br/>
+                <input type="text" name='cate_name' id='cate_name' placeholder="Name"/><br/>
 				
-				 <label>Email : </label>
-               
-                <input type="text" name='use_email' id='use_email' placeholder="User Email"/><br/>
+				<input type="hidden" name='cate_id' id='cate_id'/>
 				
-				
-				
-				 <input type="hidden" name='usereid' id='usereid' />
-				
-				 <label>Roles : </label>
-
-                <select name='use_roles' id='use_roles' >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-				 
 				 <label>Status: </label>
-				 <select name='use_status' id='use_status' >
+				 <select name='cat_status' id='cat_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-                
-                <input type="button" id="edit_loginbtn" value="Update"/>
-               
-                
-
+				 
+                <input type="button" id="edit_categorybtn" value="Update"/>
             </form>
-
-			
-        </div>
-
-
+   </div>

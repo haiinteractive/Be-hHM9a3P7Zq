@@ -4,19 +4,19 @@
 <section class="main-content">
 <div class="content-wrap" style="margin-top:50px;">
 	<section class="panel panel-info">
-		<header class="panel-heading">Employee Details</header>
+		<header class="panel-heading">AdType Details</header>
 		<div class="panel-body">
 			<div class="table-responsive no-border">
 			
-			<p id="employee_onclick" style=" width:151px;">Add New Employee</p>
+			<p id="adtype_onclick" style=" width:151px;">Add New AdType</p>
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>User Role</th>
-				<th>User From</th>
+				<th>Form Type</th>
+				<th>Code Type</th>
+				<th>Code</th>
+				<th>Rack Rate</th>
+				<th>Action</th>
 				</tr>
 				</thead>
 				<tbody class='list_content'>
@@ -26,9 +26,7 @@
 			</div>
 		</div>
 		                        <p class="pagination"></p>
-		                        <div class='modal' style="display:none;">
-		                        		{include file='employee/edit.html'}
-		                        </div>
+		                      
 	</section>
 </div>
 </section>
@@ -102,7 +100,7 @@ h3 {margin-top :0px;}
 		                            beforeSend: function(){
 		                            		$("#loading-image").show();
 		                            },
-		                            url: base_url+'/employee/list_info',
+		                            url: base_url+'/adtype/list_info',
 		                            beforeSend: function() {
 			              $("#loading-image").show();
 			           },
@@ -112,12 +110,12 @@ h3 {margin-top :0px;}
 					$.each(sresponse, function(i, obj) {
 					  //use obj.id and obj.name here, for example:
 					  	objdata += '<tr>';
-					  	objdata += '<td>'+obj.user_first_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_last_name+'</td>'; 
-					  	objdata += '<td>'+obj.user_email+'</td>'; 
-					  	objdata += '<td>'+obj.user_type_name+'</td>'; 
+					  	objdata += '<td>'+obj.name+'</td>'; 
+					  	objdata += '<td>'+obj.ad_type_name+'</td>'; 
+					  	objdata += '<td>'+obj.ad_type_code+'</td>'; 
+					  	objdata += '<td>'+obj.ad_type_rate+'</td>'; 
 					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
-					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_editsss" onClick="edit_user_info('+obj.user_id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.id+'" class="user_editsss" onClick="edit_adtype_info('+obj.id+');">Edit</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -126,25 +124,25 @@ h3 {margin-top :0px;}
 		}
 		
 		
-			function edit_user_info(id)
+			function edit_adtype_info(id)
 			{
-				 $("#edit_empdiv").css("display", "block");
-				 var request_ur = base_url+'/employee/edit';
+				 $("#edit_adtypediv").css("display", "block");
+				 var request_ur = base_url+'/adtype/edit';
 				  $.ajax({
 								type: "POST",
-								data: 'user_id='+id,
+								data: 'adtype_id='+id,
 								dataType:'JSON',
 								url: request_ur,
 								success: function(sresponse) {
 									$.each(sresponse, function(i, obj) {
 									 
-									  $("#use_first_name").val(obj.user_first_name);
-									   $("#use_last_name").val(obj.user_last_name);
-									    $("#use_email").val(obj.user_email);
-										$("#use_roles").val(obj.user_type);
-										$("#use_status").val(obj.user_is_active);
-									  $("#usereid").val(id);
-									});
+									  $("#edit_type_roles").val(obj.form_type);
+									   $("#edit_type_name").val(obj.ad_type_name);
+									    $("#edit_type_code").val(obj.ad_type_code);
+										$("#edit_rack_rate").val(obj.ad_type_rate);
+										$("#edtype_status").val(obj.ad_type_status);
+									  $("#adtype_id").val(id);
+									}); 
 							}
 				});
 			}
@@ -156,94 +154,74 @@ h3 {margin-top :0px;}
 
 
 
- <div id="contactdiv">			
+ <div id="adtypediv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Employee</h3>
+                <h3>Add New AdType</h3>
                 <hr/>
-                <label>First Name : </label>
+                <label>Form Type : </label>
              
-                <input type="text" name='us_first_name' id='us_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
-               
-                <input type="text" name='us_last_name' id='us_last_name' placeholder="Last Name"/><br/>
-				
-				 <label>Email : </label>
-               
-                <input type="text" name='us_email' id='us_email' placeholder="User Email"/><br/>
-				
-				 <label>Password : </label>
-               
-                <input type="password" name='uspwd' id='uspwd' placeholder="Password"/><br/>
-				
-				 <label>Roles : </label>
-
-                <select name='us_roles' id='us_roles' >
+                <select name='form_adtype' id='form_adtype' >
 			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
+			        		<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
 			     </select>
                 
-                <input type="button" id="loginbtn" value="Add"/>
+                <label>Name: </label>
                
-                
+                <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name"/><br/>
+				
+				 <label>Code : </label>
+               
+                <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code"/><br/>
+				
+				 <label>Rack Rate : </label>
+               
+                <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate"/><br/>
+				
+                <input type="button" id="adtypebtn" value="Add"/>
 
             </form>
-
-			
         </div>
 
 
 
-		<div id="edit_empdiv">			
+		<div id="edit_adtypediv">			
           
 			<form class="form" action="#" id="login">
                 <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit New Employee</h3>
+                <h3>Edit AdType</h3>
                 <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='use_first_name' id='use_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
-               
-                <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name"/><br/>
-				
-				 <label>Email : </label>
-               
-                <input type="text" name='use_email' id='use_email' placeholder="User Email"/><br/>
-				
-				
-				
-				 <input type="hidden" name='usereid' id='usereid' />
-				
-				 <label>Roles : </label>
-
-                <select name='use_roles' id='use_roles' >
+                <label>Form Type : </label>
+             	<select name='edit_type_roles' id='edit_type_roles' >
 			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
+			        			<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
 			     </select>
-				 
+				            
+                <label>Name : </label>
+               
+                <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name"/><br/>
+				
+				 <label>Code : </label>
+               
+                <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code"/><br/>
+				
+				
+				
+				 <input type="hidden" name='adtype_id' id='adtype_id' />
+				
+				 <label>Rack Rate : </label>
+
+                <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate"/><br/>
+				
 				 <label>Status: </label>
-				 <select name='use_status' id='use_status' >
+				 <select name='edtype_status' id='edtype_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-                
-                <input type="button" id="edit_loginbtn" value="Update"/>
-               
-                
-
+				 
+                <input type="button" id="edit_adtypebtn" value="Update"/>
             </form>
-
-			
-        </div>
-
-
+   </div>
