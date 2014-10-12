@@ -43,6 +43,13 @@ class Be_Employee
                 $response = $this->_CI->employee_model->Get_Employee_Details(  $user_id, $perpage, $start_no );
         return $response;
     }
+	
+	 function get_single_employee( $user_id)
+    {
+        $response = false;
+                $response = $this->_CI->employee_model->get_single_employee(  $user_id );
+        return $response;
+    }
 
     function Get_Employees_Count( $created_by ){
         $response = false;
@@ -65,4 +72,23 @@ class Be_Employee
                 $response = $this->_CI->employee_model->AddNewUser(  $arg );
         return $response;
     }
+	
+	function updateNewUser($user_first_name, $user_last_name, $user_email, $user_pwd, $user_role, $use_status, $user_created_by, $user_id)
+	{
+			 $response = false;
+			
+				$arg = array(
+                                'user_first_name'   =>  $user_first_name,
+                                'user_last_name'    => $user_last_name,
+                                'user_email'        => $user_email,
+                                'user_password'     => md5($user_pwd),
+                                'user_type'         => $user_role,
+								'user_is_active'    => $use_status,
+                                'created_by'        => $user_created_by,
+                                'user_modified_on'  => $this->current_date
+                    );
+			
+                $response = $this->_CI->employee_model->updateNewUser(  $arg ,$user_id );
+        return $response;
+	}
 }
