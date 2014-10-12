@@ -1,5 +1,4 @@
 <?php
- 
 /**
  * The Users class file.
  *
@@ -10,7 +9,7 @@
  * @link     models/users_model.php
  * 
  */
-  
+ 
 class Validation
 {
     private $_CI;    
@@ -38,6 +37,18 @@ class Validation
             }
             return $message;
     }
+	
+	function check_empty($input, $string)
+	{
+		 if(strlen( $input ) == 0 || empty($input)){
+		 	$message = 'Please enter' .$string;
+		 }
+		 else
+		 {
+		 $message = '';
+		 }
+		  return $message;
+	}
 
     function EmailValid( $input, $string ){
             (!filter_var($input, FILTER_VALIDATE_EMAIL)) ? $message = $string. ' is Invalid. ' : $message = '';
