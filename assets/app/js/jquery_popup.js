@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
    
     $("#login #cancel").click(function() {
         $(this).parent().parent().hide();
@@ -30,4 +30,4 @@ $(document).ready(function() {
 
 });
 
- 
+ */
