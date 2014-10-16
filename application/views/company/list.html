@@ -7,8 +7,7 @@
 		<header class="panel-heading">Company Details</header>
 		<div class="panel-body">
 			<div class="table-responsive no-border">
-			
-			<p id="company_onclick" style=" width:151px;">Add New Company</p>
+			<a id="company_onclick" style=" width:138px; display: block;" rel="leanModal" name="company" href="#company">Add New Company</a>
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
@@ -41,56 +40,34 @@
 
 {literal}
 <style type="text/css">
-	.pm-content{
+.pm-content{
 		height:600px;
 	}
 	
-	form input[type="text"], input[type="password"], input[type="file"], select 
-{
-
-margin:5px;
-padding:0px;
-height: 33px;
-width:265px;
-font-weight: normal;
-}
-
-label {
-    width: 156px; font-weight: normal;
-}
-
-input[type=button]{
-    background-color:#123456;
-    border:1px solid white;
-     font-family: "Open Sans",sans-serif;
-    font-Weight:bold;
-    font-size:18px;
-    color:white;
-    width:22%;
-}
-
-
-.form{
-    border-radius:2px;
-    padding:20px 30px;
-    box-shadow:0 0 15px;
-    font-size:14px;
-    font-weight:bold;
-    width:545px;
-    margin:20px 250px 0 35px;
-    float:left;
-}
-
-textarea {
-    font-weight: normal;
-    resize: vertical;
-}
-
-#login{ margin-top:-230px; }
-
-h3 {margin-top :0px;}
-
+	.form-group label { margin:0px; font-weight:normal;}
+	
+	#company .form-group { margin:0px;}
+	
+	#edit_company .form-group { margin:0px;}
+	
+	form { margin:0px;}
+	
+	#company .form-group input { margin:0px; line-height: normal; padding: 4px;}
+	
+	#company .form-group select { width: 242px; margin:0px; padding: 4px;}
+	
+	#company .form-group textarea { width: 242px; margin:0px; padding: 4px;}
+	
+	#edit_company .form-group select { width: 242px; margin:0px; padding: 4px;}
+	
+	#edit_company .form-group input { margin:0px; line-height: normal; padding: 4px;}
+	
+	.col-sm-3  { padding:0px;}
+	
+	#signup-ct button { float:right;}
+	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+
 </style>
 <script type='text/javascript'>
 		$(function() {
@@ -141,7 +118,7 @@ h3 {margin-top :0px;}
 		
 			function edit_company_info(id)
 			{
-				 $("#edit_companydiv").css("display", "block");
+				  $( "#user_edit_tree" ).trigger( "click" );
 				 var request_ur = base_url+'/company/edit';
 				  $.ajax({
 								type: "POST",
@@ -163,97 +140,160 @@ h3 {margin-top :0px;}
 							}
 				});
 			}
+			
+			$(function() {
+    			$('a[rel*=leanModal]').leanModal({ top : 72, closeButton: ".modal_close" });		
+			});
 	
 </script>
 
 {/literal}
+<a id="user_edit_tree" rel="leanModal" href="#edit_company">Edit</a>
 
-<div id="companydiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Company</h3>
-                <hr/>
-                
-                <label>Company Name : </label>
-               
-                <input type="text" name='c_name' id='c_name' placeholder="Company Name"/><br/>
+		<div id="company">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Add New Company</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-				 <label>Contact Person : </label>
-               
-                <input type="text" name='c_person' id='c_person' placeholder="Cotact Person"/><br/>
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
 				
-				 <label>Address : </label>
-				 
-				 <textarea name="address" id="address" cols="25" rows="2" placeholder="Address" ></textarea><br />
-               
-                 <label>Pin Code : </label>
-               
-                <input type="text" name='pin_code' id='pin_code' placeholder="Pin Code"/><br/>
 				
-				 <label>Phone : </label>
-               
-                <input type="text" name='phone' id='phone' placeholder="Phone"/><br/>
+				<div class="form-group">
+				    <span class="col-sm-3 control-label">Company Name :</span>
+				    <div class="col-sm-5">
+					  <input type="text" name='c_name' id='c_name' placeholder="Company Name"  required />
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Contact Person :</span>
+				    <div class="col-sm-5">
+					  <input type="text" name='c_person' id='c_person' placeholder="Contact Person"  required />
+					 </div>
+				  </div>
+				  
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Address :</span>
+				    <div class="col-sm-5">
+					   <textarea name="address" required id="address" cols="25" rows="2" placeholder="Address" ></textarea>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Pin Code :</span>
+				    <div class="col-sm-5">
+					   <input type="text" name='pin_code' id='pin_code' placeholder="Pin Code" required/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Phone :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='phone' id='phone' placeholder="Phone" required/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Alternative Phone :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='alt_phone' id='alt_phone' placeholder="Alternative Phone" />
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Email :</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='email' id='email' placeholder="Email" required/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Alternative Email :</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='alt_email' id='alt_email' placeholder="Alternative Email" />
+					 </div>
+				  </div>
+				  
+				    <div class="btn-fld">
+				  
+				   <input type="submit" id="companybtn" value="Add &raquo;"/>
+				   </div>
+				   </form>
+			 
+			
+		</div>
+		</div>
+		
+    <div id="edit_company">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Edit Company</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-				 <label>Alternative Phone : </label>
-               
-                <input type="text" name='alt_phone' id='alt_phone' placeholder="Alternative Phone"/><br/>
-				
-				 <label>Email : </label>
-               
-                <input type="text" name='email' id='email' placeholder="Email"/><br/>
-				
-				 <label>Alternative Email : </label>
-               
-                <input type="text" name='alt_email' id='alt_email' placeholder="Alternative Email"/><br/>
-				
-                <input type="button" id="companybtn" value="Add"/>
-
-            </form>
-        </div>
-
-
-
-		<div id="edit_companydiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-               
-			    <h3>Edit Company</h3>
-                <hr/>
-                
-                <label>Company Name : </label>
-               
-                <input type="text" name='co_name' id='co_name' placeholder="Company Name"/><br/>
-				
-				 <label>Contact Person : </label>
-               
-                <input type="text" name='co_person' id='co_person' placeholder="Cotact Person"/><br/>
-				
-				 <label>Address : </label>
-				 
-				 <textarea name="caddress" id="caddress" cols="25" rows="2" placeholder="Address" ></textarea><br />
-               
-                 <label>Pin Code : </label>
-               
-                <input type="text" name='cpin_code' id='cpin_code' placeholder="Pin Code"/><br/>
-				
-				 <label>Phone : </label>
-               
-                <input type="text" name='cphone' id='cphone' placeholder="Phone"/><br/>
-				
-				 <input type="hidden" name='comp_id' id='comp_id' />
-				 
-				 <label>Email : </label>
-               
-                <input type="text" name='cemail' id='cemail' placeholder="Email"/><br/>
-				
-				 <label>Client Status: </label>
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				 <div class="form-group">
+				    <span class="col-sm-3 control-label">Company Name :</span>
+				    <div class="col-sm-5">
+					  <input type="text" name='co_name' id='co_name' placeholder="Company Name"  required />
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Contact Person :</span>
+				    <div class="col-sm-5">
+					  <input type="text" name='co_person' id='co_person' placeholder="Contact Person"  required />
+					 </div>
+				  </div>
+				  
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Address :</span>
+				    <div class="col-sm-5">
+					   <textarea name="caddress" required id="caddress" cols="25" rows="2" placeholder="Address" ></textarea>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Pin Code :</span>
+				    <div class="col-sm-5">
+					   <input type="text" name='cpin_code' id='cpin_code' placeholder="Pin Code" required/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Phone :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='cphone' id='cphone' placeholder="Phone" required/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Email :</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='cemail' id='cemail' placeholder="Email" required/>
+					 </div>
+				  </div>
+				  
+				  <input type="hidden" name='comp_id' id='comp_id' />
+				  
+				<div class="form-group">
+				 <span class="col-sm-3 control-label">Client Status: </span>
+				  <div class="col-sm-5">
 				 <select name='comp_status' id='comp_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-				 
-                <input type="button" id="edit_companybtn" value="Update"/>
-            </form>
-   </div>
+				  </div>
+				  </div>
+				  
+				  <div class="btn-fld">
+				  <input type="submit" id="edit_companybtn" value="Update &raquo;"/>
+				  </div>
+				   </form>
+			</div>
+		</div>
