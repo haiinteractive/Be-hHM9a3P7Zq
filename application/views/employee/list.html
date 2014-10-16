@@ -8,7 +8,8 @@
 		<div class="panel-body">
 			<div class="table-responsive no-border">
 			
-			<p id="employee_onclick" style=" width:151px;">Add New Employee</p>
+			<a id="employee_onclick" style=" width:142px; display: block;" rel="leanModal" name="employee" href="#employee">Add New Employee</a>	
+			
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
@@ -42,45 +43,35 @@
 
 {literal}
 <style type="text/css">
-	.pm-content{
+
+.pm-content{
 		height:600px;
 	}
 	
-	form input[type="text"], input[type="password"], input[type="file"], select 
-{
-
-margin:5px;
-padding:0px;
-height: 33px;
-font-weight: normal;
-}
-input[type=button]{
-    background-color:#123456;
-    border:1px solid white;
-     font-family: "Open Sans",sans-serif;
-    font-Weight:bold;
-    font-size:18px;
-    color:white;
-    width:22%;
-}
-label { width: 88px;
-font-weight: normal;
-}
-
-.form{
-    border-radius:2px;
-    padding:20px 30px;
-    box-shadow:0 0 15px;
-    font-size:14px;
-    font-weight:bold;
-    width:545px;
-    margin:20px 250px 0 35px;
-    float:left;
-}
-
-h3 {margin-top :0px;}
-
+	.form-group label { margin:0px; font-weight:normal;}
+	
+	#employee .form-group { margin:0px;}
+	
+	#edit_employee .form-group { margin:0px;}
+	
+	form { margin:0px;}
+	
+	#employee .form-group input { margin:0px; line-height: normal;}
+	
+	#employee .form-group select { width: 242px; margin:0px;}
+	
+	#edit_employee .form-group select { width: 242px; margin:0px;}
+	
+	#edit_employee .form-group input { margin:0px; line-height: normal;}
+	
+	.col-sm-3  { padding:0px;}
+	
+	#signup-ct button { float:right;}
+	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+
+
+
 </style>
 <script type='text/javascript'>
 		$(function() {
@@ -131,7 +122,7 @@ h3 {margin-top :0px;}
 		
 			function edit_user_info(id)
 			{
-				 $("#edit_empdiv").css("display", "block");
+				 $( "#user_edit_tree" ).trigger( "click" );
 				 var request_ur = base_url+'/employee/edit';
 				  $.ajax({
 								type: "POST",
@@ -151,102 +142,140 @@ h3 {margin-top :0px;}
 							}
 				});
 			}
+			
+			$(function() {
+    			$('a[rel*=leanModal]').leanModal({ top : 92, closeButton: ".modal_close" });		
+			});
 	
 </script>
 
 {/literal}
 
+<a id="user_edit_tree" rel="leanModal" href="#edit_employee">Edit</a>
 
 
-
- <div id="contactdiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Employee</h3>
-                <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='us_first_name' id='us_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
-               
-                <input type="text" name='us_last_name' id='us_last_name' placeholder="Last Name"/><br/>
+		<div id="employee">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Add New Employee</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-				 <label>Email : </label>
-               
-                <input type="text" name='us_email' id='us_email' placeholder="User Email"/><br/>
-				
-				 <label>Password : </label>
-               
-                <input type="password" name='uspwd' id='uspwd' placeholder="Password"/><br/>
-				
-				 <label>Roles : </label>
-
-                <select name='us_roles' id='us_roles' >
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">First Name:</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='us_first_name' id='us_first_name' placeholder="First Name"   required data-bv-notempty-message="The first name is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Last Name:</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='us_last_name' id='us_last_name' placeholder="Last Name"   required data-bv-notempty-message="The last name is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Email:</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='us_email' id='us_email' placeholder="Email"  required data-bv-emailaddress-message="The input is not a valid email address"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Password:</span>
+				    <div class="col-sm-5">
+					 <input type="password" name='uspwd' id='uspwd' placeholder="Password"   required data-bv-notempty-message="The password is required"/>
+					 </div>
+				  </div>
+				  
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Roles:</span>
+				    <div class="col-sm-5">
+					<select name='us_roles' id='us_roles' >
 			        		{foreach from=$roles item=role}
 			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
 
 </option>
 			        		{/foreach}
 			     </select>
-                
-                <input type="button" id="loginbtn" value="Add"/>
-               
-                
-
-            </form>
-
-			
-        </div>
-
-
-
-		<div id="edit_empdiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit New Employee</h3>
-                <hr/>
-                <label>First Name : </label>
-             
-                <input type="text" name='use_first_name' id='use_first_name' placeholder="First Name"/><br/>
-                
-                <label>Last Name : </label>
-               
-                <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name"/><br/>
-				
-				 <label>Email : </label>
-               
-                <input type="text" name='use_email' id='use_email' placeholder="User Email"/><br/>
-				
-				
-				
-				 <input type="hidden" name='usereid' id='usereid' />
-				
-				 <label>Roles : </label>
-
-                <select name='use_roles' id='use_roles' >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
+					 </div>
+				  </div>
+				  
 				 
-				 <label>Status: </label>
+				  <div class="btn-fld">
+				  
+				   <input type="submit" id="loginbtn" value="Add &raquo;"/>
+				   </div>
+				   </form>
+			 
+			
+		</div>
+		</div>
+		
+		 <div id="edit_employee">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Edit New Employee</span>
+					<a class="modal_close" href="#"></a>
+				</div>
+				
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">First Name :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='use_first_name' id='use_first_name' placeholder="First Name"  required data-bv-notempty-message="The first name is required"/>
+				  </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Last Name:</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name"    required data-bv-notempty-message="The last name is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Email:</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='use_email' id='use_email' placeholder="Email"   required data-bv-emailaddress-message="The input is not a valid email address"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Roles:</span>
+				    <div class="col-sm-5">
+					<select name='use_roles' id='use_roles' >
+			        		{foreach from=$roles item=role}
+			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
+
+</option>
+			        		{/foreach}
+			     </select>
+					 </div>
+				  </div>
+				  
+				<input type="hidden" name='usereid' id='usereid'/>
+				
+				 <div class="form-group">
+				 <span class="col-sm-3 control-label">Status: </span>
+				  <div class="col-sm-5">
 				 <select name='use_status' id='use_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-                
-                <input type="button" id="edit_loginbtn" value="Update"/>
-               
-                
-
-            </form>
-
-			
-        </div>
+				  </div>
+				  </div>
+				  
+				  <div class="btn-fld">
+				  <input type="submit" id="edit_loginbtn" value="Update &raquo;"/>
+				  </div>
+				   </form>
+			</div>
+		</div>
 
 
