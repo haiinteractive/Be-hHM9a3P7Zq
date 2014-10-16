@@ -6,9 +6,10 @@
 	<section class="panel panel-info">
 		<header class="panel-heading">Category Details</header>
 		<div class="panel-body">
+		
 			<div class="table-responsive no-border">
-			
-			<p id="category_onclick" style=" width:151px;">Add New Category</p>
+			<a id="category_onclick" style=" width:142px; display: block;" rel="leanModal" name="signup" href="#signup">Add New Category</a>	
+		
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
@@ -29,7 +30,7 @@
 	</section>
 </div>
 </section>
-
+	
 
 
 	{include file='../layout/footer.html'}
@@ -43,39 +44,24 @@
 		height:600px;
 	}
 	
-	form input[type="text"], input[type="password"], input[type="file"], select 
-{
-
-margin:5px;
-padding:0px;
-height: 33px;
-width :243px;
-font-weight: normal;
-}
-input[type=button]{
-    background-color:#123456;
-    border:1px solid white;
-     font-family: "Open Sans",sans-serif;
-    font-Weight:bold;
-    font-size:18px;
-    color:white;
-    width:22%;
-}
-label { width: 127px; font-weight: normal;}
-
-.form{
-    border-radius:2px;
-    padding:20px 30px;
-    box-shadow:0 0 15px;
-    font-size:14px;
-    font-weight:bold;
-    width:545px;
-    margin:20px 250px 0 35px;
-    float:left;
-}
-
-h3 {margin-top :0px;}
-
+	.form-group label { margin:0px; font-weight:normal;}
+	
+	#signup .form-group { margin:0px;}
+	
+	#edit_signup .form-group { margin:0px;}
+	
+	form { margin:0px;}
+	
+	#signup .form-group input { margin:0px; line-height: normal;}
+	
+	#edit_signup .form-group select { width: 242px; margin:0px;}
+	
+	#edit_signup .form-group input { margin:0px; line-height: normal;}
+	
+	.col-sm-3  { padding:0px;}
+	
+	#signup-ct button { float:right;}
+	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
 </style>
 <script type='text/javascript'>
@@ -114,7 +100,7 @@ h3 {margin-top :0px;}
 					  	objdata += '<td>'+obj.cat_name+'</td>'; 
 					  	objdata += '<td>'+obj.created_on+'</td>'; 
 					  	objdata += '<td>'+obj.status+'</td>'; 
-					  	objdata += '<td><a href="#" id="'+obj.cat_id+'" class="user_editsss" onClick="edit_category_info('+obj.cat_id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" onClick="edit_category_info('+obj.cat_id+');">Edit</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -125,7 +111,7 @@ h3 {margin-top :0px;}
 		
 			function edit_category_info(id)
 			{
-				 $("#edit_categorydiv").css("display", "block");
+ 				$( "#user_edit_tree" ).trigger( "click" );
 				 var request_ur = base_url+'/category/edit';
 				  $.ajax({
 								type: "POST",
@@ -142,51 +128,73 @@ h3 {margin-top :0px;}
 							}
 				});
 			}
-	
+			
+			
+			$(function() {
+    			$('a[rel*=leanModal]').leanModal({ top : 150, closeButton: ".modal_close" });		
+			});
 </script>
 
 {/literal}
 
 
+<a id="user_edit_tree" rel="leanModal" href="#edit_signup">Edit</a>
 
-
- <div id="categorydiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New Category</h3>
-                <hr/>
-                
-                <label>Category Name: </label>
-               
-                <input type="text" name='cat_name' id='cat_name' placeholder="Name"/><br/>
+   
+		<div id="signup">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Add New Category</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-                <input type="button" id="categorybtn" value="Add"/>
-
-            </form>
-        </div>
-
-
-
-		<div id="edit_categorydiv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit Category</h3>
-                <hr/>
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Category Name</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='cat_name' id='cat_name' placeholder="Category Name"  required data-bv-notempty-message="The category name is required"/>
+					 </div>
+				  </div>
+				  
+				 
+				  <div class="btn-fld">
+				  
+				   <input type="submit" id="categorybtn" value="Add &raquo;"/>
+				   </div>
+				   </form>
+			 
+			
+		</div>
+		</div>
+		
+		
+		
+		<div id="edit_signup">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Edit Category</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-               	<label>Category Name: </label>
-               
-                <input type="text" name='cate_name' id='cate_name' placeholder="Name"/><br/>
-				
-				<input type="hidden" name='cate_id' id='cate_id'/>
-				
-				 <label>Status: </label>
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				  <div class="form-group">
+				    <span>Category Name</span>
+				    
+					 <input type="text" name='cate_name' id='cate_name' placeholder="Category Name" required data-bv-notempty-message="The category name is required"/>
+				  </div>
+					<input type="hidden" name='cate_id' id='cate_id'/>
+				 <div class="form-group">
+				 <span>Status: </span>
 				 <select name='cat_status' id='cat_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-				 
-                <input type="button" id="edit_categorybtn" value="Update"/>
-            </form>
-   </div>
+				  </div>
+				  <div class="btn-fld">
+				  <input type="submit" id="edit_categorybtn" value="Update &raquo;"/>
+				  </div>
+				   </form>
+			</div>
+		</div>
