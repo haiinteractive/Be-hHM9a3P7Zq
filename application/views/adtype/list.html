@@ -8,7 +8,8 @@
 		<div class="panel-body">
 			<div class="table-responsive no-border">
 			
-			<p id="adtype_onclick" style=" width:151px;">Add New AdType</p>
+			<a id="adtype_onclick" style=" width:138px; display: block;" rel="leanModal" name="adtype" href="#adtype">Add New AdType</a>	
+			
 				<table class="table table-bordered table-striped mg-t datatable">
 				<thead>
 				<tr>
@@ -44,39 +45,28 @@
 		height:600px;
 	}
 	
-	form input[type="text"], input[type="password"], input[type="file"], select 
-{
-
-margin:5px;
-padding:0px;
-height: 33px;
-font-weight: normal;
-}
-input[type=button]{
-    background-color:#123456;
-    border:1px solid white;
-     font-family: "Open Sans",sans-serif;
-    font-Weight:bold;
-    font-size:18px;
-    color:white;
-    width:22%;
-}
-label { width: 88px; font-weight: normal;}
-
-.form{
-    border-radius:2px;
-    padding:20px 30px;
-    box-shadow:0 0 15px;
-    font-size:14px;
-    font-weight:bold;
-    width:545px;
-    margin:20px 250px 0 35px;
-    float:left;
-}
-
-h3 {margin-top :0px;}
-
+	.form-group label { margin:0px; font-weight:normal;}
+	
+	#adtype .form-group { margin:0px;}
+	
+	#edit_adtype .form-group { margin:0px;}
+	
+	form { margin:0px;}
+	
+	#adtype .form-group input { margin:0px; line-height: normal; padding: 4px;}
+	
+	#adtype .form-group select { width: 242px; margin:0px; padding: 4px;}
+	
+	#edit_adtype .form-group select { width: 242px; margin:0px; padding: 4px;}
+	
+	#edit_adtype .form-group input { margin:0px; line-height: normal; padding: 4px;}
+	
+	.col-sm-3  { padding:0px;}
+	
+	#signup-ct button { float:right;}
+	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+
 </style>
 <script type='text/javascript'>
 		$(function() {
@@ -127,7 +117,7 @@ h3 {margin-top :0px;}
 		
 			function edit_adtype_info(id)
 			{
-				 $("#edit_adtypediv").css("display", "block");
+				 $( "#user_edit_tree" ).trigger( "click" );
 				 var request_ur = base_url+'/adtype/edit';
 				  $.ajax({
 								type: "POST",
@@ -147,82 +137,128 @@ h3 {margin-top :0px;}
 							}
 				});
 			}
+			
+			
+			$(function() {
+    			$('a[rel*=leanModal]').leanModal({ top : 92, closeButton: ".modal_close" });		
+			});
 	
 </script>
 
 {/literal}
 
+<a id="user_edit_tree" rel="leanModal" href="#edit_adtype">Edit</a>
 
 
-
- <div id="adtypediv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Add New AdType</h3>
-                <hr/>
-                <label>Form Type : </label>
-             
-                <select name='form_adtype' id='form_adtype' >
+<div id="adtype">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Add New AdType</span>
+					<a class="modal_close" href="#"></a>
+				</div>
+				
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				
+				
+				<div class="form-group">
+				    <span class="col-sm-3 control-label">Form Type :</span>
+				    <div class="col-sm-5">
+					   <select name='form_adtype' id='form_adtype' >
 			        		{foreach from=$roles item=role}
 			        		<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
-			     </select>
-                
-                <label>Name: </label>
-               
-                <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name"/><br/>
+			     		</select>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Name :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name"   required data-bv-notempty-message="The adtype name is required"/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Code :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code"   required data-bv-notempty-message="The code is required"/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Rack Rate :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate"   required data-bv-notempty-message="The rack rate is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="btn-fld">
+				  
+				   <input type="submit" id="adtypebtn" value="Add &raquo;"/>
+				   </div>
+				   </form>
+			 
+			
+		</div>
+		</div>
+		
+   
+    <div id="edit_adtype">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Edit AdType</span>
+					<a class="modal_close" href="#"></a>
+				</div>
 				
-				 <label>Code : </label>
-               
-                <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code"/><br/>
-				
-				 <label>Rack Rate : </label>
-               
-                <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate"/><br/>
-				
-                <input type="button" id="adtypebtn" value="Add"/>
-
-            </form>
-        </div>
-
-
-
-		<div id="edit_adtypediv">			
-          
-			<form class="form" action="#" id="login">
-                <img src="{$static_server}assets/app/images/button_cancel.png" class="img" id="cancel"/>	
-                <h3>Edit AdType</h3>
-                <hr/>
-                <label>Form Type : </label>
-             	<select name='edit_type_roles' id='edit_type_roles' >
+				<form action="#" method="post" id="html5Form" class="form-horizontal">
+     
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Form Type : </span>
+				    <div class="col-sm-5">
+					 <select name='edit_type_roles' id='edit_type_roles' >
 			        		{foreach from=$roles item=role}
 			        			<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
-			     </select>
-				            
-                <label>Name : </label>
-               
-                <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name"/><br/>
-				
-				 <label>Code : </label>
-               
-                <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code"/><br/>
-				
-				
-				
-				 <input type="hidden" name='adtype_id' id='adtype_id' />
-				
-				 <label>Rack Rate : </label>
-
-                <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate"/><br/>
-				
-				 <label>Status: </label>
+			     	</select>
+				  </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Name :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name"    required data-bv-notempty-message="The adtype name is required"/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Code :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code"   required data-bv-notempty-message="The code is required"/>
+					 </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">Rack Rate :</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate"   required data-bv-notempty-message="The rack rate is required"/>
+					 </div>
+				  </div>
+				  
+				  <input type="hidden" name='adtype_id' id='adtype_id'/>
+				  
+				   <div class="form-group">
+				 <span class="col-sm-3 control-label">Status: </span>
+				  <div class="col-sm-5">
 				 <select name='edtype_status' id='edtype_status' >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
-				 
-                <input type="button" id="edit_adtypebtn" value="Update"/>
-            </form>
-   </div>
+				  </div>
+				  </div>
+				  
+				  <div class="btn-fld">
+				  <input type="submit" id="edit_adtypebtn" value="Update &raquo;"/>
+				  </div>
+				   </form>
+			</div>
+		</div>
