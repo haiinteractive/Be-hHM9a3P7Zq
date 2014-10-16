@@ -80,4 +80,11 @@ class Be_Users
                 return $response;
 
         }
+		
+		function CheckUserExist_update( $email , $user_id)
+		{
+			 $response = false;
+			$response = $this->_CI->users_model->CheckUserExist_update( $email,$user_id );
+			return $response;
+		}
 }
