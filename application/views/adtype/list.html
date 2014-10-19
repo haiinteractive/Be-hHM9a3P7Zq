@@ -67,6 +67,20 @@
 	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
 
+
+.has-error .form-control {border-color: #ff604f !important; }
+
+.has-success .form-control {border-color: #2b542c !important; }
+
+.form-control-feedback { display:none !important;}
+
+.col-sm-5 {
+  
+    padding: 0 !important;
+    width: 67.667%;
+}
+
+.help-block {  margin-bottom: 0px!important; }
 </style>
 <script type='text/javascript'>
 		$(function() {
@@ -142,6 +156,15 @@
 			$(function() {
     			$('a[rel*=leanModal]').leanModal({ top : 92, closeButton: ".modal_close" });		
 			});
+			
+			
+			 $(document).ready(function() {
+					$('#defaultForm').bootstrapValidator();
+				});
+				
+				 $(document).ready(function() {
+					$('#defaultForm1').bootstrapValidator();
+				});
 	
 </script>
 
@@ -157,13 +180,16 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
 				
 				
 				<div class="form-group">
 				    <span class="col-sm-3 control-label">Form Type :</span>
 				    <div class="col-sm-5">
-					   <select name='form_adtype' id='form_adtype' >
+					   <select name='form_adtype' id='form_adtype' class="form-control" data-bv-notempty data-bv-notempty-message="The type is required"  >
 			        		{foreach from=$roles item=role}
 			        		<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
@@ -174,21 +200,21 @@
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Name :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name"   required data-bv-notempty-message="The adtype name is required"/>
+					 <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name" class="form-control"   required data-bv-notempty-message="The adtype name is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Code :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code"   required data-bv-notempty-message="The code is required"/>
+					 <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code" class="form-control"   required data-bv-notempty-message="The adtype code is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Rack Rate :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate"   required data-bv-notempty-message="The rack rate is required"/>
+					 <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate" class="form-control"   required data-bv-notempty-message="The rack rate is required"/>
 					 </div>
 				  </div>
 				  
@@ -210,12 +236,15 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
      
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Form Type : </span>
 				    <div class="col-sm-5">
-					 <select name='edit_type_roles' id='edit_type_roles' >
+					 <select name='edit_type_roles' id='edit_type_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The type is required" >
 			        		{foreach from=$roles item=role}
 			        			<option value='{$role.id}'>{$role.name}</option>
 			        		{/foreach}
@@ -226,21 +255,21 @@
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Name :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name"    required data-bv-notempty-message="The adtype name is required"/>
+					 <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name" class="form-control" required data-bv-notempty-message="The adtype name is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Code :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code"   required data-bv-notempty-message="The code is required"/>
+					 <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code" class="form-control"  required data-bv-notempty-message="The adtype code is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Rack Rate :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate"   required data-bv-notempty-message="The rack rate is required"/>
+					 <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate" class="form-control"  required data-bv-notempty-message="The rack rate is required"/>
 					 </div>
 				  </div>
 				  
@@ -249,7 +278,7 @@
 				   <div class="form-group">
 				 <span class="col-sm-3 control-label">Status: </span>
 				  <div class="col-sm-5">
-				 <select name='edtype_status' id='edtype_status' >
+				 <select name='edtype_status' id='edtype_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>

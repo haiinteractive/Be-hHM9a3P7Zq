@@ -63,6 +63,20 @@
 	#signup-ct button { float:right;}
 	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+
+
+.has-error .form-control {border-color: #ff604f !important; }
+
+.has-success .form-control {border-color: #2b542c !important; }
+
+.form-control-feedback { display:none !important;}
+
+.col-sm-5 {
+  
+    padding: 0 !important;
+    width: 67.667%;
+}
+.help-block {  margin-bottom: 0px!important; }
 </style>
 <script type='text/javascript'>
 		$(function() {
@@ -133,6 +147,14 @@
 			$(function() {
     			$('a[rel*=leanModal]').leanModal({ top : 150, closeButton: ".modal_close" });		
 			});
+			
+			   $(document).ready(function() {
+					$('#defaultForm').bootstrapValidator();
+				});
+				
+				 $(document).ready(function() {
+					$('#defaultForm1').bootstrapValidator();
+				});
 </script>
 
 {/literal}
@@ -148,19 +170,22 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
      
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Category Name</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='cat_name' id='cat_name' placeholder="Category Name"  required data-bv-notempty-message="The category name is required"/>
+					 <input type="text" name='cat_name' class="form-control" id='cat_name' placeholder="Category Name"  required data-bv-notempty-message="The category name is required"/>
 					 </div>
 				  </div>
 				  
 				 
 				  <div class="btn-fld">
 				  
-				   <input type="submit" id="categorybtn" value="Add &raquo;"/>
+				   <input type="submit" id="categorybtn" class="btn btn-primary" value="Add &raquo;"/>
 				   </div>
 				   </form>
 			 
@@ -177,20 +202,26 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm1" class="form-horizontal"  data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
      
 				  <div class="form-group">
 				    <span>Category Name</span>
-				    
-					 <input type="text" name='cate_name' id='cate_name' placeholder="Category Name" required data-bv-notempty-message="The category name is required"/>
+				     <div class="col-sm-5">
+					 <input type="text" name='cate_name' id='cate_name' class="form-control" placeholder="Category Name" required data-bv-notempty-message="The category name is required"/>
+					  </div>
 				  </div>
 					<input type="hidden" name='cate_id' id='cate_id'/>
 				 <div class="form-group">
 				 <span>Status: </span>
-				 <select name='cat_status' id='cat_status' >
+				 <div class="col-sm-5">
+				 <select name='cat_status' id='cat_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
+				  </div>
 				  </div>
 				  <div class="btn-fld">
 				  <input type="submit" id="edit_categorybtn" value="Update &raquo;"/>

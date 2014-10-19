@@ -52,7 +52,7 @@
 	
 	form { margin:0px;}
 	
-	#company .form-group input { margin:0px; line-height: normal; padding: 4px;}
+	#company .form-group input { margin:0px; line-height: normal; padding: 4px;  height: 31px;}
 	
 	#company .form-group select { width: 242px; margin:0px; padding: 4px;}
 	
@@ -67,6 +67,20 @@
 	#signup-ct button { float:right;}
 	
 #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+
+.has-error .form-control {border-color: #ff604f !important; }
+
+.has-success .form-control {border-color: #2b542c !important; }
+
+.form-control-feedback { display:none !important;}
+
+.col-sm-5 {
+  
+    padding: 0 !important;
+    width: 67.667%;
+}
+
+.help-block {  margin-bottom: 0px!important; margin-top: 0px!important; }
 
 </style>
 <script type='text/javascript'>
@@ -142,8 +156,16 @@
 			}
 			
 			$(function() {
-    			$('a[rel*=leanModal]').leanModal({ top : 72, closeButton: ".modal_close" });		
+    			$('a[rel*=leanModal]').leanModal({ top : 60, closeButton: ".modal_close" });		
 			});
+			
+			$(document).ready(function() {
+					$('#defaultForm').bootstrapValidator();
+				});
+				
+				 $(document).ready(function() {
+					$('#defaultForm1').bootstrapValidator();
+				});
 	
 </script>
 
@@ -157,20 +179,23 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
 				
 				
 				<div class="form-group">
 				    <span class="col-sm-3 control-label">Company Name :</span>
 				    <div class="col-sm-5">
-					  <input type="text" name='c_name' id='c_name' placeholder="Company Name"  required />
+					  <input type="text" name='c_name' id='c_name' placeholder="Company Name" class="form-control" required data-bv-notempty-message="The company name is required" />
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Contact Person :</span>
 				    <div class="col-sm-5">
-					  <input type="text" name='c_person' id='c_person' placeholder="Contact Person"  required />
+					  <input type="text" name='c_person' id='c_person' placeholder="Contact Person" class="form-control" required data-bv-notempty-message="The contact person is required"/>
 					 </div>
 				  </div>
 				  
@@ -178,42 +203,42 @@
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Address :</span>
 				    <div class="col-sm-5">
-					   <textarea name="address" required id="address" cols="25" rows="2" placeholder="Address" ></textarea>
+					   <textarea name="address" id="address" cols="25" rows="1" placeholder="Address" class="form-control" required data-bv-notempty-message="The address is required"></textarea>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Pin Code :</span>
 				    <div class="col-sm-5">
-					   <input type="text" name='pin_code' id='pin_code' placeholder="Pin Code" required/>
+					   <input type="text" name='pin_code' id='pin_code' placeholder="Pin Code" required class="form-control" data-bv-notempty-message="The pin code is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Phone :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='phone' id='phone' placeholder="Phone" required/>
+					 <input type="text" name='phone' id='phone' placeholder="Phone" required class="form-control" data-bv-notempty-message="The phone is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Alternative Phone :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='alt_phone' id='alt_phone' placeholder="Alternative Phone" />
+					 <input type="text" name='alt_phone' id='alt_phone' placeholder="Alternative Phone"  class="form-control" />
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Email :</span>
 				    <div class="col-sm-5">
-					 <input type="email" name='email' id='email' placeholder="Email" required/>
+					 <input type="email" name='email' id='email' placeholder="Email" required  class="form-control" data-bv-notempty-message="The email is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Alternative Email :</span>
 				    <div class="col-sm-5">
-					 <input type="email" name='alt_email' id='alt_email' placeholder="Alternative Email" />
+					 <input type="email" name='alt_email' id='alt_email' placeholder="Alternative Email"  class="form-control"/>
 					 </div>
 				  </div>
 				  
@@ -234,19 +259,22 @@
 					<a class="modal_close" href="#"></a>
 				</div>
 				
-				<form action="#" method="post" id="html5Form" class="form-horizontal">
+				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
      
 				 <div class="form-group">
 				    <span class="col-sm-3 control-label">Company Name :</span>
 				    <div class="col-sm-5">
-					  <input type="text" name='co_name' id='co_name' placeholder="Company Name"  required />
+					  <input type="text" name='co_name' id='co_name' placeholder="Company Name" class="form-control"  required data-bv-notempty-message="The company name is required" />
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Contact Person :</span>
 				    <div class="col-sm-5">
-					  <input type="text" name='co_person' id='co_person' placeholder="Contact Person"  required />
+					  <input type="text" name='co_person' id='co_person' placeholder="Contact Person" class="form-control"  required data-bv-notempty-message="The contact person is required" />
 					 </div>
 				  </div>
 				  
@@ -254,28 +282,28 @@
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Address :</span>
 				    <div class="col-sm-5">
-					   <textarea name="caddress" required id="caddress" cols="25" rows="2" placeholder="Address" ></textarea>
+					   <textarea name="caddress" required id="caddress" cols="25" rows="1" placeholder="Address" class="form-control" data-bv-notempty-message="The address is required" ></textarea>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Pin Code :</span>
 				    <div class="col-sm-5">
-					   <input type="text" name='cpin_code' id='cpin_code' placeholder="Pin Code" required/>
+					   <input type="text" name='cpin_code' id='cpin_code' placeholder="Pin Code" class="form-control" required data-bv-notempty-message="The pin code is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Phone :</span>
 				    <div class="col-sm-5">
-					 <input type="text" name='cphone' id='cphone' placeholder="Phone" required/>
+					 <input type="text" name='cphone' id='cphone' placeholder="Phone" class="form-control" required  data-bv-notempty-message="The phone is required"/>
 					 </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <span class="col-sm-3 control-label">Email :</span>
 				    <div class="col-sm-5">
-					 <input type="email" name='cemail' id='cemail' placeholder="Email" required/>
+					 <input type="email" name='cemail' id='cemail' placeholder="Email" class="form-control" required  data-bv-notempty-message="The email is required"/>
 					 </div>
 				  </div>
 				  
@@ -284,7 +312,7 @@
 				<div class="form-group">
 				 <span class="col-sm-3 control-label">Client Status: </span>
 				  <div class="col-sm-5">
-				 <select name='comp_status' id='comp_status' >
+				 <select name='comp_status' id='comp_status' class="form-control"  data-bv-notempty-message="The status is required" >
 				 	<option value="1">Active</option>
 				 	<option value="0">Inactive</option>
 				 </select>
