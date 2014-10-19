@@ -37,12 +37,12 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
        
 }
 
-#signup .form-group { position: relative; width: 404px; padding: 14px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#signup .form-group { position: relative; width: 404px; padding: 14px 20px; border-bottom: 1px solid #EEE;  }
 
 #signup .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #signup .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
-#signup .form-group input { width: 244px; padding: 8px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
+#signup .form-group input { width: 244px; padding: 4px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
 #signup .form-group input.good_input { background: #DEF5E1 url(../img/good.png) 236px center no-repeat; }
 #signup .form-group input.error_input { background: #FDE0E0; }
 
@@ -61,11 +61,11 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 }
 
 
-#edit_signup .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#edit_signup .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; }
 #edit_signup .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #edit_signup .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
-#edit_signup .form-group input { width: 244px; padding: 8px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
+#edit_signup .form-group input { width: 244px; padding: 4px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
 
 #edit_signup .form-group select { width: 244px; padding: 4px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
 
@@ -75,19 +75,16 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 
 #product {
 
-     width: 404px;
-     padding-bottom: 2px;
-
+	 width: 404px;
+	 padding-bottom: 2px;
     display:none;
-
-
     background: #FFF;
-        border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-        box-shadow: 0px 0px 4px rgba(0,0,0,0.7); -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.7); -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
        
 }
 
-#product .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#product .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; }
 
 #product .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
@@ -112,7 +109,7 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 }
 
 
-#edit_product .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#edit_product .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE;}
 #edit_product .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #edit_product .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
@@ -138,7 +135,7 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
        
 }
 
-#employee .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#employee .form-group { position: relative; width: 404px; padding: 7px 20px; border-bottom: 1px solid #EEE; }
 
 #employee .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
@@ -166,11 +163,11 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 }
 
 
-#edit_employee .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#edit_employee .form-group { position: relative; width: 404px; padding: 7px 20px; border-bottom: 1px solid #EEE; }
 #edit_employee .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #edit_employee .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
-#edit_employee .form-group input { width: 244px; padding: 8px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
+#edit_employee .form-group input { width: 244px; padding: 4px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
 
 #edit_employee .form-group select { width: 244px; padding: 4px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
 
@@ -191,7 +188,7 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
        
 }
 
-#adtype .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#adtype .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; }
 
 #adtype .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
@@ -216,7 +213,7 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 }
 
 
-#edit_adtype .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#edit_adtype .form-group { position: relative; width: 404px; padding: 10px 20px; border-bottom: 1px solid #EEE; }
 #edit_adtype .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #edit_adtype .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
@@ -242,9 +239,9 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
        
 }
 
-#company .form-group { position: relative; width: 404px; padding: 7px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#company .form-group { position: relative; width: 404px; padding: 5px 20px; border-bottom: 1px solid #EEE; }
 
-#company .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
+#company .btn-fld { width: 404px; overflow: hidden; padding: 4px 20px 12px 130px; }
 
 #company .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
 #company .form-group input { width: 244px; padding: 8px; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-size: 1.2em; color: #222; background: #F7F7F7; font-family: "Helvetica Neue"; outline: none; border-top: 1px solid #CCC; border-left: 1px solid #CCC; border-right: 1px solid #E7E6E6; border-bottom: 1px solid #E7E6E6; height: 34px; }
@@ -270,7 +267,7 @@ signup-header span { color: #FFF; font-size: 2em; font-weight: normal; padding-b
 }
 
 
-#edit_company .form-group { position: relative; width: 404px; padding: 7px 20px; border-bottom: 1px solid #EEE; text-align: right; }
+#edit_company .form-group { position: relative; width: 404px; padding: 7px 20px; border-bottom: 1px solid #EEE; }
 #edit_company .btn-fld { width: 404px; overflow: hidden; padding: 12px 20px 12px 130px; }
 
 #edit_company .form-group span { display: block; float: left; width: 115px; padding-top: 8px; color: #222; font-size: 13px; text-align: left;  }
