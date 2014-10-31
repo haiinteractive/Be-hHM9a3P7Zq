@@ -66,17 +66,17 @@ class Be_Upload
         return $response;
     }
 
-    public function InsertTempInformation( $arg )
+    public function InsertTempEGInformation( $arg )
     {
         $response = false;
-                $response = $this->_CI->upload_model->InsertTempInformation(  $arg );
+                $response = $this->_CI->upload_model->InsertTempEGInformation(  $arg );
                 if($response){
-                    $this->InsertTempAdData( $response, $arg );
+                    $this->InsertTempEGAdData( $response, $arg );
                 }
         return $response;
     }
 
-    public function InsertTempAdData( $pubid, $arg )
+    public function InsertTempEGAdData( $pubid, $arg )
     {
                 $response = false;
                 $ad_arg = array();
@@ -105,7 +105,14 @@ class Be_Upload
                             );
                             $ad_arg[] = $ad_info;
                 }
-                $response = $this->_CI->upload_model->InsertTempAdData(  $ad_arg );
+                $response = $this->_CI->upload_model->InsertTempEGAdData(  $ad_arg );
                 return $response;
+    }
+
+    function GetCompanyID( $c_name, $groupid )
+    {
+        $response = false;
+                $response = $this->_CI->upload_model->GetCompanyID( $c_name, $groupid ) ;
+        return $response;
     }
 }

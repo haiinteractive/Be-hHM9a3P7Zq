@@ -4,7 +4,6 @@ class Upload extends CI_Controller {
 	public $current_date;
 	public function __construct()
 	{
-	error_reporting(0);
 	        parent::__construct();
 	        $this->load->library('core/validation');
 	        $this->load->library('upload/be_upload');
@@ -40,7 +39,7 @@ class Upload extends CI_Controller {
 						$notice[] = $valid;
 					}else{
 						if( ( !in_array( $data[0], $this->config->item('company')) ) || ( !in_array($data[1], $this->config->item('ro_number') ) ) && ( !in_array($data[2], $this->config->item('city') ) )   ){
-							$records[] = $this->PushEGData( $data, $form_type );
+							$records[] = $this->PushEGData( $data, $form_type, $userdata );
 						}
 					}
 				}else{
@@ -50,8 +49,8 @@ class Upload extends CI_Controller {
 			}
 			if(count($notice) <= 0 ){
 				//$temp_response = $this->be_upload->InsertTempInformation( $records );
-				move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->uniqueid."/". time().$_FILES["file_data"]["name"]);
-				echo 'Successfully Uploaded';
+				move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->groupid."/". time().$_FILES["file_data"]["name"]);
+				//echo 'Successfully Uploaded';
 				die;
 			}else{
 				print_r($notice);
@@ -71,11 +70,15 @@ class Upload extends CI_Controller {
 
 	}
 
-	public function PushEGData( $data, $form_type )
+	public function PushEGData( $data, $form_type, $userdata )
 	{
+		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->groupid );
+
 		$arg = array( 
 				'ro_number' 	=> $data[1],
 				'form_type'	=> $form_type,
+				'company_id'	=> $company_id,
+				'group_id'	=> $userdata->groupid,
 				'city'		=> $data[2],
 				'ad_code'	=> $data[9],
 				'frequency'	=> $data[11],
@@ -86,7 +89,7 @@ class Upload extends CI_Controller {
 				'net_amount'		=> $data[13],
 				'special_instruction'	=> $data[12]
  			);
-		$this->be_upload->InsertTempInformation( $arg );
+		$this->be_upload->InsertTempEGInformation( $arg );
 		return $arg;
 	}
 }

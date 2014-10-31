@@ -98,5 +98,7 @@ $db['media']['swap_pre'] = "";
 $db['media']['autoinit'] = TRUE;
 $db['media']['stricton'] = FALSE;
 
+$db['SAMLE'] = '[%DBNAME%]';
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -366,5 +366,7 @@ $config['company']	= array('company_name', 'company name', 'Company Name', 'Comp
 $config['ro_number']	= array('ro_number', 'ro number', 'RO number', 'rnumber', 'ronumber', 'roNumber', 'Ro Number', 'Ro number');
 $config['city']	= array('city', 'City');
 $config['EG_total_fields'] = 15;
+
+$config['menus'] = 'VIJAY';
 /* End of file config.php */
 /* Location: ./application/config/config.php */

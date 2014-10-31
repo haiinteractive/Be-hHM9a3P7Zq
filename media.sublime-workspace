@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"user_id"
+			],
+			[
+				"cat",
+				"category_name"
+			],
+			[
+				"category",
+				"category_name"
+			],
+			[
+				"gr",
+				"group_id"
+			],
+			[
+				"categr",
+				"category_id"
+			],
+			[
+				"delet",
+				"delete_fre_ids"
+			],
+			[
+				"array",
+				"array_diff"
+			],
+			[
+				"diff",
+				"array_diff"
+			],
+			[
+				"temp_pub_information",
+				"temp_pub_informationid"
+			],
+			[
+				"c",
+				"c_name"
+			],
+			[
+				"dele",
+				"delete_ids"
+			],
+			[
+				"del",
+				"delete_ids"
+			],
+			[
+				"co",
+				"company_id"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"un",
+				"unique"
+			],
+			[
+				"result",
+				"results"
+			],
+			[
+				"pub",
+				"pub_info"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
 				"mar",
 				"margin-top"
 			],
@@ -22,10 +94,6 @@
 			[
 				"error",
 				"error_reporting"
-			],
-			[
-				"user",
-				"userdata"
 			],
 			[
 				"vali",
@@ -92,24 +160,26 @@
 	"buffers":
 	[
 		{
-			"contents": "<?php	\n\n	header('Access-Control-Allow-Origin: *'); \n	\n	error_reporting(0);\n	require_once 'config/config.php';\n	include(\"lib/geo_lib.inc\");\n	\n	$current_date = date(\"Y-m-d H:i:s\");\n	\n	$current_pause_date = date(\"Y-m-d\");\n	\n	if(isset($_GET['k'])){\n	\n		$key 			= $_REQUEST['k'];\n		$event_name 	= $_REQUEST['evtnm'];\n		\n		$page_label 	= $_REQUEST['response'];\n		$sid 			= session_id(); \n		\n		$q = mysqli_query($connect, \"CALL Check_User_Api('$key')\"); \n\n		$response 		= mysqli_fetch_row($q);\n		mysqli_free_result($q);   \n		mysqli_next_result($connect);   \n		\n		$scrnsiz 		= $_REQUEST['scrnsiz'];\n		$bsiz 			= $_REQUEST['bsiz'];\n		$url 			= urldecode( str_replace( array( '%26dot%3B' ), array( '.' ) , $_REQUEST['url']) );\n		$lang 			= $_REQUEST['lang'];\n		$action_label  	= $_REQUEST['al'];\n		$action_value  	= $_REQUEST['av'];\n		$bro_name		= $_REQUEST['broname'];		\n		$bro_version	= $_REQUEST['brover'];\n		$gene_key	= $_REQUEST['gene_key'];\n		$referrer		= $_SERVER['HTTP_REFERER'];\n		$useragent		= $_REQUEST['useragent'];\n		$platform		= $_REQUEST['platform'];\n		$cookieset		= $_REQUEST['cookieset'];\n		\n		\n		$s_name			= $_SERVER['SERVER_NAME'];\n\n		$ip				= $_SERVER['REMOTE_ADDR'];\n		\n		$gi 			= geoip_open(\"lib/GeoLiteCity.dat\", GEOIP_STANDARD);\n		\n		$record 		= geoip_record_by_addr($gi,$ip);\n		\n		$country_name	= $record->country_name;\n		$country_code	= $record->country_code;\n		$region_name	= $record->region_name;\n		$region_code	= $record->region_code;\n		$latitude	= $record->latitude;\n		$longitude	= $record->longitude;\n		$time_zone	= $record->time_zone;\n		$postal_code	= $record->postal_code;\n		$continent_code	= $record->continent_code;\n		$city			= $record->city;\n\n		if($response[0] > 0)\n		{\n			\n			$results = mysqli_query($connect, \"CALL Check_Pause_Status('$key', '$current_pause_date')\");\n			\n			$pause_id = mysqli_fetch_array($results);\n			\n			mysqli_free_result($results);   \n			mysqli_next_result($connect);   \n			if($pause_id[0] == 0 || $pause_id[0] == '')\n			{\n			\n				\n				\n				$tag_query = mysqli_query( $connect, \"CALL Check_Events('$event_name')\");\n				\n				$row = mysqli_fetch_row( $tag_query );\n				\n				mysqli_free_result($tag_query); \n				mysqli_next_result($connect);   \n				\n				$updat = mysqli_query($connect, \"CALL INSERT_TRAFFIC('$key', '$scrnsiz', '$bsiz', '$url', '$lang', '$ip', '$gene_key', '$sid', '$city', '$country_name', '$bro_name', '$bro_version', '$referrer', '$useragent', '$cookieset', '$platform', '$s_name', '$country_code', '$region_name', '$region_code', '$latitude', '$longitude', '$time_zone','$postal_code', '$continent_code', '$current_date')\");\n				mysqli_free_result($updat); \n				mysqli_next_result($connect);   \n								\n				$traffic_id = mysqli_query($connect, \"SELECT max(traffic_id) as ids from traffic\");\n				\n				$rows = mysqli_fetch_row($traffic_id);\n\n				mysqli_free_result($traffic_id); \n				mysqli_next_result($connect);   \n\n				if($action_label !=''){\n\n					$tags = mysqli_query($connect, \"CALL Insert_Actions('$rows[0]', '$row[0]', '$key', '$page_label', '$action_label', '$action_value', '$current_date')\") or mysqli_error( $tags );\n					\n					mysqli_free_result($tags); \n					mysqli_next_result($connect);   \n				}\n				\n				echo 1;\n				die;\n				\n			}\n			echo mysqli_error();\n			die;\n		}\n		\n	}\n?>",
-			"file": "/C/Users/sachin/AppData/Local/Temp/fz3temp-1/default.php",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "application/models/temp/temp_model.php",
 			"settings":
 			{
-				"buffer_size": 3258,
+				"buffer_size": 7551,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n\n  <head>\n          <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n          <meta charset=\"utf-8\">\n          \n          <!-- FAVICON -->\n          <link rel=\"shortcut icon\" href=\"assets/favicon.ico\">\n          \n          <!-- PAGE TITLE -->\n          <title>Scriptleaks.com</title>\n          \n          <!-- GOOGLE FONTS -->\n          <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700|Raleway:300,400,500|Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>\n          <!-- STYLESHEETS -->\n          <link href=\"assets/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n          <link href=\"assets/css/font-awesome.min.css\" rel=\"stylesheet\" type=\"text/css\" />\n          <link href=\"assets/css/animate.css\" rel=\"stylesheet\" type=\"text/css\" />\n          <link href=\"assets/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\n              \n  </head>\n  <body>\n  \n      <!-- BACKGROUND -->\n      <div id=\"bg-pattern\"></div>\n      <div id=\"bg-darker\"></div>\n      <!-- /BACKGROUND -->\n      \n      <!-- YOUTUBE BACKGROUND -->\n      <a id=\"bgndVideo\" class=\"player showOn-video-bg\" data-property=\"{videoURL:'http://youtu.be/jkWwbQxosKA',containment:'body',autoPlay:true, mute:false, startAt:6, opacity:1}\"></a>\n      <i class=\"volume-button fa fa-volume-up showOn-video-bg\"></i>\n      <i class=\"stop-button fa fa-pause showOn-video-bg\"></i>\n      <!-- /YOUTUBE BACKGROUND -->\n      \n      \n      <!-- PRELOADER -->\n      <div id=\"prelaoder\">\n        <div class=\"socket\">\n          <img src=\"assets/img/spinner.png\">\n        </div>\n      </div>\n      <!-- /PRELOADER -->\n        \n        \n      <!-- FRONT CONTENT -->\n      <div id=\"front-page\">\n        \n          <!-- HOME SCREEN -->\n          <div id=\"home-screen\">\n          \n              <div id=\"canvas-container\">\n                  <canvas id=\"gravity\"></canvas> \n              </div>\n              \n              <!-- CONTENT BLOCK -->\n              <div class=\"content-block animated\">\n              \n                  <div class=\"container animated\">\n                  \n                    <img class=\"logo\" src=\"assets/img/logo.png\">\n                    \n                    <div class=\"slider\">\n                    \n                       <div class=\"slide\"> <h1>We're Here<span> & </span> <br>We're Staying</h1> </div>\n                     \n                       <div class=\"slide\"> <h1>Camelzftw<span> & </span> <br>Scriptleaks.com</h1> </div>\n                       \n                       <div class=\"slide\"> <h1>Every script<span> & </span> <br> Every possibility</h1> </div>\n                     \n                    </div>\n      \n                    <p>Continue To Full Website</p>\n                    \n                    <!-- OPEN OVERLAY -->\n                    <div class=\"arrow-wrap\"> <div class=\"open-overlay\"> <i class=\"fa fa-angle-down\"></i> </div> </div>\n                    <!-- /OPEN OVERLAY -->\n                    \n                  </div>\n                \n              </div>\n              <!-- /CONTENT BLOCK -->\n              \n          </div>\n          <!-- /HOME SCREEN -->\n   \n      </div>\n      <!-- /FRONT CONTENT -->\n      \n      \n      \n      \n      <!-- OVERLAY --> \n      <div class=\"overlay\">\n      \n        \n          <!-- OVERLAY CONTAINER -->\n          <div class=\"overlay-container animated\">\n          \n              <!-- OVERLAY CONTENT -->\n\n              <div class=\"overlay-content\">\n      \n                  <div class=\"container animated\">\n    \n                    \n                      \n                      <form action=\"assets/subscribe.php\" method=\"post\" class=\"subscribe-form\">\n                      <a href=\"http://scriptleaks.com/menu/\"><img src=\"http://i.imgur.com/h5BwGo1.png\" /></a>\n                        \n                      </form>\n                      \n                      <ul class=\"social-icons\">\n                      \n                        <li><a data-placement=\"bottom\" title=\"Facebook\" class=\"fa fa-facebook\" href=\"http://www.facebook.com/scriptleaks\"></a></li>\n                        \n                      </ul>\n        \n                  </div>\n               \n              </div>\n              <!-- /OVERLAY CONTENT -->\n              \n          </div>\n          <!-- /OVERLAY CONTAINER --> \n                 \n          <!-- CLOSE OVERLAY -->\n          <div class=\"close-overlay animated\"><img class=\"img-responsive\" src=\"assets/img/cross-icon.png\"></div>\n          <!-- /CLOSE OVERLAY -->\n          \n      </div> \n      <!-- /OVERLAY --> \n      \n      \n      \n      <!-- OVERLAY CONTACT -->  \n      <div class=\"overlay-contact\">\n      \n          <!-- OVERLAY CONTAINER -->\n          <div class=\"overlay-container animated\">\n          \n            <!-- OVERLAY CONTACT CONTENT-->  \n            <div class=\"overlay-contact-content\">\n            \n              \n                          </div>\n        \n                       </form>\n                       \n                       <h1 class=\"status-message-contact\"></h1>\n                       \n                     </div>\n                   \n                </div> \n                     \n            </div>\n            <!-- /OVERLAY CONTACT CONTENT--> \n             \n          </div>\n          <!-- /OVERLAY CONTAINER -->  \n          \n          <!-- CLOSE OVERLAY CONTACT -->          \n          <div class=\"close-contact animated\"><img class=\"img-responsive\" src=\"assets/img/cross-icon.png\"></div> \n          <!-- /CLOSE OVERLAY CONTACT --> \n      \n      </div> \n      <!-- /OVERLAY CONTACT -->    \n      \n    \n     \n\n      <!-- JAVASCRIPTS -->\n      <script type=\"text/javascript\" src=\"assets/js/jquery-1.11.1.min.js\"></script>\n      <script type=\"text/javascript\" src=\"assets/js/bootstrap.min.js\"></script>\n      <script type=\"text/javascript\" src=\"assets/js/jquery.cycle.min.js\"></script>\n      <script type=\"text/javascript\" src=\"assets/js/jquery.backstretch.min.js\"></script>\n      <script type=\"text/javascript\" src=\"assets/js/scripts.js\"></script>\n<script type=\"text/javascript\">\n        var _hii = _hii || [];\n        _hii.push([\"_AccountNo\", \"0sDScXbAvNuEU\"]);\n        _hii.push([\"_Pageview\", \"page\"]);\n        (function() {\n          var a = document.createElement(\"script\"); \n          a.type = \"text/javascript\"; \n          a.async = true;\n          a.src = \"//www.scriptleaks.com/subtag/hii.js\";\n          var s = document.getElementsByTagName(\"script\")[0]; s.parentNode.insertBefore(a, s);\n        })();\n    </script>    \n\n  </body>\n\n</html>",
-			"file": "/C/Users/sachin/AppData/Local/Temp/fz3temp-1/index.html",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "application/libraries/temp/be_temp.php",
 			"settings":
 			{
-				"buffer_size": 6540,
+				"buffer_size": 5467,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/controllers/unpublish.php",
+			"settings":
+			{
+				"buffer_size": 1765,
 				"line_ending": "Windows"
 			}
 		}
@@ -141,16 +211,84 @@
 	},
 	"file_history":
 	[
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/users_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/my.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/user_agents.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/uri.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/installation/upgrading.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/urls.html",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/utilities.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Upload.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Utf8.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/URI.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/users.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/employee/be_employee.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/unpublish.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/upload.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/upload/be_upload.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/upload/upload_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/temp/be_temp.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/company.php",
+		"/C/wamp/www/test/array_diff.php",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/beclouds.js",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/temp/list.html",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/index.php",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/config.php",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/database.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/upload/upload.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/language/english/upload_lang.php",
+		"/C/wamp/www/Product/rightern/application/models/users_model.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/models/site_model.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/header.html",
-		"/C/wamp/www/Plugins/bootstrapvalidator-master/demo/index.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/database.php",
+		"/C/wamp/www/Hai_interactive/design/mystats/application/config/database.php",
+		"/C/wamp/www/Hai_interactive/demo/mystats/application/models/users_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/be_users.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/category.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/adtype.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/hooks/AppConstructor.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/controllers.html",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Controller.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/config.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/core/Common.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/doc_style/template.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/temp/temp_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/toc.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/plugins/variablefilter.htmlspecialchars.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/database/drivers/pdo/pdo_utility.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/profiler.php",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/footer.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/footer.html",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/upload.html",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/beclouds.js",
+		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/company/be_company.php",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/bootstrap.css",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/style.css",
 		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/form-style.css",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/forms.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/dashboard.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/panel.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/maps.js",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/main.js",
+		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/styleguide.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/plugins/shared.make_timestamp.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/smileys.php",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/index.html",
+		"/C/wamp/www/Hai_interactive/demo/media/application/config/database.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/adtype/adtype_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/company/company_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/application/models/category/category_model.php",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/jquery_popup.css",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/common/fonts/style.1.css",
+		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/common/font-awesome.min.css",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Cache/drivers/Cache_apc.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/javascript/Jquery.php",
+		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Javascript.php",
+		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/default.php",
+		"/C/wamp/www/Plugins/bootstrapvalidator-master/demo/index.html",
 		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/employee.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/views/employee/list.html",
 		"/C/wamp/www/Hai_interactive/demo/media/application/views/employee/edit.html",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/hii.js",
-		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/default.php",
-		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/config.php",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/_hii.js",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/config 2.php",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/.htaccess 2",
@@ -158,15 +296,11 @@
 		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/bootstrap/css/bootstrap.css",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/info.php",
 		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/user.js",
-		"/C/Users/sachin/AppData/Local/Temp/fz3temp-1/database.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/models/employee/employee_model.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/employee/be_employee.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/userguide.css",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/sysplugins/smarty_config_source.php",
-		"/C/wamp/www/Hai_interactive/demo/media/system/core/Common.php",
 		"/C/wamp/www/Product/rightern/application/views/site/en/search.html",
 		"/C/wamp/www/Product/rightern/application/controllers/home.php",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/beclouds.js",
 		"/C/Users/sachin/Desktop/New folder/custombox-master/index.html",
 		"/C/Users/sachin/Desktop/New folder/custombox-master/demo/xhr/ajax.html",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/index.html",
@@ -175,108 +309,44 @@
 		"/C/wamp/www/Product/rightern/application/controllers/projects.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/database/drivers/mysqli/mysqli_driver.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/database/drivers/mysqli/mysqli_result.php",
-		"/C/wamp/www/Product/rightern/application/models/users_model.php",
 		"/C/wamp/www/Product/rightern/application/models/project_model.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/sysplugins/smarty_internal_template.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/language/english/migration_lang.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/language/english/email_lang.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/examples.html",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/doc_style/template.html",
 		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Email.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/errors.html",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/sysplugins/smarty_internal_compile_ldelim.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/views/employee/add.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/upload/upload.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/models/upload/upload_model.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/upload/be_upload.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/users.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/config.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/core/validation.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/upload.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/core/CodeIgniter.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/tutorial/conclusion.html",
 		"/C/Users/sachin/Desktop/New folder/upload.html",
 		"/C/Users/sachin/Desktop/New folder/upload.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/models/users_model.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/controllers/upload.php",
 		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/vendor/offline/offline.min.js",
 		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/plugins/modifier.replace.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/views/welcome_message.php",
 		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/vendor/medium/medium-editor.css",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/my.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/core/Benchmark.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/benchmark.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/be_users.php",
 		"/C/wamp/www/Product/rightern/application/controllers/articles.php",
 		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/off-canvas.js",
 		"/C/wamp/www/Hai_interactive/demo/media/system/database/drivers/oci8/oci8_forge.php",
 		"/C/wamp/www/Hai_interactive/demo/media/system/core/Output.php",
 		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/user_agent.html",
 		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/User_agent.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/user_agents.php",
 		"/C/wamp/www/Hai_interactive/demo/sales/application/models/users_model.php",
 		"/C/wamp/www/Hai_interactive/demo/media/application/config/autoload.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/login.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/footer.html",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/notification/ns-style-other.css",
-		"/C/wamp/www/Hai_interactive/demo/media/application/controllers/home.php",
-		"/E/PHP/Projectz/skillsweet/application/web_default/models/sys/app/sh_games_model.php",
-		"/E/PHP/Projectz/skillsweet/application/web_default/models/sys/app/sh_db_model.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/dashboard/dashboard.html",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/libraries.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/employee/employee.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/libraries/form_validation.html",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/helpers/form_helper.html",
-		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Form_validation.php",
-		"/C/wamp/www/Hai_interactive/demo/media/system/helpers/form_helper.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/forge.html",
-		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Log.php",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/common/dashboard.js",
-		"/C/wamp/www/Hai_interactive/design/beclouds/footer.html",
-		"/C/wamp/www/Hai_interactive/design/beclouds/header.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/hooks.php",
-		"/C/wamp/www/Hai_interactive/design/beclouds/datatables.html",
-		"/C/wamp/www/Plugins/jquery-bootpag-master/index.html",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/js/lib/jquery.simplePagination.js",
-		"/C/wamp/www/Hai_interactive/demo/media/assets/app/css/vendor/morris/morris.js",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/plugins/function.html_options.php",
-		"/C/wamp/www/Hai_interactive/demo/media/system/libraries/Ftp.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/database/helpers.html",
-		"/C/wamp/www/Hai_interactive/demo/media/license.txt",
-		"/C/wamp/www/Hai_interactive/demo/sales/application/controllers/users.php",
-		"/C/wamp/www/Hai_interactive/demo/musicestore/protected/config/main.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/layout/home.html",
-		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/MySmarty.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/libraries/smartyci.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/SmartyBC.class.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/Smarty.class.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/53956ff262215b41aeabe48762ab7f8a87c7fcfa.file.home.html.cache.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/82df9ace1838dacb8df2793610fdb7a0c728e8bb.file.list.html.cache.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/libs/debug.tpl",
-		"/C/wamp/www/Hai_interactive/demo/media/application/third_party/smarty/templates_c/1a19b0b0940b7472b198d2a1a3fe646a6dab3f2c.file.login.html.cache.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/cache/53956ff262215b41aeabe48762ab7f8a87c7fcfa.home.html.php",
-		"/C/wamp/www/Hai_interactive/design/beclouds/index.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/core_classes.html",
-		"/C/wamp/www/Hai_interactive/demo/sales/application/views/site/home.html",
-		"/C/wamp/www/Hai_interactive/demo/media/application/views/registration.html",
-		"/C/wamp/www/Hai_interactive/demo/media/system/core/Model.php",
-		"/C/wamp/www/Hai_interactive/demo/media/application/config/migration.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/general/views.html",
-		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/home.php",
-		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/site.php",
-		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/overview.php",
-		"/C/wamp/www/Product/MYtCn01B3Jw86O0IBr80p35p88YHY43KYe/application/controllers/language.php",
-		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/sh_updates.php",
-		"/C/wamp/www/Hai_interactive/demo/sales/application/libraries/core/sh_users.php",
-		"/C/wamp/www/Hai_interactive/demo/media/user_guide/changelog.html"
+		"/C/wamp/www/Hai_interactive/demo/media/application/views/login.html"
 	],
 	"find":
 	{
-		"height": 59.0
+		"height": 57.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 159.0,
 		"where_history":
 		[
 		]
@@ -286,6 +356,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CheckPubInformation",
+			"GetPubInformation",
+			"\n                        ",
+			"where_in",
+			"where",
+			"in",
+			"dele",
+			"request_url",
+			"delete_info",
+			"upload-form",
+			"btn-sign-in",
+			"btn-facebook",
+			"btn-facebook\n",
+			"btn-upload-add",
+			"upload-form",
+			"quickmenu",
+			"dropdown",
+			"list",
+			"t_form_adtype",
+			"list",
+			"googl",
+			"fon",
+			"list_inf",
+			"category",
+			"PushEGData",
+			"input",
 			"tag",
 			"col-lg-4",
 			"btn-employee-edit",
@@ -375,24 +471,84 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/sachin/AppData/Local/Temp/fz3temp-1/default.php",
+					"file": "application/models/temp/temp_model.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3258,
+						"buffer_size": 7551,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								72,
-								72
+								2536,
+								2556
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2453.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/libraries/temp/be_temp.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5467,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5241,
+								5241
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3978.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/controllers/unpublish.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1522,
+								1522
 							]
 						],
 						"settings":
@@ -401,37 +557,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/sachin/AppData/Local/Temp/fz3temp-1/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6540,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6521,
-								6521
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8256.0,
+						"translation.y": 2091.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -442,7 +568,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 51.0
+		"height": 49.0
 	},
 	"input":
 	{
@@ -478,7 +604,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 98.0
+		"height": 94.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -486,6 +612,118 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"unpublish",
+				"application\\controllers\\unpublish.php"
+			],
+			[
+				"mo",
+				"application\\models\\users_model.php"
+			],
+			[
+				"be_te",
+				"application\\libraries\\temp\\be_temp.php"
+			],
+			[
+				"temp_model",
+				"application\\models\\temp\\temp_model.php"
+			],
+			[
+				"upload_model",
+				"application\\models\\upload\\upload_model.php"
+			],
+			[
+				"be_upload",
+				"application\\libraries\\upload\\be_upload.php"
+			],
+			[
+				"upload",
+				"application\\controllers\\upload.php"
+			],
+			[
+				"us",
+				"application\\controllers\\users.php"
+			],
+			[
+				"user",
+				"application\\models\\users_model.php"
+			],
+			[
+				"be_t",
+				"application\\libraries\\temp\\be_temp.php"
+			],
+			[
+				"contr",
+				"application\\controllers\\company.php"
+			],
+			[
+				"headr",
+				"application\\views\\layout\\header.html"
+			],
+			[
+				"beclou",
+				"assets\\app\\js\\beclouds.js"
+			],
+			[
+				"temp",
+				"application\\models\\temp\\temp_model.php"
+			],
+			[
+				"unpub",
+				"application\\controllers\\unpublish.php"
+			],
+			[
+				"becou",
+				"assets\\app\\js\\beclouds.js"
+			],
+			[
+				"sty",
+				"assets\\app\\css\\style.css"
+			],
+			[
+				"boo",
+				"assets\\app\\css\\bootstrap.css"
+			],
+			[
+				"company",
+				"application\\models\\company\\company_model.php"
+			],
+			[
+				"adtype",
+				"application\\controllers\\adtype.php"
+			],
+			[
+				"category",
+				"application\\controllers\\category.php"
+			],
+			[
+				"header",
+				"application\\views\\layout\\header.html"
+			],
+			[
+				"datas",
+				"application\\config\\database.php"
+			],
+			[
+				"config",
+				"application\\config\\config.php"
+			],
+			[
+				"cate",
+				"application\\models\\category\\category_model.php"
+			],
+			[
+				"jqu",
+				"assets\\app\\css\\jquery_popup.css"
+			],
+			[
+				"form",
+				"assets\\app\\css\\form-style.css"
+			],
+			[
+				"data",
+				"application\\config\\database.php"
+			],
 			[
 				"head",
 				"application\\views\\layout\\header.html"
@@ -505,18 +743,6 @@
 			[
 				"css/",
 				"assets\\app\\css\\form-style.css"
-			],
-			[
-				"data",
-				"application\\config\\database.php"
-			],
-			[
-				"beclou",
-				"assets\\app\\js\\beclouds.js"
-			],
-			[
-				"header",
-				"application\\views\\layout\\header.html"
 			],
 			[
 				"mysqli_result.php",
@@ -541,14 +767,6 @@
 			[
 				"emplo",
 				"application\\models\\employee\\employee_model.php"
-			],
-			[
-				"config",
-				"application\\config\\config.php"
-			],
-			[
-				"datas",
-				"application\\config\\database.php"
 			],
 			[
 				"users",
@@ -581,10 +799,6 @@
 			[
 				"offline",
 				"assets\\app\\css\\vendor\\offline\\offline.min.js"
-			],
-			[
-				"user",
-				"application\\models\\users_model.php"
 			],
 			[
 				"be_users",
@@ -633,14 +847,6 @@
 			[
 				"emply",
 				"application\\controllers\\employee.php"
-			],
-			[
-				"form",
-				"assets\\app\\css\\form-style.css"
-			],
-			[
-				"headr",
-				"application\\views\\layout\\header.html"
 			],
 			[
 				"home",

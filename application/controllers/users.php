@@ -81,8 +81,8 @@ class Users extends CI_Controller {
 				$response = $this->be_users->Registration( $this->security->xss_clean( $this->input->post("username") ), $this->security->xss_clean( $this->input->post("email") ), $this->security->xss_clean( $this->input->post("userpwd") ));			// Storing User Information
 				if($response > 0){
 					$user_info = $this->be_users->GetUserInfo( $response );	// Getting Registreted Information
-					mkdir("assets/clients/$userdata->uniqueid");
 					$this->setsession( $user_info );	// SET session
+					mkdir("assets/clients/$userdata->groupid");
 				}
 				echo json_encode($response);
 				die;
@@ -118,7 +118,7 @@ class Users extends CI_Controller {
 	public function setsession( $user_info ){
 					$session_data = array(
 							'user_id'	=>$user_info->subscriber_id,
-							'uniqueid'	=> $user_info->subscriber_unique_id,
+							'groupid'	=> $user_info->subscriber_group_id,
 							'user_first_name'	=> $user_info->subscriber_first_name,
 							'user_last_name'	=> $user_info->subscriber_last_name,
 							'company_name'	=> $user_info->company_name,

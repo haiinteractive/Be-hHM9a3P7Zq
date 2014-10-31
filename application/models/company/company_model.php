@@ -19,14 +19,14 @@ class Company_Model extends CI_Model
            
 		   function AddNewcompany( $arg )
             {
-                            $this->db->insert(SUBSCRIBER_DB_NAME.'.t_company', $arg );
+                            $this->db->insert(REPORT_DB_NAME.'.t_company', $arg );
                             return $this->db->insert_id(); 
             }
 			
 			function updateNewcompany($arg , $id)
 			{
 					$this->db->where('comp_id', $id);
-					$this->db->update(SUBSCRIBER_DB_NAME.'.t_company', $arg);
+					$this->db->update(REPORT_DB_NAME.'.t_company', $arg);
 					return '1'; 
 			}
 			
@@ -36,7 +36,7 @@ class Company_Model extends CI_Model
 					 //   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
 					 
 					   $this->db->select("*");
-                        $this->db->from('t_company');      
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
 						$this->db->where(array('c_status '=>'1', 'c_createdby' => 
 
 $user_id));  
@@ -56,7 +56,7 @@ $user_id));
 			function get_single_company($company_id)
 			{
 					 $this->db->select("*");
-                        $this->db->from('t_company');      
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
                         $this->db->where(array('comp_id'=>$company_id));        
                         $query = $this->db->get();
                      $db_results = $query->result_array(); 
@@ -71,7 +71,7 @@ $user_id));
 
             function Get_company_Count( $created_by ){
                         $this->db->select("count(1) as total_company");
-                        $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_company');      
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
                         $this->db->where(array('c_status'=>'1', 'c_createdby' => $created_by));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
