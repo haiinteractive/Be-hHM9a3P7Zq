@@ -56,11 +56,17 @@ class Be_Adtype
                 $response = $this->_CI->adtype_model->Get_adtype_Count( $created_by ) ;
         return $response;
     }
-
-    function AddNewadtype( $form_adtype, $ad_type_name, $ad_type_code, $ad_type_rate, $user_created_by )
+    function DeleteAdtype( $adtype_id )
+    {
+        $response = false;
+                $response = $this->_CI->adtype_model->DeleteAdtype( $adtype_id ) ;
+        return $response;
+    }
+    function AddNewadtype( $group_id, $form_adtype, $ad_type_name, $ad_type_code, $ad_type_rate, $user_created_by )
     {
        $response = false;
                 $arg = array(
+                                'group_id'      => $group_id,
                                 'form_type'   =>  $form_adtype,
                                 'ad_type_name'        => $ad_type_name,
                                 'ad_type_code'            => $ad_type_code,

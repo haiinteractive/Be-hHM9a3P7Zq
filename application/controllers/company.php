@@ -83,9 +83,9 @@ class Company extends CI_Controller {
 			( !empty($output) ) ? $output = $output : $output = 'success';
 			if($output == 'success')
 			{
-					$response = $this->be_company->AddNewcompany( $this->security->xss_clean( $this->input->post("c_name") ), $this->security->xss_clean( $this->input->post("c_person") ), $this->security->xss_clean( $this->input->post("address") ), $this->security->xss_clean( $this->input->post("pin_code") ), $this->security->xss_clean( $this->input->post("phone") ), $this->security->xss_clean( $this->input->post("alt_phone") ),$this->security->xss_clean( $this->input->post("email") ),$this->security->xss_clean( $this->input->post("alt_email") ), $userdata->user_id );
-						echo json_encode($output);
-						die;
+			$response = $this->be_company->AddNewcompany( $userdata->group_id, $this->security->xss_clean( $this->input->post("c_name") ), $this->security->xss_clean( $this->input->post("c_person") ), $this->security->xss_clean( $this->input->post("address") ), $this->security->xss_clean( $this->input->post("pin_code") ), $this->security->xss_clean( $this->input->post("phone") ), $this->security->xss_clean( $this->input->post("alt_phone") ),$this->security->xss_clean( $this->input->post("email") ),$this->security->xss_clean( $this->input->post("alt_email") ), $userdata->user_id );
+				echo json_encode($output);
+				die;
 				
 			}else{
 				echo json_encode($output);
@@ -130,6 +130,14 @@ class Company extends CI_Controller {
 		die;
 	}
 
+	public function delete()
+	{
+		$comp_id = $this->security->xss_clean( $this->input->post("comp_id") );
+		 $get_single_employee = $this->be_company->DeleteCompany( $comp_id );
+		 echo 'success';
+		 die;
+
+	}
 }
 
 /* End of file home.php */

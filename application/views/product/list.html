@@ -114,6 +114,7 @@
 					  	objdata += '<td>'+obj.created_on+'</td>'; 
 					  	objdata += '<td>'+obj.status+'</td>'; 
 					  	objdata += '<td><a href="#" id="'+obj.product_id+'" class="user_editsss" onClick="edit_product_info('+obj.product_id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.product_id+'" class="product_editsss" onClick="delete_product_info('+obj.product_id+');">Delete</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -127,18 +128,18 @@
 				 $( "#user_edit_tree" ).trigger( "click" );
 				 var request_ur = base_url+'/product/edit';
 				  $.ajax({
-								type: "POST",
-								data: 'product_id='+id,
-								dataType:'JSON',
-								url: request_ur,
-								success: function(sresponse) {
-									$.each(sresponse, function(i, obj) {
-									 
-									  $("#proe_name").val(obj.product_name);
-									   $("#product_id").val(obj.product_id);
-									    $("#product_status").val(obj.status);
-									}); 
-							}
+					type: "POST",
+					data: 'product_id='+id,
+					dataType:'JSON',
+					url: request_ur,
+					success: function(sresponse) {
+						$.each(sresponse, function(i, obj) {
+						 
+						  $("#proe_name").val(obj.product_name);
+						   $("#product_id").val(obj.product_id);
+						    $("#product_status").val(obj.status);
+						}); 
+					}
 				});
 			}
 			
@@ -161,72 +162,9 @@
 
 <a id="user_edit_tree" rel="leanModal" href="#edit_product">Edit</a>
 
-		<div id="product">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Add New Product</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
-     
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Product Name:</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='product_name' id='product_name'  class="form-control" placeholder="Product Name"  required data-bv-notempty-message="The product name is required"/>
-					 </div>
-				  </div>
-				  
-				 
-				  <div class="btn-fld">
-				  
-				   <input type="submit" id="productbtn"  class="btn btn-primary" value="Add &raquo;"/>
-				   </div>
-				   </form>
-			 
-			
-		</div>
-		</div>
-
+	{include file='product/add.html'}
+	{include file='product/edit.html'}
 
 
 		
    
-   <div id="edit_product">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Edit Product</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-     
-				  <div class="form-group">
-				    <span>Product Name:</span>
-				     <div class="col-sm-5">
-					 <input type="text" name='proe_name' id='proe_name' placeholder="Product Name" class="form-control" required data-bv-notempty-message="The product name is required"/>
-				 </div>
-				  </div>
-				  
-				<input type="hidden" name='product_id' id='product_id'/>
-				 <div class="form-group">
-				 <span>Status: </span>
-				 <div class="col-sm-5">
-				 <select name='product_status' id='product_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
-				 	<option value="1">Active</option>
-				 	<option value="0">Inactive</option>
-				 </select>
-				 </div>
-				  </div>
-				  <div class="btn-fld">
-				  <input type="submit" id="edit_productbtn" value="Update &raquo;"/>
-				  </div>
-				   </form>
-			</div>
-		</div>

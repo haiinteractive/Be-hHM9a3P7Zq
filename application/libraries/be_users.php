@@ -36,7 +36,7 @@ class Be_Users
         $arg = array(
                         'company_name' => $username,
                         'subscriber_email' => $email,
-                        'subscriber_unique_id' => uniqid(),
+                        'group_id' => uniqid(),
                         'subscriber_password'  => md5($userpwd),
                         'subscribe_package'         => 2,
                         'subscribed_on' => $this->current_date

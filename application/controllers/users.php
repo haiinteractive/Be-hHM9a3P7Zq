@@ -82,7 +82,7 @@ class Users extends CI_Controller {
 				if($response > 0){
 					$user_info = $this->be_users->GetUserInfo( $response );	// Getting Registreted Information
 					$this->setsession( $user_info );	// SET session
-					mkdir("assets/clients/$userdata->groupid");
+					mkdir("assets/clients/$userdata->group_id");
 				}
 				echo json_encode($response);
 				die;
@@ -118,7 +118,7 @@ class Users extends CI_Controller {
 	public function setsession( $user_info ){
 					$session_data = array(
 							'user_id'	=>$user_info->subscriber_id,
-							'groupid'	=> $user_info->subscriber_group_id,
+							'group_id'	=> $user_info->group_id,
 							'user_first_name'	=> $user_info->subscriber_first_name,
 							'user_last_name'	=> $user_info->subscriber_last_name,
 							'company_name'	=> $user_info->company_name,

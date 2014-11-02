@@ -109,10 +109,37 @@ class Be_Upload
                 return $response;
     }
 
-    function GetCompanyID( $c_name, $groupid )
+    function GetCompanyID( $c_name, $group_id )
     {
         $response = false;
-                $response = $this->_CI->upload_model->GetCompanyID( $c_name, $groupid ) ;
+                $response = $this->_CI->upload_model->GetCompanyID( $c_name, $group_id ) ;
         return $response;
     }
+    function GetCategoryID( $category_name, $group_id, $user_id )
+    {
+        $response = false;
+                $response = $this->_CI->upload_model->GetCategoryID( $category_name, $group_id, $user_id ) ;
+        return $response;
+    }
+
+    function GetSalesPersonID( $sales_person_name, $group_id, $user_id, $user_type )
+    {
+        $response = false;
+                $response = $this->_CI->upload_model->GetSalesPersonID( $sales_person_name, $group_id, $user_id, $user_type ) ;
+        return $response;
+    }
+
+    function InsertFile( $group_id, $user_id, $csv_file_name )
+    {
+        $response = false;
+                    $arg = array(
+                                'group_id'  => $group_id,
+                                'csv_file_name' => $csv_file_name,
+                                'uploaded_by'       => $user_id,
+                                'created_on'    =>  $this->current_date,
+                        );
+                $response = $this->_CI->upload_model->InsertFile( $arg ) ;
+        return $response;
+    }
+
 }

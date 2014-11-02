@@ -26,7 +26,7 @@ class Category_Model extends CI_Model
 			
 	function updateNewcategory($arg , $id)
 	{
-                	$this->db->where('cat_id', $id);
+                	$this->db->where('category_id', $id);
                 	$this->db->update(REPORT_DB_NAME.'.t_category', $arg);
                 	return '1'; 
 	}
@@ -52,7 +52,7 @@ class Category_Model extends CI_Model
 	{
 	         $this->db->select("*");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_category');      
-                        $this->db->where(array('cat_id'=>$category_id));        
+                        $this->db->where(array('category_id'=>$category_id));        
                         $query = $this->db->get();
                         $db_results = $query->result_array(); 
 	  if (count($db_results) > 0 )
@@ -76,6 +76,14 @@ class Category_Model extends CI_Model
                                 return '';
                         }
                     }
+            function DeleteCategory( $category_id )
+            {
+                    $this->db->where('t_category.category_id', $category_id);
+                    $this->db->delete(REPORT_DB_NAME.'.t_category');
+                    return 1;
+            }
+
+                    
 }
 /* End of file employee_model.php */
 ?>

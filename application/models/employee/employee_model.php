@@ -37,30 +37,23 @@ class Employee_Model extends CI_Model
                             return $this->db->insert_id(); 
             }
 			
-			function updateNewUser($arg , $id)
-			{
-					$this->db->where('user_id', $id);
-					$this->db->update(SUBSCRIBER_DB_NAME.'.t_users', $arg);
-					return '1'; 
-			}
+	function updateNewUser($arg , $id)
+	{
+		$this->db->where('user_id', $id);
+		$this->db->update(SUBSCRIBER_DB_NAME.'.t_users', $arg);
+		return '1'; 
+	}
 			
 
             function Get_Employee_Details( $user_id, $perpage, $start_no ){
-					
-					 //   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
-					 
-					   $this->db->select("user_id, user_first_name, user_last_name, ut.user_type_id, ut.user_type_name, ut.user_type_code, 
-
-user_email, created_by, user_created_on");
-                        $this->db->from('t_users u');      
-                        $this->db->join('t_user_type ut', 'ut.user_type_id = u.user_type', 'left');  
-						$this->db->where(array('u.user_is_active'=>'1', 'u.created_by' => 
-
-$user_id));  
-						$this->db->limit($perpage, $start_no);  
-                         
-                        $query = $this->db->get();
-                        $db_results = $query->result_array();    
+    	 //   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
+    	$this->db->select("user_id, user_first_name, user_last_name, ut.user_type_id, ut.user_type_name, ut.user_type_code, user_email, created_by, user_created_on");
+              $this->db->from('t_users u');      
+              $this->db->join('t_user_type ut', 'ut.user_type_id = u.user_type', 'left');  
+	$this->db->where(array('u.user_is_active'=>'1', 'u.created_by' => $user_id));  
+	$this->db->limit($perpage, $start_no);  
+            $query = $this->db->get();
+            $db_results = $query->result_array();    
                      
                          if (count($db_results) > 0 )
                         {            
@@ -99,6 +92,13 @@ $user_id));
                                 return '';
                         }
                     }
+
+            function DeleteEmployee( $user_id )
+            {
+                    $this->db->where('t_users.user_id', $user_id);
+                    $this->db->delete(SUBSCRIBER_DB_NAME.'.t_users');
+                    return 1;
+            }
 }
 /* End of file employee_model.php */
 ?>

@@ -61,6 +61,51 @@ class Upload_Model extends CI_Model
                         }
 
             }
+
+            function GetCategoryID( $category_name, $group_id, $user_id )
+            {
+                        $this->db->select("category_id");
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_category');      
+                        $this->db->where(array('category_name'=> "$category_name" ));
+                        $query = $this->db->get();
+                        $db_results = $query->result();                   
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results[0]->category_id;
+                        }else{
+                            $arg = array(
+                                    'group_id'   => $group_id,
+                                    'category_name'    => $category_name,
+                                    'created_by'    => $user_id
+                                );
+                            $this->db->insert(REPORT_DB_NAME.'.t_category', $arg );
+                            return $this->db->insert_id(); 
+                        }
+
+            }
+
+            function GetSalesPersonID( $sales_person_name, $group_id, $user_id, $user_type )
+            {
+                        $this->db->select("user_id");
+                        $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_users');      
+                        $this->db->where(array('user_first_name'=> "$sales_person_name" ));
+                        $query = $this->db->get();
+                        $db_results = $query->result();                   
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results[0]->user_id;
+                        }else{
+                            $arg = array(
+                                    'group_id'   => $group_id,
+                                    'user_first_name'    => $sales_person_name,
+                                    'created_by'    => $user_id,
+                                    'user_type'     => $user_type
+                                );
+                            $this->db->insert(SUBSCRIBER_DB_NAME.'.t_users', $arg );
+                            return $this->db->insert_id(); 
+                        }
+
+            }
             function InsertTempEGAdData( $arg )
             {
                             $this->db->insert_batch(REPORT_DB_NAME.'.'.'temp_ad_data', $arg );
@@ -93,6 +138,11 @@ class Upload_Model extends CI_Model
                                 return '';
                         }
                     }
+            function InsertFile( $arg )
+            {
+                            $this->db->insert(REPORT_DB_NAME.'.csv_files', $arg );
+                            return $this->db->insert_id(); 
+            }
 }
 /* End of file employee_model.php */
 ?>

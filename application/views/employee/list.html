@@ -34,57 +34,12 @@
 </div>
 </section>
 
-
-
 	{include file='../layout/footer.html'}
 	<script type="text/javascript" src="{$static_server}assets/app/js/lib/jquery.simplePagination.js"></script>
 	
 	<link type="text/css" rel="stylesheet" href="{$static_server}assets/app/css/lib/simplePagination.css"/>
 
 {literal}
-<style type="text/css">
-
-.pm-content{
-		height:600px;
-	}
-	
-	.form-group label { margin:0px; font-weight:normal;}
-	
-	#employee .form-group { margin:0px;}
-	
-	#edit_employee .form-group { margin:0px;}
-	
-	form { margin:0px;}
-	
-	#employee .form-group input { margin:0px; line-height: normal;}
-	
-	#employee .form-group select { width: 242px; margin:0px;}
-	
-	#edit_employee .form-group select { width: 242px; margin:0px;}
-	
-	#edit_employee .form-group input { margin:0px; line-height: normal;}
-	
-	.col-sm-3  { padding:0px;}
-	
-	#signup-ct button { float:right;}
-	
-#tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
-
-.has-error .form-control {border-color: #ff604f !important; }
-
-.has-success .form-control {border-color: #2b542c !important; }
-
-.form-control-feedback { display:none !important;}
-
-.col-sm-5 {
-  
-    padding: 0 !important;
-    width: 67.667%;
-}
-
-.help-block {  margin-bottom: 0px!important; }
-
-</style>
 <script type='text/javascript'>
 		$(function() {
 		    $('.pagination').pagination({
@@ -124,6 +79,7 @@
 					  	objdata += '<td>'+obj.user_type_name+'</td>'; 
 					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
 					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_editsss" onClick="edit_user_info('+obj.user_id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.user_id+'" class="user_delete" onClick="delete_user_info('+obj.user_id+');">Delete</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -132,29 +88,6 @@
 		}
 		
 		
-			function edit_user_info(id)
-			{
-				 $( "#user_edit_tree" ).trigger( "click" );
-				 var request_ur = base_url+'/employee/edit';
-				  $.ajax({
-								type: "POST",
-								data: 'user_id='+id,
-								dataType:'JSON',
-								url: request_ur,
-								success: function(sresponse) {
-									$.each(sresponse, function(i, obj) {
-									 
-									  $("#use_first_name").val(obj.user_first_name);
-									   $("#use_last_name").val(obj.user_last_name);
-									    $("#use_email").val(obj.user_email);
-										$("#use_roles").val(obj.user_type);
-										$("#use_status").val(obj.user_is_active);
-									  $("#usereid").val(id);
-									});
-							}
-				});
-			}
-			
 			$(function() {
     			$('a[rel*=leanModal]').leanModal({ top : 82, closeButton: ".modal_close" });		
 			});
@@ -171,145 +104,10 @@
 
 {/literal}
 
+
 <a id="user_edit_tree" rel="leanModal" href="#edit_employee">Edit</a>
 
-
-		<div id="employee">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Add New Employee</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
-     
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">First Name:</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='us_first_name' class="form-control" id='us_first_name' placeholder="First Name"   required data-bv-notempty-message="The first name is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Last Name:</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='us_last_name' class="form-control" id='us_last_name' placeholder="Last Name"   required data-bv-notempty-message="The last name is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Email:</span>
-				    <div class="col-sm-5">
-					 <input type="email" name='us_email' class="form-control" id='us_email' placeholder="Email" required  data-bv-notempty-message="The email is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Password:</span>
-				    <div class="col-sm-5">
-					 <input type="password" name='uspwd' class="form-control" id='uspwd' placeholder="Password"   required data-bv-notempty-message="The password is required"  data-bv-identical="true" data-bv-identical-field="confirm_password" data-bv-identical-message="The password and its confirm are not the same" />
-					 </div>
-				  </div>
-				  
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Retype password:</span>
-				    <div class="col-sm-5">
-					 <input type="password" name='confirm_password' class="form-control" id='confirm_password' placeholder="Confirm password" required data-bv-notempty-message="The confirm password is required" data-bv-identical="true" data-bv-identical-field="uspwd" data-bv-identical-message="The password and its confirm are not the same"/>
-					 </div>
-				  </div>
-				  
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Roles:</span>
-				    <div class="col-sm-5">
-					<select name='us_roles' id='us_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The role is required" >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-					 </div>
-				  </div>
-				  
-				 
-				  <div class="btn-fld">
-				  
-				   <input type="submit" id="loginbtn" value="Add &raquo;"/>
-				   </div>
-				   </form>
-			 
-			
-		</div>
-		</div>
-		
-		 <div id="edit_employee">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Edit New Employee</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-     
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">First Name :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='use_first_name' id='use_first_name' class="form-control" placeholder="First Name"  required data-bv-notempty-message="The first name is required"/>
-				  </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Last Name:</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='use_last_name' id='use_last_name' placeholder="Last Name" class="form-control" required data-bv-notempty-message="The last name is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Email:</span>
-				    <div class="col-sm-5">
-					 <input type="email" name='use_email' id='use_email' class="form-control" placeholder="Email" required data-bv-notempty-message="The email is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="form-group">
-				    <span class="col-sm-3 control-label">Roles:</span>
-				    <div class="col-sm-5">
-					<select name='use_roles' id='use_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The role is required" >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
-
-</option>
-			        		{/foreach}
-			     </select>
-					 </div>
-				  </div>
-				  
-				<input type="hidden" name='usereid' id='usereid'/>
-				
-				 <div class="form-group">
-				 <span class="col-sm-3 control-label">Status: </span>
-				  <div class="col-sm-5">
-				 <select name='use_status' id='use_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
-				 	<option value="1">Active</option>
-				 	<option value="0">Inactive</option>
-				 </select>
-				  </div>
-				  </div>
-				  
-				  <div class="btn-fld">
-				  <input type="submit" id="edit_loginbtn" value="Update &raquo;"/>
-				  </div>
-				   </form>
-			</div>
-		</div>
+	{include file='employee/add-popup.html'}
+	{include file='employee/edit-popup.html'}
 
 

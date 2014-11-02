@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Employee extends CI_Controller {
 
@@ -29,14 +29,13 @@ class Employee extends CI_Controller {
   			        		'total_items'	=> $total_users,
   			        		'pagination'	=> $this->perPage
   			        	);
-					 $roles = $this->be_employee->GetUserRoles( );	
+		   	        $roles = $this->be_employee->GetUserRoles( );	
 			        $filename = 'employee/list.html';
 			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('filename',$filename);
-					 $this->smartyci->assign('roles', $roles );
+			        $this->smartyci->assign('roles', $roles );
 			        $this->smartyci->display('employee/list.html'); 
 		}
-
 	}
 	
 	public function edit()
@@ -45,6 +44,15 @@ class Employee extends CI_Controller {
 		 $get_single_employee = $this->be_employee->get_single_employee( $user_id );
 		 echo json_encode($get_single_employee);
 		die;
+	}
+
+	public function delete()
+	{
+		$user_id = $this->security->xss_clean( $this->input->post("user_id") );
+		 $get_single_employee = $this->be_employee->DeleteEmployee( $user_id );
+		 echo 'success';
+		 die;
+
 	}
 	
 	public function update()
@@ -92,7 +100,7 @@ class Employee extends CI_Controller {
 			{
 				$email_exist = $this->be_users->CheckUserExist( $this->security->xss_clean( $this->input->post("email") ) );
 				if(  $email_exist =='' || $email_exist < 0 ){
-					$response = $this->be_employee->AddNewUser( $this->security->xss_clean( $this->input->post("user_first_name") ), $this->security->xss_clean( $this->input->post("user_last_name") ), $this->security->xss_clean( $this->input->post("email") ), $this->security->xss_clean( $this->input->post("userpwd") ), $this->security->xss_clean( $this->input->post("user_role") ), $userdata->user_id );
+					$response = $this->be_employee->AddNewUser( $userdata->group_id, $this->security->xss_clean( $this->input->post("user_first_name") ), $this->security->xss_clean( $this->input->post("user_last_name") ), $this->security->xss_clean( $this->input->post("email") ), $this->security->xss_clean( $this->input->post("userpwd") ), $this->security->xss_clean( $this->input->post("user_role") ), $userdata->user_id );
 						echo json_encode($output);
 						die;
 				}else{

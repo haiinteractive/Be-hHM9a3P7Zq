@@ -30,17 +30,17 @@ class Be_Temp
         $this->current_date = date('Y-m-d H:i:s');
     }
     
-    function GetTempInfo( $groupid, $perpage, $starts )
+    function GetTempInfo( $group_id, $perpage, $starts )
     {
         $response = false;
-        $response = $this->_CI->temp_model->GetTempInfo( $groupid, $perpage, $starts );
+        $response = $this->_CI->temp_model->GetTempInfo( $group_id, $perpage, $starts );
         return $response;
     }
     
-    function GetPubTempCount( $groupid )
+    function GetPubTempCount( $group_id )
     {
     	$response = false;
-    	$response = $this->_CI->temp_model->GetPubTempCount( $groupid );
+    	$response = $this->_CI->temp_model->GetPubTempCount( $group_id );
     	return $response;
     }
 

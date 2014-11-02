@@ -52,10 +52,11 @@ class Be_Product
         return $response;
     }
 
-    function AddNewproduct( $product_name, $user_created_by )
+    function AddNewproduct( $group_id, $product_name, $user_created_by )
     {
        $response = false;
                 $arg = array(
+                                'group_id'  => $group_id,
                                 'product_name'   =>  $product_name,
                                 'status'        => '1',
                                 'created_by'    => $user_created_by,
@@ -79,4 +80,11 @@ class Be_Product
                 $response = $this->_CI->product_model->updateNewproduct(  $arg ,$product_id );
         return $response;
 	}
+
+        function DeleteProduct( $product_id )
+        {
+            $response = false;
+                    $response = $this->_CI->product_model->DeleteProduct(  $product_id );
+            return $response;
+    }
 }

@@ -19,7 +19,7 @@ class Unpublish extends CI_Controller {
 		if( empty( $userdata->user_id ) ){
 			redirect('/users/login');
 		}
-		$total = $this->be_temp->GetPubTempCount( $userdata->groupid );
+		$total = $this->be_temp->GetPubTempCount( $userdata->group_id );
 		
 			$arg = array(
 		     		'total_items'	=> $total,
@@ -39,7 +39,7 @@ class Unpublish extends CI_Controller {
 	            }else{
 	                $start_no = ($current_page-1) * $this->perPage;
 	            }
-		  $output = $this->be_temp->GetTempInfo( $userdata->groupid, $this->perPage, $start_no  );
+		  $output = $this->be_temp->GetTempInfo( $userdata->group_id, $this->perPage, $start_no  );
 		echo json_encode($output);
 		die;
 		  

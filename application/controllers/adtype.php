@@ -77,14 +77,13 @@ class Adtype extends CI_Controller {
 	{
 	        $userdata = (object)$this->session->userdata('user');
 		$purpose = $this->security->xss_clean( $this->input->post("purpose") );
-		
 			$output = $this->EmpValidation( );	// Validating all Inputs
 			( !empty($output) ) ? $output = $output : $output = 'success';
 			if($output == 'success')
 			{
-					$response = $this->be_adtype->AddNewadtype( $this->security->xss_clean( $this->input->post("form_adtype") ),$this->security->xss_clean( $this->input->post("ad_type_name") ), $this->security->xss_clean( $this->input->post("ad_type_code") ), $this->security->xss_clean( $this->input->post("ad_type_rate") ), $userdata->user_id );
-						echo json_encode($output);
-						die;
+				$response = $this->be_adtype->AddNewadtype( $userdata->group_id, $this->security->xss_clean( $this->input->post("form_adtype") ),$this->security->xss_clean( $this->input->post("ad_type_name") ), $this->security->xss_clean( $this->input->post("ad_type_code") ), $this->security->xss_clean( $this->input->post("ad_type_rate") ), $userdata->user_id );
+				echo json_encode($output);
+				die;
 			}else{
 				echo json_encode($output);
 				die;
@@ -117,6 +116,15 @@ class Adtype extends CI_Controller {
 		$data = $this->be_adtype->Get_adtype_Details( $userdata->user_id, $this->perPage, $start_no );
 		echo json_encode($data);
 		die;
+	}
+
+	public function delete()
+	{
+		$adtype_id = $this->security->xss_clean( $this->input->post("adtype_id") );
+		 $get_single_employee = $this->be_adtype->DeleteAdtype( $adtype_id );
+		 echo 'success';
+		 die;
+
 	}
 
 }

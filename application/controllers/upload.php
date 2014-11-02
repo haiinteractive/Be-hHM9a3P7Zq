@@ -16,6 +16,7 @@ class Upload extends CI_Controller {
 	public function index()
 	{
 		$form_type = $this->be_upload->GetFormType( );
+		$userdata = (object)$this->session->userdata('user');
 	        	$this->smartyci->assign('form_types', $form_type );
 	        	$this->smartyci->display('upload/upload.html'); 
 	}
@@ -49,9 +50,15 @@ class Upload extends CI_Controller {
 			}
 			if(count($notice) <= 0 ){
 				//$temp_response = $this->be_upload->InsertTempInformation( $records );
-				move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->groupid."/". time().$_FILES["file_data"]["name"]);
+				$csv_file_name = time().$_FILES["file_data"]["name"];
+				if( is_dir( $this->config->item('clients_file_path')."/".$userdata->group_id )){
+					move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->group_id."/".$csv_file_name );
+				}else{
+					mkdir($this->config->item('clients_file_path')."/".$userdata->group_id);
+					move_uploaded_file($_FILES["file_data"]["tmp_name"],$this->config->item('clients_file_path')."/".$userdata->group_id."/".$csv_file_name);
+				}
+				$this->be_upload->InsertFile( $userdata->group_id, $userdata->user_id,  $csv_file_name );
 				//echo 'Successfully Uploaded';
-				die;
 			}else{
 				print_r($notice);
 			}
@@ -72,22 +79,29 @@ class Upload extends CI_Controller {
 
 	public function PushEGData( $data, $form_type, $userdata )
 	{
-		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->groupid );
-
+		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->group_id );
+		$category_id = $this->be_upload->GetCategoryID( $data[7], $userdata->group_id, $userdata->user_id );
+		$sales_person_id = $this->be_upload->GetSalesPersonID( $data[3], $userdata->group_id, $userdata->user_id, 3 );
+		$approve_authority_user_id = $this->be_upload->GetSalesPersonID( $data[5], $userdata->group_id, $userdata->user_id, 2 );
+		$approved_on= date('Y-m-d', strtotime( $data[5] ));
 		$arg = array( 
 				'ro_number' 	=> $data[1],
 				'form_type'	=> $form_type,
+				'approved_by'	=> $approve_authority_user_id,
 				'company_id'	=> $company_id,
-				'group_id'	=> $userdata->groupid,
+				'category_id'	=> $category_id,
+				'group_id'	=> $userdata->group_id,
+				'sales_person_id'	=> $sales_person_id,
 				'city'		=> $data[2],
 				'ad_code'	=> $data[9],
 				'frequency'	=> $data[11],
 				'offered_amount'	=> $data[10],
 				'created_on'		=> $this->current_date,
-				'approved_on'		=> $data[5],
+				'approved_on'		=> $approved_on,
 				'session'		=> $data[14],
 				'net_amount'		=> $data[13],
-				'special_instruction'	=> $data[12]
+				'special_instruction'	=> $data[12],
+				'created_by'		=> $userdata->user_id
  			);
 		$this->be_upload->InsertTempEGInformation( $arg );
 		return $arg;

@@ -1,0 +1,35 @@
+   <div id="edit_product">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Edit Product</span>
+					<a class="modal_close" href="#"></a>
+				</div>
+				
+				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+     
+				  <div class="form-group">
+				    <span>Product Name:</span>
+				     <div class="col-sm-5">
+					 <input type="text" name='proe_name' id='proe_name' placeholder="Product Name" class="form-control" required data-bv-notempty-message="The product name is required"/>
+				 </div>
+				  </div>
+				  
+				<input type="hidden" name='product_id' id='product_id'/>
+				 <div class="form-group">
+				 <span>Status: </span>
+				 <div class="col-sm-5">
+				 <select name='product_status' id='product_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
+				 	<option value="1">Active</option>
+				 	<option value="0">Inactive</option>
+				 </select>
+				 </div>
+				  </div>
+				  <div class="btn-fld">
+				  <input type="submit" id="edit_productbtn" value="Update &raquo;"/>
+				  </div>
+				   </form>
+			</div>
+		</div>

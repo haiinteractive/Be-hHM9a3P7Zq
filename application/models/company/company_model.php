@@ -82,6 +82,14 @@ $user_id));
                                 return '';
                         }
                     }
+
+            function DeleteCompany( $comp_id )
+            {
+                    $this->db->where('t_company.comp_id', $comp_id);
+                    $this->db->delete(REPORT_DB_NAME.'.t_company');
+                    return 1;
+            }
+
 }
 /* End of file employee_model.php */
 ?>

@@ -1,0 +1,62 @@
+   <div id="edit_adtype">
+	<div id="signup-ct">
+		<div id="signup-header">
+			<span>Edit AdType</span>
+			<a class="modal_close" href="#"></a>
+		</div>
+				
+		<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
+
+			  <div class="form-group">
+			    <span class="col-sm-3 control-label">Form Type : </span>
+			    <div class="col-sm-5">
+				 <select name='edit_type_roles' id='edit_type_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The type is required" >
+		        		{foreach from=$roles item=role}
+		        			<option value='{$role.id}'>{$role.name}</option>
+		        		{/foreach}
+		     	</select>
+			  </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <span class="col-sm-3 control-label">Name :</span>
+			    <div class="col-sm-5">
+				 <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name" class="form-control" required data-bv-notempty-message="The adtype name is required"/>
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <span class="col-sm-3 control-label">Code :</span>
+			    <div class="col-sm-5">
+				 <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code" class="form-control"  required data-bv-notempty-message="The adtype code is required"/>
+				 </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <span class="col-sm-3 control-label">Rack Rate :</span>
+			    <div class="col-sm-5">
+				 <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate" class="form-control"  required data-bv-notempty-message="The rack rate is required"/>
+				 </div>
+			  </div>
+			  
+			  <input type="hidden" name='adtype_id' id='adtype_id'/>
+			  
+			   <div class="form-group">
+			 <span class="col-sm-3 control-label">Status: </span>
+			  <div class="col-sm-5">
+			 <select name='edtype_status' id='edtype_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
+			 	<option value="1">Active</option>
+			 	<option value="0">Inactive</option>
+			 </select>
+			  </div>
+			  </div>
+			  
+			  <div class="btn-fld">
+			  <input type="submit" id="edit_adtypebtn" value="Update &raquo;"/>
+			  </div>
+			   </form>
+		</div>
+	</div>

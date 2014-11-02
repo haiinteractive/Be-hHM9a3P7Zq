@@ -52,11 +52,12 @@ class Be_Category
         return $response;
     }
 
-    function AddNewcategory( $cat_name, $user_created_by )
+    function AddNewcategory( $group_id, $cat_name, $user_created_by )
     {
        $response = false;
                 $arg = array(
-                                'cat_name'   =>  $cat_name,
+                                'group_id'      => $group_id,
+                                'category_name'   =>  $cat_name,
                                 'status'        => '1',
                                 'created_by'    => $user_created_by,
                                 'created_on'   => $this->current_date
@@ -69,8 +70,8 @@ class Be_Category
 	{
 			 $response = false;
 			
-				$arg = array(
-                                'cat_name'   =>  $cat_name,
+		$arg = array(
+                                'category_name'   =>  $cat_name,
                                 'status'        => $cat_status,
                                 'created_by'        => $user_created_by,
                                 'modified_on'       => $this->current_date
@@ -79,4 +80,11 @@ class Be_Category
                 $response = $this->_CI->category_model->updateNewcategory(  $arg ,$category_id );
         return $response;
 	}
+
+    function DeleteCategory( $category_id )
+    {
+         $response = false;
+                $response = $this->_CI->category_model->DeleteCategory(  $category_id );
+        return $response;
+    }
 }

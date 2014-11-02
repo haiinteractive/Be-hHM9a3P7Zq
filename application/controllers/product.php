@@ -81,9 +81,9 @@ class Product extends CI_Controller {
 			( !empty($output) ) ? $output = $output : $output = 'success';
 			if($output == 'success')
 			{
-					$response = $this->be_product->AddNewproduct( $this->security->xss_clean( $this->input->post("product_name") ), $userdata->user_id );
-						echo json_encode($output);
-						die;
+				$response = $this->be_product->AddNewproduct( $userdata->group_id, $this->security->xss_clean( $this->input->post("product_name") ), $userdata->user_id );
+				echo json_encode($output);
+				die;
 			}else{
 				echo json_encode($output);
 				die;
@@ -114,6 +114,15 @@ class Product extends CI_Controller {
 		$data = $this->be_product->Get_product_Details( $userdata->user_id, $this->perPage, $start_no );
 		echo json_encode($data);
 		die;
+	}
+
+	public function delete()
+	{
+		$product_id = $this->security->xss_clean( $this->input->post("product_id") );
+		 $get_single_employee = $this->be_product->DeleteProduct( $product_id );
+		 echo 'success';
+		 die;
+
 	}
 
 }

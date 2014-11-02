@@ -50,19 +50,20 @@ class Be_company
         return $response;
     }
 
-    function AddNewcompany( $c_name, $c_person, $address, $pincode, $phone, $alt_phone, $email, $alt_email, $created_by )
+    function AddNewcompany( $group_id, $c_name, $c_person, $address, $pincode, $phone, $alt_phone, $email, $alt_email, $created_by )
     {
        $response = false;
                 $arg = array(
+                                'group_id'   =>  $group_id,
                                 'c_name'   =>  $c_name,
                                 'c_person'        => $c_person,
                                 'c_address'            => $address,
                                 'c_pincode'         => $pincode,
                                 'c_phone'         => $phone,
-								 'c_alterphone'         =>$alt_phone,
-							    'c_email'         => $email,
-							   'c_alteremail'         => $alt_email,
-							    'c_status'         => '1',
+		 'c_alterphone'         =>$alt_phone,
+		    'c_email'         => $email,
+		   'c_alteremail'         => $alt_email,
+		    'c_status'         => '1',
                                 'c_createdby'        => $created_by,
                                 'created_on'       => $this->current_date
                     );
@@ -89,4 +90,12 @@ class Be_company
                 $response = $this->_CI->company_model->updateNewcompany(  $arg ,$comp_id );
         return $response;
 	}
+   function DeleteCompany( $comp_id )
+    {
+        $response = false;
+                $response = $this->_CI->company_model->DeleteCompany(  $comp_id );
+        return $response;
+    }
+
+
 }

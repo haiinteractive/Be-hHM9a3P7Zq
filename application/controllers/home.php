@@ -32,7 +32,6 @@ class Home extends CI_Controller {
 	public function index()
 	{
 	        $this->smartyci->display('dashboard/dashboard.html'); 
-
 	}
 
 	public function logout()

@@ -81,7 +81,7 @@ class Category extends CI_Controller {
 			( !empty($output) ) ? $output = $output : $output = 'success';
 			if($output == 'success')
 			{
-					$response = $this->be_category->AddNewcategory( $this->security->xss_clean( $this->input->post("cat_name") ), $userdata->user_id );
+					$response = $this->be_category->AddNewcategory( $userdata->group_id, $this->security->xss_clean( $this->input->post("cat_name") ), $userdata->user_id );
 						echo json_encode($output);
 						die;
 			}else{
@@ -116,6 +116,14 @@ class Category extends CI_Controller {
 		die;
 	}
 
+	public function delete()
+	{
+		$category_id = $this->security->xss_clean( $this->input->post("category_id") );
+		 $get_single_employee = $this->be_category->DeleteCategory( $category_id );
+		 echo 'success';
+		 die;
+
+	}
 }
 
 /* End of file home.php */

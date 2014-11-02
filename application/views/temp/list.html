@@ -155,8 +155,7 @@
 		                            url: base_url+'/unpublish/publish',
 		                            success: function(sresponse) {
 		                            	$("#loading-image").hide();
-		                            	alert(sresponse);
-		                            	return false;
+		                            	window.location.reload();
 		                            }
 		                       });     
 

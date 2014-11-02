@@ -57,10 +57,18 @@ class Be_Employee
         return $response;
     }
 
-    function AddNewUser( $user_first_name, $user_last_name, $user_email, $user_pwd, $user_role, $user_created_by )
+    function DeleteEmployee( $user_id )
+    {
+        $response = false;
+                $response = $this->_CI->employee_model->DeleteEmployee( $user_id ) ;
+        return $response;
+    }
+
+    function AddNewUser( $group_id, $user_first_name, $user_last_name, $user_email, $user_pwd, $user_role, $user_created_by )
     {
        $response = false;
                 $arg = array(
+                                'group_id'                => $group_id,
                                 'user_first_name'   =>  $user_first_name,
                                 'user_last_name'        => $user_last_name,
                                 'user_email'            => $user_email,

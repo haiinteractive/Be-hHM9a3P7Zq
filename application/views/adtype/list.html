@@ -120,7 +120,8 @@
 					  	objdata += '<td>'+obj.ad_type_code+'</td>'; 
 					  	objdata += '<td>'+obj.ad_type_rate+'</td>'; 
 					  	objdata += '<td>'+obj.user_created_on+'</td>'; 
-					  	objdata += '<td><a href="#" id="'+obj.id+'" class="user_editsss" onClick="edit_adtype_info('+obj.id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.adtype_id+'" class="user_editsss" onClick="edit_adtype_info('+obj.adtype_id+');">Edit</a></td>'; 
+					  	objdata += '<td><a href="#" id="'+obj.adtype_id+'" class="user_types" onClick="delete_adtype_info('+obj.adtype_id+');">Delete</a></td>'; 
 					  	objdata += '</tr>';
 					});
 					$(".list_content").html(objdata);
@@ -129,28 +130,28 @@
 		}
 		
 		
-			function edit_adtype_info(id)
-			{
-				 $( "#user_edit_tree" ).trigger( "click" );
-				 var request_ur = base_url+'/adtype/edit';
-				  $.ajax({
-								type: "POST",
-								data: 'adtype_id='+id,
-								dataType:'JSON',
-								url: request_ur,
-								success: function(sresponse) {
-									$.each(sresponse, function(i, obj) {
-									 
-									  $("#edit_type_roles").val(obj.form_type);
-									   $("#edit_type_name").val(obj.ad_type_name);
-									    $("#edit_type_code").val(obj.ad_type_code);
-										$("#edit_rack_rate").val(obj.ad_type_rate);
-										$("#edtype_status").val(obj.ad_type_status);
-									  $("#adtype_id").val(id);
-									}); 
-							}
-				});
-			}
+		function edit_adtype_info(id)
+		{
+			 $( "#user_edit_tree" ).trigger( "click" );
+			 var request_ur = base_url+'/adtype/edit';
+			  $.ajax({
+				type: "POST",
+				data: 'adtype_id='+id,
+				dataType:'JSON',
+				url: request_ur,
+				success: function(sresponse) {
+					$.each(sresponse, function(i, obj) {
+					 
+					  $("#edit_type_roles").val(obj.form_type);
+					   $("#edit_type_name").val(obj.ad_type_name);
+					    $("#edit_type_code").val(obj.ad_type_code);
+						$("#edit_rack_rate").val(obj.ad_type_rate);
+						$("#edtype_status").val(obj.ad_type_status);
+					  $("#adtype_id").val(id);
+					}); 
+				}
+			});
+		}
 			
 			
 			$(function() {
@@ -169,125 +170,6 @@
 </script>
 
 {/literal}
-
 <a id="user_edit_tree" rel="leanModal" href="#edit_adtype">Edit</a>
-
-
-<div id="adtype">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Add New AdType</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-				
-				
-				<div class="form-group">
-				    <span class="col-sm-3 control-label">Form Type :</span>
-				    <div class="col-sm-5">
-					   <select name='form_adtype' id='form_adtype' class="form-control" data-bv-notempty data-bv-notempty-message="The type is required"  >
-			        		{foreach from=$roles item=role}
-			        		<option value='{$role.id}'>{$role.name}</option>
-			        		{/foreach}
-			     		</select>
-					 </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Name :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_name' id='ad_type_name' placeholder="Name" class="form-control"   required data-bv-notempty-message="The adtype name is required"/>
-					 </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Code :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_code' id='ad_type_code' placeholder="Code" class="form-control"   required data-bv-notempty-message="The adtype code is required"/>
-					 </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Rack Rate :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='ad_type_rate' id='ad_type_rate' placeholder="Rack Rate" class="form-control"   required data-bv-notempty-message="The rack rate is required"/>
-					 </div>
-				  </div>
-				  
-				   <div class="btn-fld">
-				  
-				   <input type="submit" id="adtypebtn" value="Add &raquo;"/>
-				   </div>
-				   </form>
-			 
-			
-		</div>
-		</div>
-		
-   
-    <div id="edit_adtype">
-			<div id="signup-ct">
-				<div id="signup-header">
-					<span>Edit AdType</span>
-					<a class="modal_close" href="#"></a>
-				</div>
-				
-				<form action="#" method="post" id="defaultForm1" class="form-horizontal" data-bv-message="This value is not valid"
-                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
-     
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Form Type : </span>
-				    <div class="col-sm-5">
-					 <select name='edit_type_roles' id='edit_type_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The type is required" >
-			        		{foreach from=$roles item=role}
-			        			<option value='{$role.id}'>{$role.name}</option>
-			        		{/foreach}
-			     	</select>
-				  </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Name :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='edit_type_name' id='edit_type_name' placeholder="Name" class="form-control" required data-bv-notempty-message="The adtype name is required"/>
-					 </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Code :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='edit_type_code' id='edit_type_code' placeholder="Code" class="form-control"  required data-bv-notempty-message="The adtype code is required"/>
-					 </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <span class="col-sm-3 control-label">Rack Rate :</span>
-				    <div class="col-sm-5">
-					 <input type="text" name='edit_rack_rate' id='edit_rack_rate' placeholder="Rack Rate" class="form-control"  required data-bv-notempty-message="The rack rate is required"/>
-					 </div>
-				  </div>
-				  
-				  <input type="hidden" name='adtype_id' id='adtype_id'/>
-				  
-				   <div class="form-group">
-				 <span class="col-sm-3 control-label">Status: </span>
-				  <div class="col-sm-5">
-				 <select name='edtype_status' id='edtype_status' class="form-control" data-bv-notempty data-bv-notempty-message="The status is required" >
-				 	<option value="1">Active</option>
-				 	<option value="0">Inactive</option>
-				 </select>
-				  </div>
-				  </div>
-				  
-				  <div class="btn-fld">
-				  <input type="submit" id="edit_adtypebtn" value="Update &raquo;"/>
-				  </div>
-				   </form>
-			</div>
-		</div>
+ 	{include file='adtype/add.html'}
+ 	{include file='adtype/edit.html'}
