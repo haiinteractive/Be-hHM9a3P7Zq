@@ -241,7 +241,94 @@ $("#companybtn").on('click', function(){
                             data: params,
                             url: base_url+'/unpublish/delete',
                             success: function(sresponse) {
-                            	alert(sresponse);
+                            	window.location.reload();
+                            	//alert(sresponse);
                     }
             });
     }
+    			function edit_user_info(id)
+			{
+				 $( "#user_edit_tree" ).trigger( "click" );
+				 var request_ur = base_url+'/employee/edit';
+				  $.ajax({
+				type: "POST",
+				data: 'user_id='+id,
+				dataType:'JSON',
+				url: request_ur,
+				success: function(sresponse) {
+					$.each(sresponse, function(i, obj) {
+					 
+					  $("#use_first_name").val(obj.user_first_name);
+					   $("#use_last_name").val(obj.user_last_name);
+					    $("#use_email").val(obj.user_email);
+						$("#use_roles").val(obj.user_type);
+						$("#use_status").val(obj.user_is_active);
+					  $("#usereid").val(id);
+					});
+				}
+			});
+		}
+
+	function delete_user_info( id )
+	{
+		 var request_url = base_url+'/employee/delete';
+		  $.ajax({
+		type: "POST",
+		data: 'user_id='+id,
+		url: request_url,
+		success: function(sresponse) {
+			window.location.reload();
+		}
+		});		
+	}	
+
+	function delete_adtype_info( id )
+	{
+		 var request_url = base_url+'/adtype/delete';
+		  $.ajax({
+		type: "POST",
+		data: 'adtype_id='+id,
+		url: request_url,
+		success: function(sresponse) {
+			window.location.reload();
+		}
+		});		
+	}
+
+	function delete_company_info( id )
+	{
+		 var request_url = base_url+'/company/delete';
+		  $.ajax({
+		type: "POST",
+		data: 'comp_id='+id,
+		url: request_url,
+		success: function(sresponse) {
+			window.location.reload();
+		}
+		});		
+	}
+	function delete_category_info( id )
+	{
+		 var request_url = base_url+'/category/delete';
+		  $.ajax({
+		type: "POST",
+		data: 'category_id='+id,
+		url: request_url,
+		success: function(sresponse) {
+			window.location.reload();
+		}
+		});		
+	}
+
+	function delete_product_info( id )
+	{
+		 var request_url = base_url+'/product/delete';
+		  $.ajax({
+		type: "POST",
+		data: 'product_id='+id,
+		url: request_url,
+		success: function(sresponse) {
+			window.location.reload();
+		}
+		});		
+	}
