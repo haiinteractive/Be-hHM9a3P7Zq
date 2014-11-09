@@ -23,13 +23,12 @@ class Adtype extends CI_Controller {
 			$this->smartyci->useCached( 'list.html' );
 		}else{
 			      $userdata = (object)$this->session->userdata('user');
-  			     $total_users = $this->be_adtype->Get_adtype_Count( $userdata->user_id );
-					
+  			     $total_users = $this->be_adtype->Get_adtype_Count( $userdata->user_id, $userdata->group_id );
 				      $arg = array(
   			        		'total_items'	=> $total_users,
   			        		'pagination'	=> $this->perPage
   			        	);
-					$roles = $this->be_adtype->getform_type( );
+			        $roles = $this->be_adtype->getform_type( );
 			        $filename = 'adtype/list.html';
 			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('filename',$filename);

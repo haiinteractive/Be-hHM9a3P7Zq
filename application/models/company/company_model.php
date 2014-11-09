@@ -31,16 +31,11 @@ class Company_Model extends CI_Model
 			}
 			
 
-            function Get_company_Details( $user_id, $perpage, $start_no ){
-					
-					 //   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
-					 
-					   $this->db->select("*");
+            function Get_company_Details( $user_id, $perpage, $start_no, $group_id ){
+		   $this->db->select("*");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
-						$this->db->where(array('c_status '=>'1', 'c_createdby' => 
-
-$user_id));  
-						$this->db->limit($perpage, $start_no);  
+		$this->db->where(array('c_status '=>'1', 'c_createdby' => $user_id, 'group_id' => $group_id ));  
+		$this->db->limit($perpage, $start_no);  
                          
                         $query = $this->db->get();
                         $db_results = $query->result_array();    
@@ -69,10 +64,10 @@ $user_id));
                         }
 			}
 
-            function Get_company_Count( $created_by ){
+            function Get_company_Count( $created_by, $group_id ){
                         $this->db->select("count(1) as total_company");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
-                        $this->db->where(array('c_status'=>'1', 'c_createdby' => $created_by));        
+                        $this->db->where(array('c_status'=>'1', 'c_createdby' => $created_by, 'group_id' => $group_id ));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )

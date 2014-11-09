@@ -1,0 +1,98 @@
+
+	{include file='../layout/header.html'}
+
+<section class="main-content">
+<div class="content-wrap" style="margin-top:50px;">
+	<section class="panel panel-info">
+		<header class="panel-heading">Revenue Report</header>
+		<div class="panel-body">
+			<div class="table-responsive no-border">
+			
+				<table class="table table-bordered table-striped mg-t datatable">
+				<thead>
+				<tr>
+				<th>Ro Number</th>
+				<th>Client</th>
+				<th>Session</th>
+				<th>Category Name</th>
+				<th>Offered Rate</th>
+				</tr>
+				</thead>
+				<tbody class='list_content'>
+					<div id='loading-image' style="text-align: center"><img src="{$static_server}assets/app/images/framely.gif" align="middle" style="height:75px; width:75px;"/></div>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		                        <p class="pagination"></p>
+		                        <div class='modal' style="display:none;">
+		                        		{include file='reports/edit.html'}
+		                        </div>
+	</section>
+</div>
+</section>
+
+	{include file='../layout/footer.html'}
+	<script type="text/javascript" src="{$static_server}assets/app/js/lib/jquery.simplePagination.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="{$static_server}assets/app/css/lib/simplePagination.css"/>
+
+{literal}
+<script type='text/javascript'>
+		$(function() {
+		    $('.pagination').pagination({
+		        items: {/literal}{$arg.total_items}{literal},
+		        itemsOnPage: {/literal}{$arg.pagination}{literal},
+		        cssStyle: 'light-theme',
+		        onPageClick: function(){
+		        	Collect_Info();
+		        }
+		    });
+		    Collect_Info();
+		    
+		});
+		function Collect_Info(){
+			var current_page = $('.current').text();
+			
+		              $.ajax({
+		                            type: "POST",
+		                            data: 'current_page='+current_page,
+		                            dataType:'JSON',
+		                            beforeSend: function(){
+		                            	$("#loading-image").show();
+		                            },
+		                            url: base_url+'/reports/revenue_report',
+		                            beforeSend: function() {
+			              $("#loading-image").show();
+			           },
+		                            success: function(sresponse) {
+		                            	$("#loading-image").hide();
+		                            	var objdata = new Array() ;
+					$.each(sresponse, function(i, obj) {
+					  //use obj.id and obj.name here, for example:
+					  	objdata += '<tr>';
+					  	objdata += '<td><a href="{/literal}{$static_server}{literal}reports/view/'+obj.ro_number+'">'+obj.ro_number+'</a></td>'; 
+					  	objdata += '<td>'+obj.c_name+'</td>'; 
+					  	objdata += '<td>'+obj.session+'</td>'; 
+					  	objdata += '<td>'+obj.category_name+'</td>'; 
+					  	objdata += '<td>'+obj.offered_rate+'</td>'; 
+					  	objdata += '</tr>';
+					});
+					$(".list_content").html(objdata);
+		                            }
+		               });
+		}
+	$(function() {
+		$('a[rel*=leanModal]').leanModal({ top : 82, closeButton: ".modal_close" });		
+	});			
+</script>
+
+{/literal}
+
+
+<a id="user_edit_tree" rel="leanModal" href="#edit_employee">Edit</a>
+
+	{include file='employee/add-popup.html'}
+	{include file='employee/edit-popup.html'}
+
+

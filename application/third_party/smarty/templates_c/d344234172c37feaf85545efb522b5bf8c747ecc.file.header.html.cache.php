@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-11-01 19:16:16
+<?php /* Smarty version Smarty-3.1.19, created on 2014-11-09 18:58:08
          compiled from "C:\wamp\www\Hai_interactive\demo\media\application\views\layout\header.html" */ ?>
-<?php /*%%SmartyHeaderCode:1283354553180046ae4-37410445%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11544545fb940c04830-39081224%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'd344234172c37feaf85545efb522b5bf8c747ecc' => 
     array (
       0 => 'C:\\wamp\\www\\Hai_interactive\\demo\\media\\application\\views\\layout\\header.html',
-      1 => 1414432308,
+      1 => 1415208486,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1283354553180046ae4-37410445',
+  'nocache_hash' => '11544545fb940c04830-39081224',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_54553180118c08_65821178',
+  'unifunc' => 'content_545fb940e54ca2_03138435',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54553180118c08_65821178')) {function content_54553180118c08_65821178($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_545fb940e54ca2_03138435')) {function content_545fb940e54ca2_03138435($_smarty_tpl) {?><!doctype html>
 <html class="no-js" lang="">
 <head>
  
@@ -191,57 +191,28 @@ unpublish/index" >
 </li>
 
 <li class="dropdown active show-on-hover">
-<a href="javascript:;" data-toggle="dropdown">
-<span>Layouts</span>
-<b class="caret"></b>
-</a>
-<ul class="dropdown-menu">
-<li>
-<a href="boxed.html">
-<span>Boxed</span>
-</a>
-</li>
-<li class="active">
-<a href="horizontal.html">
-<span>Horizontal menu</span>
-</a>
-</li>
-<li>
-<a href="horizontal_boxed.html">
-<span>Horizontal Boxed</span>
-</a>
-</li>
-<li>
-<a href="small-sidebar.html">
-<span>Small sidebar</span>
-</a>
-</li>
-<li>
-<a href="right-sidebar.html">
-<span>Right Sidebar</span>
-</a>
-</li>
-<li>
-<a href="right-sidebar-collapsible.html">
-<span>Right Sidebar collapsible</span>
-</a>
-</li>
-<li>
-<a href="both.html">
-<span>Mixed menus</span>
-</a>
-</li>
-<li>
-<a href="collapsible.html">
-<span>Collapsible Menu</span>
-</a>
-</li>
-<li>
-<a href="footer.html">
-<span>With Footer</span>
-</a>
-</li>
-</ul>
+	<a href="javascript:;" data-toggle="dropdown">
+	<span>Reports</span>
+	<b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu">
+		<li>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['static_server']->value;?>
+reports/index">
+		<span>Revenue Reports</span>
+		</a>
+		</li>
+		<li class="active">
+		<a href="horizontal.html">
+		<span>Horizontal menu</span>
+		</a>
+		</li>
+		<li>
+		<a href="horizontal_boxed.html">
+		<span>Horizontal Boxed</span>
+		</a>
+		</li>
+	</ul>
 </li>
 <li class="dropdown show-on-hover">
 <a href="javascript:;" data-toggle="dropdown">

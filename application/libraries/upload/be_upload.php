@@ -88,12 +88,14 @@ class Be_Upload
                 $total_arg = count($net_pays);
                 for( $starts_with = 0; $starts_with < $total_arg; $starts_with++)
                 {
+                            $adtype_id = $this->_CI->upload_model->GetAdTypeId( $arg['group_id'], $arg['form_type'], $net_pays[$starts_with], $ad_codes[$starts_with] );
                             $dat = explode("-", trim($publish_dates[$starts_with]));
                             $ordered_month = date('m', strtotime($dat[1]));
                             $ordered_year = date('Y', strtotime($dat[2]));
                             $publish_date = $ordered_year."-".$ordered_month."-01";
                             $ad_info = array(
                                 'temp_pub_informationid'    => $pubid, 
+                                'adtype_id' => $adtype_id,
                                 'month' => $ordered_month,
                                 'year'  => $ordered_year,
                                 'session' => $dat[0],

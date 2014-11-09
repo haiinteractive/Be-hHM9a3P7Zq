@@ -51,9 +51,9 @@ class Be_Adtype
         return $response;
     }
 
-    function Get_adtype_Count( $created_by ){
+    function Get_adtype_Count( $created_by, $group_id ){
         $response = false;
-                $response = $this->_CI->adtype_model->Get_adtype_Count( $created_by ) ;
+                $response = $this->_CI->adtype_model->Get_adtype_Count( $created_by, $group_id ) ;
         return $response;
     }
     function DeleteAdtype( $adtype_id )

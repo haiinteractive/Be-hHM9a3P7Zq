@@ -1,39 +1,33 @@
-<?php /*%%SmartyHeaderCode:40845456689345da30-81419086%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:30971545fb940a5cc10-28868395%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6161b9633d40f424d3a05d9ed24ed22e284100bd' => 
+    'c923e4dc75ce4f424876bfd74df84b5167a51669' => 
     array (
-      0 => 'application\\views\\upload\\upload.html',
-      1 => 1413739388,
+      0 => 'application\\views\\reports\\view.html',
+      1 => 1415559522,
       2 => 'file',
     ),
     'd344234172c37feaf85545efb522b5bf8c747ecc' => 
     array (
       0 => 'C:\\wamp\\www\\Hai_interactive\\demo\\media\\application\\views\\layout\\header.html',
-      1 => 1414432308,
-      2 => 'file',
-    ),
-    '6000eea689e8757c53cea7fd09c26659976ddce4' => 
-    array (
-      0 => 'C:\\wamp\\www\\Hai_interactive\\demo\\media\\application\\views\\layout\\footer.html',
-      1 => 1413739287,
+      1 => 1415208486,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '40845456689345da30-81419086',
+  'nocache_hash' => '30971545fb940a5cc10-28868395',
+  'cache_lifetime' => 3600,
+  'version' => 'Smarty-3.1.19',
+  'unifunc' => 'content_545fb9637412b4_87309827',
   'variables' => 
   array (
-    'static_server' => 0,
-    'form_types' => 0,
-    'form_type' => 0,
+    'ro_details' => 0,
+    'adtypes' => 0,
+    'ad' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_54566893543055_46649653',
-  'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54566893543055_46649653')) {function content_54566893543055_46649653($_smarty_tpl) {?>	<!doctype html>
+<?php if ($_valid && !is_callable('content_545fb9637412b4_87309827')) {function content_545fb9637412b4_87309827($_smarty_tpl) {?>	<!doctype html>
 <html class="no-js" lang="">
 <head>
  
@@ -174,57 +168,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </li>
 
 <li class="dropdown active show-on-hover">
-<a href="javascript:;" data-toggle="dropdown">
-<span>Layouts</span>
-<b class="caret"></b>
-</a>
-<ul class="dropdown-menu">
-<li>
-<a href="boxed.html">
-<span>Boxed</span>
-</a>
-</li>
-<li class="active">
-<a href="horizontal.html">
-<span>Horizontal menu</span>
-</a>
-</li>
-<li>
-<a href="horizontal_boxed.html">
-<span>Horizontal Boxed</span>
-</a>
-</li>
-<li>
-<a href="small-sidebar.html">
-<span>Small sidebar</span>
-</a>
-</li>
-<li>
-<a href="right-sidebar.html">
-<span>Right Sidebar</span>
-</a>
-</li>
-<li>
-<a href="right-sidebar-collapsible.html">
-<span>Right Sidebar collapsible</span>
-</a>
-</li>
-<li>
-<a href="both.html">
-<span>Mixed menus</span>
-</a>
-</li>
-<li>
-<a href="collapsible.html">
-<span>Collapsible Menu</span>
-</a>
-</li>
-<li>
-<a href="footer.html">
-<span>With Footer</span>
-</a>
-</li>
-</ul>
+	<a href="javascript:;" data-toggle="dropdown">
+	<span>Reports</span>
+	<b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu">
+		<li>
+		<a href="http://demo.localhost.com/media/reports/index">
+		<span>Revenue Reports</span>
+		</a>
+		</li>
+		<li class="active">
+		<a href="horizontal.html">
+		<span>Horizontal menu</span>
+		</a>
+		</li>
+		<li>
+		<a href="horizontal_boxed.html">
+		<span>Horizontal Boxed</span>
+		</a>
+		</li>
+	</ul>
 </li>
 <li class="dropdown show-on-hover">
 <a href="javascript:;" data-toggle="dropdown">
@@ -355,14 +319,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </li>
 <li class="quickmenu">
 <a href="javascript:;" data-toggle="dropdown">
-<img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="havas" title="user">
+<img src="img/avatar.jpg" class="avatar pull-left img-circle" alt="Hai Interactive" title="user">
 <i class="caret mg-l-xs hidden-xs no-margin"></i>
 </a>
 <ul class="dropdown-menu dropdown-menu-right">
 <li>
 <a href="javascript:;">
 <div class="pd-t-sm">
-	havas@gmail.com
+	admin@haiinteractive.com
 <br>
 <small class="text-muted">4.2 MB of 51.25 GB used</small>
 </div>
@@ -395,125 +359,174 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </ul>
 </header>
  
-
-<style>
-form { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }
-#progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
-#bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
-#percent { position:absolute; display:inline-block; top:3px; left:48%; }
-</style>
 <section class="main-content">
-<div class="content-wrap" style="margin-top:50px;">
-	<section class="panel panel-info">
-		<header class="panel-heading">Upload Data</header>
-		<div class="panel-body">
-			<div class='form' style="">
-			      <h1>Upload</h1>
-			      <div class='line'></div>
-			      <form class='upload-form' action='http://demo.localhost.com/media/upload/add' method='POST' enctype="multipart/form-data">
-			      <div class='form-group'>
-			        	<label class='col-sm-2 control-label'>Form Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-			        	<select name='form_type' id='form_type' >
-			        					        			<option value='1'>EXEC FORM</option>
-			        					        			<option value='2'>EG FORM</option>
-			        					        			<option value='3'>DIGITAL FORM</option>
-			        					        	</select>
-			        </div>
-			      <div class='form-group'>
-			        	<label class='col-sm-2 control-label'>File: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><br/>
-			        	<input type='file' name='file_data' id='file_data' />
-			        	<input type='hidden' name='use' id='use' value='up89765' />
-			        </div>
-			      <div class='form-group'><br/>
-				<div id="progress">
-				        <div id="bar"></div>
-				        <div id="percent">0%</div >
+	<div class="content-wrap">
+		<div class="row" style="margin-top:60px;">
+			<div class="col-md-3 mg-b-lg">
+				<section class="panel panel-primary">
+					<div class="panel-heading">
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Ro Number:
+								<small class="pull-right">16878</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+							Publication:
+								<small class="pull-right">Bangalore</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Sales Person:
+								<small class="pull-right">prathap</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Date:
+								<small class="pull-right">2014-02-01</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Special Instruction:
+								<small class="pull-right"></small>
+							</div>
+						</li>
+					</ul>
+				</section>
+				
+			</div>
+			<div class="col-md-3">
+			<section class="panel panel-success bg-success">
+				<div class="panel-body">
+					<h1 style="color:white;">Revenue Report</h1>
+				<div>
+			</section>
+			</div>
+			<div class="col-md-4">
+				<section class="panel panel-primary">
+					<div class="panel-heading">
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Agency:
+								<small class="pull-right"></small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+							Company Name:
+								<small class="pull-right">G.C.Taste Maker</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Contact Person:
+								<small class="pull-right"></small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Address:
+								<small class="pull-right"></small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Pincode:
+								<small class="pull-right"></small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Name of Establishment being Advertised:
+								<small class="pull-right">G.C.Taste Maker</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Description of Business Being Advertised:
+								<small class="pull-right">Eating Out</small>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<div class="col-md-12">
+				<div class='col-md-2'>
+					<section class="panel panel-success bg-success">
+						<div>
+							<b>Payment & Billing Schedule</b>
+						</div>
+					</section>
 				</div>
-				<div id="message"></div>
-			        </div>
-			        <input type='submit' class='btn-sign-in btn-facebook' id='btn-upload-add' value='Add' />
-			      </form>
+			</div>
+			<div class="col-md-7">
+				<section class='panel panel-primary post bg-primary'>
+					<table border="1" style="border-color:#fff; ">
+						<tr >
+							<td width="100">Period</td> 
+							<td width="100">Cheque / DD No</td>
+							<td width="100">Drawn On</td>
+							<td width="100">Dated</td>
+							<td width="100">Amount</td>
+							<td width="200">Payment Information </td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>4000</td>
+							<td></td>
+						</tr>
+					</table>
+				</section>
+			</div>
 		</div>
-	</section>
-</div>
-</section>
-	</div>
-</body>
-</html>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/jquery-1.11.1.min.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/bootstrap/js/bootstrap.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/jquery.easing.min.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/jquery.placeholder.js"></script>
+			<div class="col-md-10 mg-b-lg">
+				<section class="panel panel-primary">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								<table>
+									<tr>
+										<td>City</td>
+										<td>Code</td>
+										<td>Rack Rate</td>
+										<td>Insertions</td>
+										<td>Offered Rate</td>
+									</tr>
+									<tr>
+										<td>Bangalore</td>
+										<td>FPC</td>
+										<td>4000</td>
+										<td>3</td>
+										<td>4000</td>
+									</tr>
+								</table>
+							</div>
+						</li>
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								<table>
+									<tr>
+																			<td>FH 2 2014</td>
+																			<td>SH 2 2014</td>
+																			<td>FH 3 2014</td>
+																		</tr>
+								</table>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>	
+		</div>
  
- 
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/moment.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/skycons.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/jquery.blockUI.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/raphael.min.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/jquery.slimscroll.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/bxslider/jquery.bxslider.min.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/offline/offline.min.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/css/vendor/pace/pace.min.js"></script>
- 
-    <script src="http://demo.localhost.com/media//assets/app/js/notification/modernizr.custom.js"></script>
-    <script src="http://demo.localhost.com/media//assets/app/js/notification/classie.js"></script>
-    <script src="http://demo.localhost.com/media//assets/app/js/notification/notificationFx.js"></script>
- 
-<script src="http://demo.localhost.com/media/assets/app/js/common/off-canvas.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/js/common/main.js"></script>
- 
-<script src="http://demo.localhost.com/media/assets/app/js/common/panel.js"></script>
-<script src="http://demo.localhost.com/media/assets/app/js/beclouds.js"></script>
-
-<script src="http://demo.localhost.com/media/assets/app/js/common/dashboard.js"></script>
-
-<script type="text/javascript" src="http://demo.localhost.com/media/assets/app/js/jquery.leanModal.min.js"></script>
-
-<script src="http://demo.localhost.com/media/assets/app/js/jquery_popup.js"></script>
-
-<script src="http://demo.localhost.com/media/assets/app/js/bootstrap.min.js"></script>
-
-<script src="http://demo.localhost.com/media/assets/app/js/bootstrapValidator.js"></script>
-
-<script src="http://malsup.github.com/jquery.form.js"></script>
-
-<script>
-$(document).ready(function()
-{
-    var options = { 
-    beforeSend: function() 
-    {
-        $("#progress").show();
-        //clear everything
-        $("#bar").width('0%');
-        $("#message").html("");
-        $("#percent").html("0%");
-    },
-    uploadProgress: function(event, position, total, percentComplete) 
-    {
-        $("#bar").width(percentComplete+'%');
-        $("#percent").html(percentComplete+'%');
-        $("#btn-upload-add").val('Please Wait...');
-        $("#btn-upload-add").attr('disabled','disabled');
-     },
-    success: function() 
-    {
-        $("#bar").width('100%');
-        $("#percent").html('100%');
-        $("#btn-upload-add").val('Add');
-        $("#btn-upload-add").removeAttr('disabled','disabled');
-
-     },
-    complete: function(response) 
-    {
-        $("#message").html("<font color='green'>"+response.responseText+"</font>");
-    },
-    error: function()
-    {
-        $("#message").html("<font color='red'> ERROR: unable to upload files</font>");
-     }
- }; 
-     $(".upload-form").ajaxForm(options);
- });
- </script>
-<?php }} ?>
+</section><?php }} ?>

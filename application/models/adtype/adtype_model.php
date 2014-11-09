@@ -46,8 +46,6 @@ class Adtype_Model extends CI_Model
 
             function Get_adtype_Details( $user_id, $perpage, $start_no ){
 					
-					 //   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
-					 
 		   $this->db->select("a.adtype_id, a.ad_type_name, a.ad_type_code, a.ad_type_rate, fa.name, a.user_created_on");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_adtype a');      
                         $this->db->join(REPORT_DB_NAME.'.'.'t_form_adtype fa', 'fa.id = a.form_type', 'left');  
@@ -80,10 +78,10 @@ class Adtype_Model extends CI_Model
                         }
 			}
 
-            function Get_adtype_Count( $created_by ){
+            function Get_adtype_Count( $created_by, $group_id ){
                         $this->db->select("count(1) as total_adtype");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_adtype');      
-                        $this->db->where(array('ad_type_status'=>'1', 'created_by' => $created_by));        
+                        $this->db->where(array('ad_type_status'=>'1', 'created_by' => $created_by, 'group_id' => $group_id));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )

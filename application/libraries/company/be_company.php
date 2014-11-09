@@ -30,10 +30,10 @@ class Be_company
         $this->current_date = date('Y-m-d H:i:s');
     }
     
-   function Get_company_Details( $user_id, $perpage, $start_no )
+   function Get_company_Details( $user_id, $perpage, $start_no, $group_id )
     {
         $response = false;
-                $response = $this->_CI->company_model->Get_company_Details(  $user_id, $perpage, $start_no );
+                $response = $this->_CI->company_model->Get_company_Details(  $user_id, $perpage, $start_no, $group_id );
         return $response;
     }
 	
@@ -44,9 +44,9 @@ class Be_company
         return $response;
     }
 
-    function Get_company_Count( $created_by ){
+    function Get_company_Count( $created_by, $group_id ){
         $response = false;
-                $response = $this->_CI->company_model->Get_company_Count( $created_by ) ;
+                $response = $this->_CI->company_model->Get_company_Count( $created_by, $group_id ) ;
         return $response;
     }
 

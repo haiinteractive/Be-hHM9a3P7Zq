@@ -40,7 +40,9 @@ class Upload extends CI_Controller {
 						$notice[] = $valid;
 					}else{
 						if( ( !in_array( $data[0], $this->config->item('company')) ) || ( !in_array($data[1], $this->config->item('ro_number') ) ) && ( !in_array($data[2], $this->config->item('city') ) )   ){
-							$records[] = $this->PushEGData( $data, $form_type, $userdata );
+							if( $form_type == 2 ){
+								$this->PushEGData( $data, $form_type, $userdata );
+							}
 						}
 					}
 				}else{

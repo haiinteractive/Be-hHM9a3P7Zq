@@ -24,12 +24,12 @@ class Employee extends CI_Controller {
 			$this->smartyci->useCached( 'list.html' );
 		}else{
 			        $userdata = (object)$this->session->userdata('user');
-  			        $total_users = $this->be_employee->Get_Employees_Count( $userdata->user_id );
+  			        $total_users = $this->be_employee->Get_Employees_Count( $userdata->user_id, $userdata->group_id );
   			        $arg = array(
   			        		'total_items'	=> $total_users,
   			        		'pagination'	=> $this->perPage
   			        	);
-		   	        $roles = $this->be_employee->GetUserRoles( );	
+		   	        $roles = $this->be_employee->GetUserRoles( $userdata->group_id );	
 			        $filename = 'employee/list.html';
 			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('filename',$filename);
@@ -41,7 +41,8 @@ class Employee extends CI_Controller {
 	public function edit()
 	{
 		$user_id = $this->security->xss_clean( $this->input->post("user_id") );
-		 $get_single_employee = $this->be_employee->get_single_employee( $user_id );
+	        	$userdata = (object)$this->session->userdata('user');
+		 $get_single_employee = $this->be_employee->get_single_employee( $user_id, $userdata->group_id );
 		 echo json_encode($get_single_employee);
 		die;
 	}
@@ -49,7 +50,8 @@ class Employee extends CI_Controller {
 	public function delete()
 	{
 		$user_id = $this->security->xss_clean( $this->input->post("user_id") );
-		 $get_single_employee = $this->be_employee->DeleteEmployee( $user_id );
+	        	$userdata = (object)$this->session->userdata('user');
+		 $get_single_employee = $this->be_employee->DeleteEmployee( $user_id, $userdata->group_id );
 		 echo 'success';
 		 die;
 
@@ -58,11 +60,8 @@ class Employee extends CI_Controller {
 	public function update()
 	{
 		  $userdata = (object)$this->session->userdata('user');
-		  
 		 $user_id = $this->security->xss_clean( $this->input->post("usereid") );
-		  
 		$purpose = $this->security->xss_clean( $this->input->post("purpose") );
-		
 		$email = $this->security->xss_clean( $this->input->post("email") );
 		if($purpose == 'employee'){
 			$output = $this->EmpValidation( );	// Validating all Inputs

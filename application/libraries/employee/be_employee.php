@@ -30,10 +30,10 @@ class Be_Employee
         $this->current_date = date('Y-m-d H:i:s');
     }
     
-    function GetUserRoles( )
+    function GetUserRoles( $group_id )
     {
         $response = false;
-                $response = $this->_CI->employee_model->GetUserRoles(  );
+                $response = $this->_CI->employee_model->GetUserRoles( $group_id  );
         return $response;
     }
 
@@ -44,23 +44,23 @@ class Be_Employee
         return $response;
     }
 	
-	 function get_single_employee( $user_id)
+ function get_single_employee( $user_id, $group_id )
     {
         $response = false;
-                $response = $this->_CI->employee_model->get_single_employee(  $user_id );
+                $response = $this->_CI->employee_model->get_single_employee(  $user_id, $group_id  );
         return $response;
     }
 
-    function Get_Employees_Count( $created_by ){
+    function Get_Employees_Count( $created_by, $group_id ){
         $response = false;
-                $response = $this->_CI->employee_model->Get_Employees_Count( $created_by ) ;
+                $response = $this->_CI->employee_model->Get_Employees_Count( $created_by, $group_id ) ;
         return $response;
     }
 
-    function DeleteEmployee( $user_id )
+    function DeleteEmployee( $user_id, $group_id )
     {
         $response = false;
-                $response = $this->_CI->employee_model->DeleteEmployee( $user_id ) ;
+                $response = $this->_CI->employee_model->DeleteEmployee( $user_id, $group_id ) ;
         return $response;
     }
 

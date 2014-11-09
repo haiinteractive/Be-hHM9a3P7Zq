@@ -84,6 +84,30 @@ class Upload_Model extends CI_Model
 
             }
 
+            function GetAdTypeId( $groupid,  $form_type, $net_pays, $ad_type )
+            {
+                        $this->db->select("adtype_id");
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_adtype');      
+                        $this->db->where(array('ad_type_code'=> "$ad_type" ));
+                        $query = $this->db->get();
+                        $db_results = $query->result();                   
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results[0]->adtype_id;
+                        }else{
+                            $arg = array(
+                                    'group_id'  => $groupid,
+                                    'form_type'    => $form_type,
+                                    'ad_type_code'  => $ad_type,
+                                    'ad_type_rate'  => $net_pays,
+                                    'user_created_on'   => date('Y-m-d H:i:s')
+                                );
+                            $this->db->insert(REPORT_DB_NAME.'.t_adtype', $arg );
+                            return $this->db->insert_id(); 
+                        }
+
+            }
+
             function GetSalesPersonID( $sales_person_name, $group_id, $user_id, $user_type )
             {
                         $this->db->select("user_id");

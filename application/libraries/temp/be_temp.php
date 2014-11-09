@@ -90,6 +90,7 @@ class Be_Temp
                                        // Starts Ad Data
                                        $pub_information_id = $this->_CI->temp_model->GetPubInformation( $result['ro_number'], $result['group_id'], $result['company_id'] );
                                        $frequencies_info['t_pub_informationid']    = $pub_information_id;
+                                       $frequencies_info['adtype_id']    = $result['adtype_id'];
                                        $frequencies_info['month']    = $result['month'];
                                        $frequencies_info['year']    = $result['year'];
                                        $frequencies_info['session']    = $result['session'];

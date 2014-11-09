@@ -16,11 +16,11 @@ class Employee_Model extends CI_Model
             function __construct(){
                   // $media = $this->load->database('media', TRUE);
                }
-            function GetUserRoles(  )
+            function GetUserRoles( $group_id  )
             {
                         $this->db->select("user_type_id, user_type_name, user_type_code");
                         $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_user_type');      
-                        $this->db->where(array('user_type_is_active'=>'1'));        
+                        $this->db->where(array('user_type_is_active'=>'1' ));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )
@@ -63,11 +63,11 @@ class Employee_Model extends CI_Model
                         }
             }
 			
-			function get_single_employee($user_id)
-			{
-					 $this->db->select("*");
+	function get_single_employee($user_id, $group_id )
+	{
+                        $this->db->select("*");
                         $this->db->from('t_users');      
-                        $this->db->where(array('user_id'=>$user_id));        
+                        $this->db->where(array('user_id'=>$user_id, 'group_id' => $group_id ));        
                         $query = $this->db->get();
                      $db_results = $query->result_array(); 
 					 
@@ -79,10 +79,10 @@ class Employee_Model extends CI_Model
                         }
 			}
 
-            function Get_Employees_Count( $created_by ){
+            function Get_Employees_Count( $created_by,$group_id ){
                         $this->db->select("count(1) as total_employees");
                         $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_users');      
-                        $this->db->where(array('user_is_active'=>'1', 'created_by' => $created_by));        
+                        $this->db->where(array('user_is_active'=>'1', 'created_by' => $created_by, 'group_id' => $group_id));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )
@@ -93,9 +93,9 @@ class Employee_Model extends CI_Model
                         }
                     }
 
-            function DeleteEmployee( $user_id )
+            function DeleteEmployee( $user_id, $group_id )
             {
-                    $this->db->where('t_users.user_id', $user_id);
+                    $this->db->where( array( 't_users.user_id'=> $user_id, 't_users.group_id' => $group_id ) );
                     $this->db->delete(SUBSCRIBER_DB_NAME.'.t_users');
                     return 1;
             }

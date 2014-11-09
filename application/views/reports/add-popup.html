@@ -1,32 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19, created on 2014-11-01 19:24:26
-         compiled from "application\views\employee\add-popup.html" */ ?>
-<?php /*%%SmartyHeaderCode:2181254553180214ab9-98136537%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-$_valid = $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
-  array (
-    '449520cdf217957c861d1a068500142326b4cd78' => 
-    array (
-      0 => 'application\\views\\employee\\add-popup.html',
-      1 => 1414869860,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '2181254553180214ab9-98136537',
-  'function' => 
-  array (
-  ),
-  'version' => 'Smarty-3.1.19',
-  'unifunc' => 'content_545531802430e3_37012797',
-  'variables' => 
-  array (
-    'static_server' => 0,
-    'roles' => 0,
-    'role' => 0,
-  ),
-  'has_nocache_code' => false,
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_545531802430e3_37012797')) {function content_545531802430e3_37012797($_smarty_tpl) {?>    <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['static_server']->value;?>
-/assets/app/css/popup.css" />
+    <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/popup.css" />
 
 		<div id="employee">
 			<div id="signup-ct">
@@ -81,17 +53,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				    <span class="col-sm-3 control-label">Roles:</span>
 				    <div class="col-sm-5">
 					<select name='us_roles' id='us_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The role is required" >
-			        		<?php  $_smarty_tpl->tpl_vars['role'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['role']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['roles']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['role']->key => $_smarty_tpl->tpl_vars['role']->value) {
-$_smarty_tpl->tpl_vars['role']->_loop = true;
-?>
-			        			<option value='<?php echo $_smarty_tpl->tpl_vars['role']->value['user_type_id'];?>
-'><?php echo $_smarty_tpl->tpl_vars['role']->value['user_type_name'];?>
-
+			        		{foreach from=$roles item=role}
+			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
 
 </option>
-			        		<?php } ?>
+			        		{/foreach}
 			     </select>
 					 </div>
 				  </div>
@@ -105,4 +71,4 @@ $_smarty_tpl->tpl_vars['role']->_loop = true;
 			 
 			
 		</div>
-		</div><?php }} ?>
+		</div>

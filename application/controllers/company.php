@@ -24,7 +24,7 @@ class Company extends CI_Controller {
 			$this->smartyci->useCached( 'list.html' );
 		}else{
 			        $userdata = (object)$this->session->userdata('user');
-  			        $total_users = $this->be_company->Get_company_Count( $userdata->user_id );
+  			        $total_users = $this->be_company->Get_company_Count( $userdata->user_id, $userdata->group_id );
   			        $arg = array(
   			        		'total_items'	=> $total_users,
   			        		'pagination'	=> $this->perPage
@@ -125,7 +125,7 @@ class Company extends CI_Controller {
 	            }else{
 	                $start_no = ($current_page-1) * $this->perPage;
 	            }
-		$data = $this->be_company->Get_company_Details( $userdata->user_id, $this->perPage, $start_no );
+		$data = $this->be_company->Get_company_Details( $userdata->user_id, $this->perPage, $start_no, $userdata->group_id );
 		echo json_encode($data);
 		die;
 	}

@@ -32,11 +32,11 @@ class Category_Model extends CI_Model
 	}
 			
 
-            function Get_category_Details( $user_id, $perpage, $start_no ){
+            function Get_category_Details( $user_id, $perpage, $start_no, $group_id ){
 	//   $result = $this->db->query("CALL Employees_List('{$user_id}', '{$start_no}', '{$perpage}');");
         	           $this->db->select("*");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_category');      
-	           $this->db->where(array('status'=>'1', 'created_by' => $user_id));  
+	           $this->db->where(array('status'=>'1', 'created_by' => $user_id, 'group_id' => $group_id));  
 	           $this->db->limit($perpage, $start_no);  
                         $query = $this->db->get();
                         $db_results = $query->result_array();    
@@ -63,10 +63,10 @@ class Category_Model extends CI_Model
                         }
 			}
 
-            function Get_category_Count( $created_by ){
+            function Get_category_Count( $created_by, $group_id ){
                         $this->db->select("count(1) as total_category");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_category');      
-                        $this->db->where(array('status'=>'1', 'created_by' => $created_by));        
+                        $this->db->where(array('status'=>'1', 'created_by' => $created_by, 'group_id' => $group_id ));        
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )

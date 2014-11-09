@@ -32,10 +32,10 @@ class Be_Product
     
    
 
-    function Get_product_Details( $user_id, $perpage, $start_no )
+    function Get_product_Details( $user_id, $perpage, $start_no, $group_id )
     {
         $response = false;
-                $response = $this->_CI->product_model->Get_product_Details(  $user_id, $perpage, $start_no );
+                $response = $this->_CI->product_model->Get_product_Details(  $user_id, $perpage, $start_no, $group_id );
         return $response;
     }
 	
@@ -46,9 +46,9 @@ class Be_Product
         return $response;
     }
 
-    function Get_product_Count( $created_by ){
+    function Get_product_Count( $created_by, $group_id ){
         $response = false;
-                $response = $this->_CI->product_model->Get_product_Count( $created_by ) ;
+                $response = $this->_CI->product_model->Get_product_Count( $created_by, $group_id ) ;
         return $response;
     }
 

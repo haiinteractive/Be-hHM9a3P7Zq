@@ -32,10 +32,10 @@ class Be_Category
     
    
 
-    function Get_category_Details( $user_id, $perpage, $start_no )
+    function Get_category_Details( $user_id, $perpage, $start_no, $group_id )
     {
         $response = false;
-                $response = $this->_CI->category_model->Get_category_Details(  $user_id, $perpage, $start_no );
+                $response = $this->_CI->category_model->Get_category_Details(  $user_id, $perpage, $start_no, $group_id );
         return $response;
     }
 	
@@ -46,9 +46,9 @@ class Be_Category
         return $response;
     }
 
-    function Get_category_Count( $created_by ){
+    function Get_category_Count( $created_by, $group_id ){
         $response = false;
-                $response = $this->_CI->category_model->Get_category_Count( $created_by ) ;
+                $response = $this->_CI->category_model->Get_category_Count( $created_by, $group_id ) ;
         return $response;
     }
 
