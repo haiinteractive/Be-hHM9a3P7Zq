@@ -85,7 +85,7 @@ class Be_Upload
                 $offered_rate = explode(';', $arg['offered_amount']);
                 $publish_dates = explode(';', $arg['frequency']);
                 $ad_codes = explode(';', $arg['ad_code']);
-                $total_arg = count($net_pays);
+                $total_arg = count($publish_dates);
                 for( $starts_with = 0; $starts_with < $total_arg; $starts_with++)
                 {
                             $adtype_id = $this->_CI->upload_model->GetAdTypeId( $arg['group_id'], $arg['form_type'], $net_pays[$starts_with], $ad_codes[$starts_with] );
@@ -105,7 +105,7 @@ class Be_Upload
                                 'offered_rate' => $offered_rate[$starts_with],
                                 'created_on'        => $this->current_date
                             );
-                            $ad_arg[] = $ad_info;
+                            array_push( $ad_arg ,  $ad_info );
                 }
                 $response = $this->_CI->upload_model->InsertTempEGAdData(  $ad_arg );
                 return $response;

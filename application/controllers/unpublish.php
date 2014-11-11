@@ -8,7 +8,7 @@ class Unpublish extends CI_Controller {
 	        $this->load->library('core/validation');
 	        $this->load->library('temp/be_temp');
 	        $this->load->library('be_users');
-		$this->perPage = 5;
+		$this->perPage = 20;
 
 	}
 

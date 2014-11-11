@@ -29,6 +29,7 @@ class Reports extends CI_Controller {
 		        		'pagination'	=> $this->perPage
 		        	);
 			        $filename = 'reports/list.html';
+				$this->smartyci->clearCache( 'reports/list.html' );
 			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('filename',$filename);
 			        $this->smartyci->display('reports/list.html'); 
@@ -55,6 +56,7 @@ class Reports extends CI_Controller {
 		$userdata = (object)$this->session->userdata('user');
 		$ro_details = $this->be_reports->GetRoDetails( $userdata->group_id, $ro_id );
 		$adtypes = $this->be_reports->GetAdTypesDetails( $userdata->group_id, $ro_id );
+		$this->smartyci->clearCache('reports/view.html');
 		$this->smartyci->assign('ro_details',$ro_details);
 		$this->smartyci->assign('adtypes',$adtypes);
 		$this->smartyci->display('reports/view.html'); 

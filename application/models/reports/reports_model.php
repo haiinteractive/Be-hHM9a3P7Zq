@@ -25,6 +25,7 @@ class Reports_Model extends CI_Model
                         $this->db->join(REPORT_DB_NAME.'.'.'t_category cat', 'cat.category_id = pub.category_id', 'inner');
                         $this->db->join(REPORT_DB_NAME.'.'.'t_company comp', 'comp.comp_id = pub.company_id', 'inner');
                         $this->db->where(array('pub.group_id'=> "$group_id"));
+                        $this->db->group_by('pub.ro_number');
                         $this->db->limit($perPage, $starts_from);  
                         $query = $this->db->get();
                         $db_results = $query->result();                   
@@ -44,6 +45,7 @@ class Reports_Model extends CI_Model
                         $this->db->join(REPORT_DB_NAME.'.'.'t_category cat', 'cat.category_id = pub.category_id', 'inner');
                         $this->db->join(REPORT_DB_NAME.'.'.'t_company comp', 'comp.comp_id = pub.company_id', 'inner');
                         $this->db->where(array('pub.status'=>'1', 'pub.created_by' => $user_id, 'pub.group_id' => $group_id ));        
+                        $this->db->group_by('pub.ro_number');
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
                          if (count($db_results) > 0 )
