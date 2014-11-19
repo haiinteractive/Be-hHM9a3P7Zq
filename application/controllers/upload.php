@@ -40,8 +40,13 @@ class Upload extends CI_Controller {
 						$notice[] = $valid;
 					}else{
 						if( ( !in_array( $data[0], $this->config->item('company')) ) || ( !in_array($data[1], $this->config->item('ro_number') ) ) && ( !in_array($data[2], $this->config->item('city') ) )   ){
-							if( $form_type == 2 ){
+							if( $form_type == 1){
+								$this->PushExecData( $data, $form_type, $userdata );
+							}else if( $form_type == 2 ){
 								$this->PushEGData( $data, $form_type, $userdata );
+							}else if($form_type == 3 )
+							{
+								$this->PushDigitalData( $data, $form_type, $userdata );
 							}
 						}
 					}
@@ -97,6 +102,7 @@ class Upload extends CI_Controller {
 				'city'		=> $data[2],
 				'ad_code'	=> $data[9],
 				'frequency'	=> $data[11],
+				'ad_display_city'		=> $data[8],
 				'offered_amount'	=> $data[10],
 				'created_on'		=> $this->current_date,
 				'approved_on'		=> $approved_on,
@@ -108,6 +114,70 @@ class Upload extends CI_Controller {
 		$this->be_upload->InsertTempEGInformation( $arg );
 		return $arg;
 	}
+
+	public function PushExecData( $data, $form_type, $userdata )
+	{
+		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->group_id );
+		$category_id = $this->be_upload->GetCategoryID( $data[7], $userdata->group_id, $userdata->user_id );
+		$sales_person_id = $this->be_upload->GetSalesPersonID( $data[3], $userdata->group_id, $userdata->user_id, 3 );
+		$approve_authority_user_id = $this->be_upload->GetSalesPersonID( $data[5], $userdata->group_id, $userdata->user_id, 2 );
+		$approved_on= date('Y-m-d', strtotime( $data[5] ));
+		$arg = array( 
+				'ro_number' 	=> $data[1],
+				'form_type'	=> $form_type,
+				'approved_by'	=> $approve_authority_user_id,
+				'company_id'	=> $company_id,
+				'category_id'	=> $category_id,
+				'group_id'	=> $userdata->group_id,
+				'sales_person_id'	=> $sales_person_id,
+				'city'		=> $data[2],
+				'ad_code'	=> $data[8],
+				'frequency'	=> $data[10],
+				'offered_amount'	=> $data[9],
+				'created_on'		=> $this->current_date,
+				'approved_on'		=> $approved_on,
+				'net_amount'		=> $data[12],
+				'special_instruction'	=> $data[11],
+				'created_by'		=> $userdata->user_id
+ 			);
+		$er = $this->be_upload->InsertTempExecInformation( $arg );
+		return $arg;
+	}
+
+	public function PushDigitalData( $data, $form_type, $userdata )
+	{
+		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->group_id );
+		$category_id = $this->be_upload->GetCategoryID( $data[7], $userdata->group_id, $userdata->user_id );
+		$sales_person_id = $this->be_upload->GetSalesPersonID( $data[3], $userdata->group_id, $userdata->user_id, 3 );
+		$approve_authority_user_id = $this->be_upload->GetSalesPersonID( $data[5], $userdata->group_id, $userdata->user_id, 2 );
+		$product_id = $this->be_upload->GetProductID( $data[8], $userdata->group_id, $userdata->user_id );
+		$approved_on= date('Y-m-d', strtotime( $data[5] ));
+		$arg = array( 
+				'ro_number' 	=> $data[1],
+				'form_type'	=> $form_type,
+				'approved_by'	=> $approve_authority_user_id,
+				'company_id'	=> $company_id,
+				'category_id'	=> $category_id,
+				'group_id'	=> $userdata->group_id,
+				'sales_person_id'	=> $sales_person_id,
+				'city'		=> $data[2],
+				'product_id'	=> $product_id,
+				'ad_code'	=> $data[9],
+				'start_date'	=> $data[10],
+				'end_date'	=> $data[11],
+				'offered_amount'	=> $data[12],
+				'frequency'	=> $data[13],
+				'created_on'		=> $this->current_date,
+				'approved_on'		=> $approved_on,
+				'net_amount'		=> $data[15],
+				'special_instruction'	=> $data[14],
+				'created_by'		=> $userdata->user_id
+ 			);
+		$er = $this->be_upload->InsertTempDigitalInformation( $arg );
+		print_r( $er);
+		die;
+		return $arg;
+	}	
 }
 
 /* End of file upload.php */

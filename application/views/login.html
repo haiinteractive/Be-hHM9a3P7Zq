@@ -18,14 +18,17 @@
     <div class='form'>
       <h1>Sign in</h1>
       <div class='line'></div>
-      <form class='input-form' name='loginForm' id="loginForm" action='#'>
+      <form class='input-form' name='loginForm' id="loginForm" action='#' data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
             <div class='form-group'>
                 <label class='col-sm-2 control-label'>Email Id: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type='text' name='email' id='email' placeholder='Email Address' />
+                <input type='text' name='email' id='email' placeholder='Email Address' class="form-control"  required data-bv-notempty-message="Email Address Required"/>
             </div>
             <div class='form-group'>
                 <label class='col-sm-2 control-label'>Password: &nbsp;&nbsp;</label>
-                <input type='password' name='userpwd' id='userpwd' placeholder='Password' />
+                <input type='password' name='userpwd' id='userpwd' placeholder='Password' class="form-control" required data-bv-notempty-message="Please enter Your Password"/>
           </div>
         <a class='forgotten-password-link' href='#'>Forgotten password</a>
         <input type='button' class='btn-sign-in btn-facebook' id='btn-sign-in' value='Sign in' />
@@ -49,4 +52,53 @@
     <script src="{$static_server}/assets/app/js/notification/classie.js"></script>
     <script src="{$static_server}/assets/app/js/notification/notificationFx.js"></script>
     <script src="{$static_server}/assets/app/js/beclouds.js"></script>
+<script src="{$static_server}assets/app/js/bootstrap.min.js"></script>
+<script src="{$static_server}assets/app/js/bootstrapValidator.js"></script>    
+{literal}
+<style type="text/css">
+.pm-content{
+    height:600px;
+  }
+  
+  .form-group label { margin:0px; font-weight:normal;}
+  
+  #product .form-group { margin:0px;}
+  
+  #edit_product .form-group { margin:0px;}
+  
+  form { margin:0px;}
+  
+  #product .form-group input { margin:0px; line-height: normal;}
+  
+  #edit_product .form-group select { width: 242px; margin:0px;}
+  
+  #edit_product .form-group input { margin:0px; line-height: normal;}
+  
+  .col-sm-3  { padding:0px;}
+  
+  #signup-ct button { float:right;}
+  
+  #tac-checkbox, label, .forgotten-password-link { float:none; margin:0px;}
+  
+  .has-error .form-control {border-color: #ff604f !important; }
+  
+  .has-success .form-control {border-color: #2b542c !important; }
+  
+  .form-control-feedback { display:none !important;}
+  
+  .col-sm-5 {
+    
+    padding: 0 !important;
+    width: 67.667%;
+  }
+.help-block {  margin-bottom: 0px!important; }
+
+</style>
+<script type="text/javascript">           
+$(document).ready(function() {
+          $('#loginForm').bootstrapValidator();
+        });
+</script>
+    {/literal}
     </html>
+

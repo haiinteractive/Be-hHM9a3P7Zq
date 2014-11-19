@@ -95,6 +95,10 @@ class Be_Temp
                                        $frequencies_info['year']    = $result['year'];
                                        $frequencies_info['session']    = $result['session'];
                                        $frequencies_info['city']    = $result['city'];
+                                       $frequencies_info['product_id']    = $result['product_id'];
+                                       $frequencies_info['city']    = $result['city'];
+                                       $frequencies_info['start_date']    = $result['start_date'];
+                                       $frequencies_info['end_date']    = $result['end_date'];
                                        $frequencies_info['publish_date']    = $result['publish_date'];
                                        $frequencies_info['publish_type']    = $result['publish_type'];
                                        $frequencies_info['offered_rate']    = $result['offered_rate'];

@@ -41,6 +41,17 @@ class Upload_Model extends CI_Model
                             $this->db->insert(REPORT_DB_NAME.'.'.'temp_pub_information', $arg );
                             return $this->db->insert_id(); 
             }
+            function InsertTempExecInformation( $arg )
+            {
+                            $this->db->insert(REPORT_DB_NAME.'.'.'temp_pub_information', $arg );
+                            return $this->db->insert_id(); 
+            }
+            function InsertTempDigitalInformation( $arg )
+            {
+                            $this->db->insert(REPORT_DB_NAME.'.'.'temp_pub_information', $arg );
+                            return $this->db->insert_id(); 
+            }
+
             function GetCompanyID( $c_name, $groupid )
             {
                         $this->db->select("comp_id");
@@ -84,7 +95,28 @@ class Upload_Model extends CI_Model
 
             }
 
-            function GetAdTypeId( $groupid,  $form_type, $net_pays, $ad_type )
+            function GetProductID( $product_name, $group_id, $user_id )
+            {
+                        $this->db->select("product_id");
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_product');      
+                        $this->db->where(array('product_name'=> "$product_name" ));
+                        $query = $this->db->get();
+                        $db_results = $query->result();                   
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results[0]->product_id;
+                        }else{
+                            $arg = array(
+                                    'group_id'   => $group_id,
+                                    'product_name'    => $product_name,
+                                    'created_by'    => $user_id
+                                );
+                            $this->db->insert(REPORT_DB_NAME.'.t_product', $arg );
+                            return $this->db->insert_id(); 
+                        }
+
+            }
+                        function GetAdTypeId( $groupid,  $form_type, $net_pays, $ad_type )
             {
                         $this->db->select("adtype_id");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_adtype');      
@@ -135,6 +167,18 @@ class Upload_Model extends CI_Model
                             $this->db->insert_batch(REPORT_DB_NAME.'.'.'temp_ad_data', $arg );
                             return $this->db->insert_id(); 
             }
+
+            function InsertTempExecAdData( $arg )
+            {
+                            $this->db->insert_batch(REPORT_DB_NAME.'.'.'temp_ad_data', $arg );
+                            return $this->db->insert_id(); 
+            }
+            function InsertTempDigitalAdData( $arg )
+            {
+                            $this->db->insert_batch(REPORT_DB_NAME.'.'.'temp_ad_data', $arg );
+                            return $this->db->insert_id(); 
+            }
+
             function Get_Employee_Details( $user_id, $perpage, $current_date ){
                         $this->db->select("*");
                         $this->db->from(SUBSCRIBER_DB_NAME.'.'.'t_users');      

@@ -71,15 +71,29 @@ class Validation
 
     function CheckEmptyValue( $row, $form_type  ){
             $response = array( );
-            if($this->_CI->config->item('EG_total_fields') == 15){
-                        foreach ($row as $key => $value) {
-                            $value = trim($value);
-                            if (empty($value) && $key != 12 )
-                                    $response[] =  $key.' cell  should not be empty';
-                    }
-               }else{
-                    $response[] = ' Some fields are missing. Check & try again!';
-               }     
+            if( $form_type == 2 )
+            {
+                if($this->_CI->config->item('EG_total_fields') == 15){
+                            foreach ($row as $key => $value) {
+                                $value = trim($value);
+                                if (empty($value) && $key != 12 )
+                                        $response[] =  $key.' cell  should not be empty';
+                        }
+                   }else{
+                        $response[] = ' Some fields are missing. Check & try again!';
+                   }     
+               } else if( $form_type == 1)
+               {
+                if($this->_CI->config->item('EG_total_fields') == 15){
+                            foreach ($row as $key => $value) {
+                                $value = trim($value);
+                                if (empty($value) && $key != 11 )
+                                        $response[] =  $key.' cell  should not be empty';
+                        }
+                   }else{
+                        $response[] = ' Some fields are missing. Check & try again!';
+                   }     
+               }
                return $response;         
     }
 
