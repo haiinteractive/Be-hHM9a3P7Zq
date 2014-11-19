@@ -332,3 +332,11 @@ $("#companybtn").on('click', function(){
 		}
 		});		
 	}
+
+	function DateRanger( startDate, endDate )
+	{
+		var rt = $("#datebetween").val();
+		var date = new Date(startDate);
+		var newDate = date.toString('Y');
+		alert(newDate);
+	}

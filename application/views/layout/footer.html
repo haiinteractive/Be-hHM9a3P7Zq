@@ -35,15 +35,15 @@
 <script src="{$static_server}assets/app/js/bootstrap.min.js"></script>
 
 <script src="{$static_server}assets/app/js/bootstrapValidator.js"></script>
-		<script src="{$static_server}assets/app/js/moment.min.js"></script>
 <script src="{$static_server}assets/app/js/jquery.daterangepicker.js"></script>
-
+<script src="{$static_server}assets/app/js/moment.min.js"></script>
 {literal}
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#datebetween').dateRangePicker({		language:'en'
-});
-
+		$(document).ready(function ( ){
+			$('#datebetween').dateRangePicker({format: 'YYYY-MM-DD', autoClose: true, time: { enabled: false }  }).bind('datepicker-change',function(event,obj)
+			{
+				DateRanger( obj.date1, obj.date2 );
+			});
 		});
 	</script>
 {/literal}
