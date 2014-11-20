@@ -22,6 +22,7 @@ class Home extends CI_Controller {
 	        parent::__construct();
 	        $this->load->library('core/validation');
 	        $this->load->library('be_users');
+	        $this->load->helper(array('form', 'url', 'cookie'));           
 		$userdata = (object)$this->session->userdata('user');
 		if( empty( $userdata->user_id ) ){
 			redirect('/users/login');
@@ -31,6 +32,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		
+		$startdate = $this->input->cookie('startDate') ;
+		//echo $startdate;
+
 	        $this->smartyci->display('dashboard/dashboard.html'); 
 	}
 

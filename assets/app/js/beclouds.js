@@ -4,6 +4,17 @@
 var base_url = '/media';
 
       $(document).ready(function(){
+      	var dt = new Date();
+      	var out = dt.getFullYear()+'-'+dt.getMonth()+'-'+dt.getDate()+ ' to ' +dt.getFullYear()+'-'+( dt.getMonth()+1 ) +'-'+dt.getDate();
+      	$("#datebetween").val( out );
+		if($.cookie('startDate') || $.cookie('endDate'))
+		{
+			$("#datebetween").val( $.cookie('startDate')+' to '+ $.cookie('endDate') );
+		}else{
+			$("#datebetween").val( out );
+		}
+
+
       	$(".quickmenu").on('click', function(){
       		$(this).addClass('open');
       	});
@@ -335,8 +346,23 @@ $("#companybtn").on('click', function(){
 
 	function DateRanger( startDate, endDate )
 	{
-		var rt = $("#datebetween").val();
-		var date = new Date(startDate);
-		var newDate = date.toString('Y');
-		alert(newDate);
+		//var start_date = startDate.getFullYear()+'-'+startDate.getMonth()+'-'+startDate.getDate();
+		//var end_date = endDate.getFullYear()+'-'+endDate.getMonth()+'-'+endDate.getDate();
+		var dat = $("#datebetween").val();
+		var dates = dat.split('to');
+		if($.cookie('startDate') || $.cookie('endDate'))
+		{
+			$.removeCookie('startDate');
+			$.removeCookie('endDate');
+			
+			$.cookie("startDate", dates[0], {path: '/'});
+			$.cookie("endDate", dates[1], {path: '/'});
+			
+			window.location.reload();
+
+		}else{
+			$.cookie("startDate", dates[0], {path: '/'});
+			$.cookie("endDate", dates[1], {path: '/'});
+			window.location.reload();
+		}
 	}
