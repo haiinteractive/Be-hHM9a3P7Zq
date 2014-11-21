@@ -4,15 +4,6 @@
 var base_url = '/media';
 
       $(document).ready(function(){
-      	var dt = new Date();
-      	var out = dt.getFullYear()+'-'+dt.getMonth()+'-'+dt.getDate()+ ' to ' +dt.getFullYear()+'-'+( dt.getMonth()+1 ) +'-'+dt.getDate();
-      	$("#datebetween").val( out );
-		if($.cookie('startDate') || $.cookie('endDate'))
-		{
-			$("#datebetween").val( $.cookie('startDate')+' to '+ $.cookie('endDate') );
-		}else{
-			$("#datebetween").val( out );
-		}
 
 
       	$(".quickmenu").on('click', function(){
