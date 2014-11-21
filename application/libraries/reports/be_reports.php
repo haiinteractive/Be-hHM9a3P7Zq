@@ -30,23 +30,23 @@ class Be_Reports
         $this->current_date = date('Y-m-d H:i:s');
     }
     
-             function Get_Report_Count( $user_id, $group_id )
+             function Get_Report_Count( $user_id, $group_id, $startdate, $enddate )
              {
                          $response = false;
-                        $response = $this->_CI->reports_model->Get_Report_Count( $user_id, $group_id );
+                        $response = $this->_CI->reports_model->Get_Report_Count( $user_id, $group_id, $startdate, $enddate );
                         return $response;
             }
-	function GetDetailsForRevenueReport( $group_id, $perPage, $starts_from )
+	function GetDetailsForRevenueReport( $group_id, $perPage, $starts_from, $startdate, $enddate )
 	{
 		 $response = false;
-		$response = $this->_CI->reports_model->GetDetailsForRevenueReport( $group_id, $perPage, $starts_from );
+		$response = $this->_CI->reports_model->GetDetailsForRevenueReport( $group_id, $perPage, $starts_from , $startdate, $enddate);
 		return $response;
 	}
 
-            function GetRoDetails( $group_id, $ro_id )
+            function GetRoDetails( $group_id, $ro_id, $startdate, $enddate )
             {
                              $response = false;
-                            $response = $this->_CI->reports_model->GetRoDetails( $group_id, $ro_id );
+                            $response = $this->_CI->reports_model->GetRoDetails( $group_id, $ro_id, $startdate, $enddate );
                             return $response;
             }
 

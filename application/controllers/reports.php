@@ -6,6 +6,7 @@ class Reports extends CI_Controller {
 	{
 	        parent::__construct();
 	        $this->load->library('core/validation');
+	        $this->load->helper(array('form', 'url', 'cookie'));           
 	        $this->load->library('reports/be_reports');
 	        $this->load->library('be_users');
 		$userdata = (object)$this->session->userdata('user');
@@ -23,7 +24,9 @@ class Reports extends CI_Controller {
 			$this->smartyci->useCached( 'list.html' );
 		}else{
 			      $userdata = (object)$this->session->userdata('user');
-  			     $total_report = $this->be_reports->Get_Report_Count( $userdata->user_id, $userdata->group_id );
+			      $startdate = $this->input->cookie('startDate') ;
+			      $enddate = $this->input->cookie('endDate') ;
+  			     $total_report = $this->be_reports->Get_Report_Count( $userdata->user_id, $userdata->group_id, $startdate, $enddate );
 			      $arg = array(
 		        		'total_items'	=> $total_report,
 		        		'pagination'	=> $this->perPage
@@ -40,12 +43,14 @@ class Reports extends CI_Controller {
 	{
 		$userdata = (object)$this->session->userdata('user');
 		$current_page = str_replace(array('Prev', 'Next'), '',  $this->security->xss_clean( $this->input->post("current_page") ) );
+		      $startdate = $this->input->cookie('startDate') ;
+		      $enddate = $this->input->cookie('endDate') ;
 	            if(empty($current_page) || $current_page == 1){
 	                 $start_no = 0;
 	            }else{
 	                $start_no = ($current_page-1) * $this->perPage;
 	            }
-		$data  = $this->be_reports->GetDetailsForRevenueReport( $userdata->group_id, $this->perPage, $start_no );
+		$data  = $this->be_reports->GetDetailsForRevenueReport( $userdata->group_id, $this->perPage, $start_no, $startdate, $enddate );
 		echo json_encode( $data );
 		die;
 

@@ -112,7 +112,12 @@ class Be_Upload
                             $dat = explode("-", trim($publish_dates[$starts_with]));
                             $ordered_month = date('m', strtotime($dat[1]));
                             $ordered_year = date('Y', strtotime($dat[2]));
-                            $publish_date = $ordered_year."-".$ordered_month."-01";
+                            if($dat[0] == 'FH'){
+                                $ordered_date  = '01';
+                            }else{
+                                $ordered_date  = '15';
+                            }
+                            $publish_date = $ordered_year."-".$ordered_month."-" .$ordered_date;
                             $ad_info = array(
                                 'temp_pub_informationid'    => $pubid, 
                                 'adtype_id' => $adtype_id,

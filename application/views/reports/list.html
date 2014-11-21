@@ -43,7 +43,7 @@
 <script type='text/javascript'>
 		$(function() {
 		    $('.pagination').pagination({
-		        items: {/literal}{$arg.total_items}{literal},
+		        items: {/literal} {if $arg.total_items > 0 } {$arg.total_items} {else} 1 {/if} {literal},
 		        itemsOnPage: {/literal}{$arg.pagination} {literal},
 		        cssStyle: 'light-theme',
 		        onPageClick: function(){

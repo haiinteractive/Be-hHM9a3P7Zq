@@ -17,7 +17,7 @@ class Reports_Model extends CI_Model
                   // $media = $this->load->database('media', TRUE);
                 $this->current_date = date('Y-m-d H:i:s');
                }
-            function GetDetailsForRevenueReport( $group_id, $perPage, $starts_from )
+            function GetDetailsForRevenueReport( $group_id, $perPage, $starts_from, $startdate, $enddate  )
             {
                         $this->db->select("*");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_pub_information pub');
@@ -25,6 +25,7 @@ class Reports_Model extends CI_Model
                         $this->db->join(REPORT_DB_NAME.'.'.'t_category cat', 'cat.category_id = pub.category_id', 'inner');
                         $this->db->join(REPORT_DB_NAME.'.'.'t_company comp', 'comp.comp_id = pub.company_id', 'inner');
                         $this->db->where(array('pub.group_id'=> "$group_id"));
+                        $this->db->where(array('fre.publish_date >=' => $startdate, 'fre.publish_date <=' => $enddate ));        
                         $this->db->group_by('pub.ro_number');
                         $this->db->limit($perPage, $starts_from);  
                         $query = $this->db->get();
@@ -37,7 +38,7 @@ class Reports_Model extends CI_Model
                         }
             }
 
-            function Get_Report_Count( $user_id,  $group_id )
+            function Get_Report_Count( $user_id,  $group_id, $startdate, $enddate )
             {
                         $this->db->select("count(1) as total_rows");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_frequencies');      
@@ -45,6 +46,7 @@ class Reports_Model extends CI_Model
                         $this->db->join(REPORT_DB_NAME.'.'.'t_category cat', 'cat.category_id = pub.category_id', 'inner');
                         $this->db->join(REPORT_DB_NAME.'.'.'t_company comp', 'comp.comp_id = pub.company_id', 'inner');
                         $this->db->where(array('pub.status'=>'1', 'pub.created_by' => $user_id, 'pub.group_id' => $group_id ));        
+                        $this->db->where(array('t_frequencies.publish_date >=' => $startdate, 't_frequencies.publish_date <=' => $enddate ));        
                         $this->db->group_by('pub.ro_number');
                         $query = $this->db->get();
                         $db_results = $query->result_array();                   
