@@ -146,7 +146,7 @@ class Upload extends CI_Controller {
 
 	public function PushDigitalData( $data, $form_type, $userdata )
 	{
-		$company_id = $this->be_upload->GetCompanyID( $data[0], $userdata->group_id );
+		$company_id = $this->be_upload->GetCompanyID( $userdata->user_id, $data[0], $userdata->group_id );
 		$category_id = $this->be_upload->GetCategoryID( $data[7], $userdata->group_id, $userdata->user_id );
 		$sales_person_id = $this->be_upload->GetSalesPersonID( $data[3], $userdata->group_id, $userdata->user_id, 3 );
 		$approve_authority_user_id = $this->be_upload->GetSalesPersonID( $data[5], $userdata->group_id, $userdata->user_id, 2 );

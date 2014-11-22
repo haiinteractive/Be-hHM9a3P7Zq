@@ -52,7 +52,7 @@ class Upload_Model extends CI_Model
                             return $this->db->insert_id(); 
             }
 
-            function GetCompanyID( $c_name, $groupid )
+            function GetCompanyID( $user_id, $c_name, $groupid )
             {
                         $this->db->select("comp_id");
                         $this->db->from(REPORT_DB_NAME.'.'.'t_company');      
@@ -65,7 +65,9 @@ class Upload_Model extends CI_Model
                         }else{
                             $arg = array(
                                     'group_id'   => $groupid,
-                                    'c_name'    => $c_name
+                                    'c_name'    => $c_name,
+                                    'c_createdby' => $user_id,
+                                    'created_on'    => date('Y-m-d H:i:s');
                                 );
                             $this->db->insert(REPORT_DB_NAME.'.t_company', $arg );
                             return $this->db->insert_id(); 

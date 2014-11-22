@@ -207,10 +207,10 @@ class Be_Upload
     }
 
 
-            function GetCompanyID( $c_name, $group_id )
+            function GetCompanyID( $user_id,  $c_name, $group_id )
     {
         $response = false;
-                $response = $this->_CI->upload_model->GetCompanyID( $c_name, $group_id ) ;
+                $response = $this->_CI->upload_model->GetCompanyID( $user_id, $c_name, $group_id ) ;
         return $response;
     }
     function GetCategoryID( $category_name, $group_id, $user_id )

@@ -22,6 +22,8 @@ class Home extends CI_Controller {
 	        parent::__construct();
 	        $this->load->library('core/validation');
 	        $this->load->library('be_users');
+	        $this->load->library('dashboard/be_dashboard');
+
 	        $this->load->helper(array('form', 'url', 'cookie'));           
 		$userdata = (object)$this->session->userdata('user');
 		if( empty( $userdata->user_id ) ){
@@ -32,17 +34,45 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		
 		$startdate = $this->input->cookie('startDate') ;
-		//echo $startdate;
+		$enddate = $this->input->cookie('endDate') ;
+		$userdata = (object)$this->session->userdata('user');
+		if( $userdata-> user_id == '' ||  $userdata-> user_id  == NULL ){
+		   	redirect("users/login/"); 		
+		}
+		if($this->smartyci->isCached('dashboard.html')){
+			$this->smartyci->useCached( 'dashboard.html' );
+		}else{
+			$this->smartyci->display('dashboard/dashboard.html'); 
+		}
 
-	        $this->smartyci->display('dashboard/dashboard.html'); 
 	}
 
 	public function logout()
 	{
 		   $this->session->unset_userdata('user'); 
 		   redirect("users/login/"); 		
+	}
+
+	public function totalofferedrevenue( )
+	{
+		$startdate = $this->input->cookie('startDate') ;
+		$enddate = $this->input->cookie('endDate') ;
+		$userdata = (object)$this->session->userdata('user');
+		$TotalRackAmount = $this->be_dashboard->TotalRackAmount( $userdata->group_id, $startdate, $enddate );
+		$TotalOfferedAmount = $this->be_dashboard->TotalOfferedAmount( $userdata->group_id, $startdate, $enddate );
+		$TotalNewOrderAmount = $this->be_dashboard->TotalNewOrderAmount( $userdata->group_id, $startdate, $enddate );
+		$NewSignedCustomer = $this->be_dashboard->NewSignedCustomer( $userdata->group_id, $startdate, $enddate );
+		//setlocale(LC_MONETARY,"en_US");
+		$arg = array(
+			'totalrackamount'	=> ( $TotalRackAmount['totalrackamount'] > 0 ) ? number_format( $TotalRackAmount['totalrackamount'], 2 ) : 'No Records',
+			'totalofferedamount'	=> ( $TotalOfferedAmount['totalofferedamount'] > 0 ) ? number_format( $TotalOfferedAmount['totalofferedamount'], 2 ) : 'No Records', 
+			'totalneworderamount'	=> ( $TotalNewOrderAmount['totalneworderamount'] > 0 ) ?  number_format( $TotalNewOrderAmount['totalneworderamount'], 2 ) : ' No Records ',
+			'totalnewsignedcustomer' => ( $NewSignedCustomer['totalnewsignedcustomer'] > 0 ) ? $NewSignedCustomer['totalnewsignedcustomer'] : ' No Records ',
+			);
+		echo '['. json_encode($arg). ']';
+		die; 
+
 	}
 
 }
