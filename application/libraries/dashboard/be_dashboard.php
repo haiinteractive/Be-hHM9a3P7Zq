@@ -56,5 +56,10 @@ class Be_Dashboard
                 $response = $this->_CI->dashboard_model->NewSignedCustomer( $group_id, $startdate, $enddate );
                 return $response;
         }
-
+        function RevenueChartData( $group_id, $startdate, $enddate )
+        {
+                $response = false;
+                $response = $this->_CI->dashboard_model->RevenueChartData( $group_id, $startdate, $enddate );
+                return $response;
+        }
 }

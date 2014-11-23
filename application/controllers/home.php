@@ -72,6 +72,17 @@ class Home extends CI_Controller {
 			);
 		echo '['. json_encode($arg). ']';
 		die; 
+	}
+
+	public function revenuechartdata( )
+	{
+		$startdate = $this->input->cookie('startDate') ;
+		$enddate = $this->input->cookie('endDate') ;
+		$userdata = (object)$this->session->userdata('user');
+		$revenuechartdata = $this->be_dashboard->RevenueChartData( $userdata->group_id, $startdate, $enddate );
+		echo json_encode($revenuechartdata);
+		//print_r( $revenuechartdata);
+		die;
 
 	}
 

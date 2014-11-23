@@ -70,17 +70,8 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<section class="panel panel-default dashboard-chart">
-					<div class="heading pd-lg">
-						<small class="show pd-b">MESSAGE ANALYTICS
-							<i class="pull-right">
-								<a class="fa fa-refresh panel-refresh pd-r-xs" href="javascript:;"></a>
-								<a class="fa fa-times panel-remove" href="javascript:;"></a>
-							</i>
-						<br>Weekly Stats
-						</small>
-					</div>
-					<div class="panel-body no-padding">
-						<div id="chart_div" ></div>
+					<div class="panel-body no-padding" style='height:400px;'>
+						<div id="chart_div" style='height:400px;'></div>
 					</div>
 				</section>
 			</div>
@@ -253,8 +244,7 @@ The whole of science is nothing more than a refinement of everyday thinking.
 </section>
 	{include file='../layout/footer.html'}
 
-
-
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
 {literal}
 <script type="text/javascript">
 $(function(){
@@ -280,26 +270,30 @@ $(function(){
 
 });	
 </script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+      	var jsondata = $.ajax({
+		type: "POST",
+		dataType:'JSON',
+		url: base_url+'/home/revenuechartdata',
+		async: false
+          		}).responseText;
+      		if( jsondata != '' )
+      		{
+	      	var data = new google.visualization.DataTable(jsondata);
+		        var options = {
+		          title: 'Revenue Performance',
+		          hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+		          vAxis: {minValue: 0}
+		        };
 
-        var options = {
-          title: 'Company Performance'
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-      }
+		        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+		        chart.draw(data, options);
+      		}else{
+      			$("#chart_div").html("No Records are Available");
+      		}
+	    }
     </script>
 {/literal}

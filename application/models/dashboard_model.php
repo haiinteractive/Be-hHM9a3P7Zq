@@ -81,6 +81,34 @@ class Dashboard_Model extends CI_Model
 
             } 
 
+            function RevenueChartData( $group_id, $startdate, $enddate )
+            {
+                        $this->db->select("SUM(offered_rate) as offered_rate, publish_date");
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_frequencies fre');
+                        $this->db->join(REPORT_DB_NAME.'.'.'t_pub_information pub', ' pub.t_pub_information_id = fre.t_pub_informationid', 'inner');
+                        $this->db->where(array('pub.group_id'=> "$group_id"));
+                        $this->db->where(array('fre.publish_date >=' => $startdate, 'fre.publish_date <=' => $enddate ));        
+                        $this->db->group_by('fre.publish_date');
+                        $query = $this->db->get();
+                        $db_results = $query->result_array();                   
+                         if (count($db_results) > 0 )
+                        {
+                                $reports['cols'][] = array(
+                                            "id"    => "A", "label" => "Records", "type"  => "string"
+                                    );
+                                $reports['cols'][] = array(
+                                            "id"    => "B", "label" => "Revenue", "type"  => "number"
+                                    );
+                                foreach( $db_results as $row )
+                                {
+                                            $reports['rows'][] = array('c' => array(  array(v => $row['publish_date']), array(v => (int)$row['offered_rate']) ) );
+                                }
+                        }else{
+                                return 'invalid';
+                        }
+                        return $reports;
+
+            } 
         }
 /* End of file users_model.php */
 ?>
