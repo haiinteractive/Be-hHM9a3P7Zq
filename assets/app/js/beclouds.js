@@ -1,7 +1,7 @@
 
 // var base_url = 'http://localhost/vijay/git_beclouds/';
 
-var base_url = '/media';
+var base_url = '';
 
       $(document).ready(function(){
 
