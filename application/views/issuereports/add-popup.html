@@ -1,0 +1,74 @@
+    <link rel="stylesheet" type="text/css" href="{$static_server}/assets/app/css/popup.css" />
+
+		<div id="employee">
+			<div id="signup-ct">
+				<div id="signup-header">
+					<span>Add New Employee</span>
+					<a class="modal_close" href="#"></a>
+				</div>
+				
+				<form action="#" method="post" id="defaultForm" class="form-horizontal" data-bv-message="This value is not valid"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
+     
+				  <div class="form-group">
+				    <span class="col-sm-3 control-label">First Name:</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='us_first_name' class="form-control" id='us_first_name' placeholder="First Name"   required data-bv-notempty-message="The first name is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Last Name:</span>
+				    <div class="col-sm-5">
+					 <input type="text" name='us_last_name' class="form-control" id='us_last_name' placeholder="Last Name"   required data-bv-notempty-message="The last name is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Email:</span>
+				    <div class="col-sm-5">
+					 <input type="email" name='us_email' class="form-control" id='us_email' placeholder="Email" required  data-bv-notempty-message="The email is required"/>
+					 </div>
+				  </div>
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Password:</span>
+				    <div class="col-sm-5">
+					 <input type="password" name='uspwd' class="form-control" id='uspwd' placeholder="Password"   required data-bv-notempty-message="The password is required"  data-bv-identical="true" data-bv-identical-field="confirm_password" data-bv-identical-message="The password and its confirm are not the same" />
+					 </div>
+				  </div>
+				  
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Retype password:</span>
+				    <div class="col-sm-5">
+					 <input type="password" name='confirm_password' class="form-control" id='confirm_password' placeholder="Confirm password" required data-bv-notempty-message="The confirm password is required" data-bv-identical="true" data-bv-identical-field="uspwd" data-bv-identical-message="The password and its confirm are not the same"/>
+					 </div>
+				  </div>
+				  
+				  
+				   <div class="form-group">
+				    <span class="col-sm-3 control-label">Roles:</span>
+				    <div class="col-sm-5">
+					<select name='us_roles' id='us_roles' class="form-control" data-bv-notempty data-bv-notempty-message="The role is required" >
+			        		{foreach from=$roles item=role}
+			        			<option value='{$role.user_type_id}'>{$role.user_type_name}
+
+</option>
+			        		{/foreach}
+			     </select>
+					 </div>
+				  </div>
+				  
+				 
+				  <div class="btn-fld">
+				  
+				   <input type="submit" id="loginbtn" value="Add &raquo;"/>
+				   </div>
+				   </form>
+			 
+			
+		</div>
+		</div>

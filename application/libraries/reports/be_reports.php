@@ -43,6 +43,27 @@ class Be_Reports
 		return $response;
 	}
 
+    function GetDetailsForIssueReport( $group_id, $perPage, $starts_from )
+    {
+         $response = false;
+        $response = $this->_CI->reports_model->GetDetailsForIssueReport( $group_id, $perPage, $starts_from );
+        return $response;
+    }
+
+    function GetAllProducts( )
+    {
+         $response = false;
+        $response = $this->_CI->reports_model->GetAllProducts( );
+        return $response;
+    }
+
+    function GetAllCities( $group_id )
+    {
+         $response = false;
+        $response = $this->_CI->reports_model->GetAllCities( $group_id );
+        return $response;
+    }
+
             function GetRoDetails( $group_id, $ro_id, $startdate, $enddate )
             {
                              $response = false;

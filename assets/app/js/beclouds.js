@@ -4,12 +4,9 @@
 var base_url = '';
 
       $(document).ready(function(){
-
-
       	$(".quickmenu").on('click', function(){
       		$(this).addClass('open');
       	});
-        
               $('#btn-register').on('click', function(){
                   //$(this).attr('disabled', 'disabled');
                   var params = 'username='+$("#username").val()+'&email='+$("#email").val()+'&userpwd='+$('#userpwd').val()+'&retypeuserpwd='+$('#retypeuserpwd').val()+"&purpose=registration";
@@ -148,6 +145,21 @@ var base_url = '';
       			call( params, request_url );	
 		}
 	});
+
+	$("#products").on('change', function(){
+		var product_id  = $("#products").val();
+		if( product_id == 1 )
+		{
+			Display_Exec();
+		}else if( product_id == 2)
+		{
+			Display_EG();
+		}else{
+
+		}
+	});
+
+
 $("#companybtn").on('click', function(){
 		
 	var c_name = $("#c_name").val();
@@ -196,6 +208,7 @@ $("#companybtn").on('click', function(){
 			return false;
 		}
 	}
+
 });
   });
       var notify = function( msg ){
@@ -358,3 +371,18 @@ $("#companybtn").on('click', function(){
 		}
 	}
 
+	function Display_Exec( )
+	{
+		$("#div_issue_month").css('display', 'block');
+		$("#div_issue_year").css('display', 'block');
+		$("#div_cities").css('display', 'block');
+		$("#div_session").css('display', 'block');
+	}
+
+	function Display_EG()
+	{
+		$("#div_issue_month").css('display', 'block');
+		$("#div_issue_year").css('display', 'block');
+		$("#div_cities").css('display', 'none');
+		$("#div_session").css('display', 'none');
+	}

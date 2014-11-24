@@ -126,7 +126,7 @@ form
 	padding: 7px 14px 12px;
 	*background-color: #f2f2f2;
 	*border: 1px solid #c8c8c8;
-	width: 335px;
+	*width: 335px;
 	color: #838383;
 	margin: 18px 0 0;
 	font-size: 15px

@@ -1,0 +1,173 @@
+
+	{include file='../layout/header.html'}
+<section class="main-content">
+	<div class="content-wrap">
+		<div class="row" style="margin-top:60px;">
+			<div class="col-md-3 mg-b-lg">
+				<section class="panel panel-primary">
+					<div class="panel-heading">
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Ro Number:
+								<small class="pull-right">{$ro_details.ro_number}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+							Publication:
+								<small class="pull-right">{$ro_details.city}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Sales Person:
+								<small class="pull-right">{$ro_details.user_first_name}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Date:
+								<small class="pull-right">{$ro_details.publish_date}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Special Instruction:
+								<small class="pull-right">{$ro_details.special_instruction}</small>
+							</div>
+						</li>
+					</ul>
+				</section>
+				
+			</div>
+			<div class="col-md-3">
+			<section class="panel panel-success bg-success">
+				<div class="panel-body">
+					<h1 style="color:white;">Revenue Report</h1>
+				<div>
+			</section>
+			</div>
+			<div class="col-md-4">
+				<section class="panel panel-primary">
+					<div class="panel-heading">
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Agency:
+								<small class="pull-right">{$ro_details.agency_name}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+							Company Name:
+								<small class="pull-right">{$ro_details.c_name}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Contact Person:
+								<small class="pull-right">{$ro_details.c_person}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Address:
+								<small class="pull-right">{$ro_details.c_address}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Pincode:
+								<small class="pull-right">{$ro_details.c_pincode}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Name of Establishment being Advertised:
+								<small class="pull-right">{$ro_details.c_name}</small>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								Description of Business Being Advertised:
+								<small class="pull-right">{$ro_details.category_name}</small>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<div class="col-md-12">
+				<div class='col-md-2'>
+					<section class="panel panel-success bg-success">
+						<div>
+							<b>Payment & Billing Schedule</b>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<section class='panel panel-primary post bg-primary'>
+					<table border="1" style="border-color:#fff; ">
+						<tr >
+							<td width="100">Period</td> 
+							<td width="100">Cheque / DD No</td>
+							<td width="100">Drawn On</td>
+							<td width="100">Dated</td>
+							<td width="100">Amount</td>
+							<td width="200">Payment Information </td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>{$ro_details.net_amount}</td>
+							<td>{$ro_details.special_instruction}</td>
+						</tr>
+					</table>
+				</section>
+			</div>
+		</div>
+			<div class="col-md-10 mg-b-lg">
+				<section class="panel panel-primary">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								<table>
+									<tr>
+										<td>City</td>
+										<td>Code</td>
+										<td>Rack Rate</td>
+										<td>Insertions</td>
+										<td>Offered Rate</td>
+									</tr>
+									<tr>
+										<td>{$ro_details.city}</td>
+										<td>{$ro_details.ad_type_code}</td>
+										<td>{$ro_details.net_amount}</td>
+										<td>{$adtypes|@count}</td>
+										<td>{$ro_details.offered_rate}</td>
+									</tr>
+								</table>
+							</div>
+						</li>
+					</ul>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="show no-margin pd-t-xs">
+								<table>
+									<tr>
+									{foreach from=$adtypes item=ad key=i}
+										<td>{$ad.session} {$ad.month} {$ad.year}</td>
+									{/foreach}
+									</tr>
+								</table>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>	
+		</div>
+ 
+</section>
