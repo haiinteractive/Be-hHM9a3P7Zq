@@ -93,35 +93,18 @@ class Reports_Model extends CI_Model
                         }
             }
 
-            function GetDetailsForIssueReport( $Product, $select_city, $eg_month, $eg_year, $session, $request_for )
+            function GetDetailsForIssueReport( $group_id, $perPage, $starts_from, $defaultWhere )
             {
                         $this->db->select("*");
                         //$this->db->select("*, COUNT(ad_data_id) as qty, SUM(ad_data.offered_rate) as net_bill");
-                    $this->db->from(TOOL_DB_NAME.'.t_pub_information');
-                    $this->db->join(TOOL_DB_NAME.'.t_frequencies', 't_frequencies.pub_informationid = t_pub_information.pub_information_id', 'inner');
-                    $this->db->join(TOOL_DB_NAME.'.t_adtype', 't_adtype.adtype_id = t_frequencies.publish_type', 'inner');
-                    $this->db->join(TOOL_DB_NAME.'.form_type', 'form_type.form_type_id = t_adtype.form_type', 'inner');
-                    $this->db->join(TOOL_DB_NAME.'.t_company', 't_company.comp_id = t_pub_information.company_id', 'inner');
-                    $this->db->where(array('form_type.form_type_code'=>$Product, 't_pub_information.form_type'=>$Product, 't_pub_information.status'=>'1', 't_frequencies.is_active'=>'1'));
-                    if($eg_month != '')
-                    {
-                        $this->db->where(array('t_frequencies.month'=>$eg_month));        
-                    }
-                    if($eg_year != '')
-                    {
-                        $this->db->where(array('t_frequencies.year'=>$eg_year));        
-                    }
-                    
-                    
-                    if($select_city != '')
-                    {
-                        $this->db->where(array('t_frequencies.city'=>$select_city));        
-                    }
-                    
-                    if($session != '')
-                    {
-                        $this->db->where(array('t_frequencies.session'=>$session));        
-                    }
+                    $this->db->from(REPORT_DB_NAME.'.t_pub_information');
+                    $this->db->join(REPORT_DB_NAME.'.t_frequencies', 't_frequencies.t_pub_informationid = t_pub_information.t_pub_information_id', 'inner');
+                    $this->db->join(REPORT_DB_NAME.'.t_adtype', 't_adtype.adtype_id = t_frequencies.publish_type', 'inner');
+                    $this->db->join(REPORT_DB_NAME.'.t_category', 't_category.category_id = t_pub_information.category_id', 'inner');
+                    $this->db->join(REPORT_DB_NAME.'.form_type', 'form_type.form_type_id = t_adtype.form_type', 'inner');
+                    $this->db->join(REPORT_DB_NAME.'.t_company', 't_company.comp_id = t_pub_information.company_id', 'inner');
+                    $this->db->where(array('t_pub_information.status'=>'1', 't_frequencies.is_active'=>'1'));
+                    $this->db->where( $defaultWhere );
                     $query = $this->db->get();
                     $db_results = $query->result_array();        
                     if (count($db_results) > 0 )
@@ -161,6 +144,22 @@ class Reports_Model extends CI_Model
                         }else{
                                 return '';
                         }
-            }}
+            }
+
+            function GetFormTypes( $group_id )
+            {
+                        $this->db->select("*");
+                        $this->db->from(REPORT_DB_NAME.'.'.'t_adtype');
+                        $this->db->where(array('t_adtype.group_id'=>$group_id));        
+                        $query = $this->db->get();
+                        $db_results = $query->result_array(); 
+                         if (count($db_results) > 0 )
+                        {            
+                                return $db_results;
+                        }else{
+                                return '';
+                        }
+            }
+    }
 /* End of file employee_model.php */
 ?>

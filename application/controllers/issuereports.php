@@ -33,10 +33,12 @@ class Issuereports extends CI_Controller {
 		        	);
 			      $products = $this->be_reports->GetAllProducts( );
 			      $cities = $this->be_reports->GetAllCities( $userdata->group_id );
+			      $form_types = $this->be_reports->GetFormTypes( $userdata->group_id );
 			        $filename = 'reports/list.html';
-				$this->smartyci->clearCache( 'issuereports/list.html' );
+			        $this->smartyci->clearCache( 'issuereports/list.html' );
 			        $this->smartyci->assign('arg', $arg );
 			        $this->smartyci->assign('products', $products );
+			        $this->smartyci->assign('form_types', $form_types );
 			        $this->smartyci->assign('cities', $cities );
 			        $this->smartyci->assign('page', 'issuereport' );
 			        $this->smartyci->assign('filename',$filename);
@@ -48,12 +50,45 @@ class Issuereports extends CI_Controller {
 	{
 		$userdata = (object)$this->session->userdata('user');
 		$current_page = str_replace(array('Prev', 'Next'), '',  $this->security->xss_clean( $this->input->post("current_page") ) );
+		$product_id = $this->security->xss_clean( $this->input->post("product_id") );
+		$issue_month = $this->security->xss_clean( $this->input->post("issue_month") );
+		$issue_year = $this->security->xss_clean( $this->input->post("issue_year") );
+		$adtype_id = $this->security->xss_clean( $this->input->post("form_type") );
+		$issue_date = $this->security->xss_clean( $this->input->post("issue_date") );
+		$city = $this->security->xss_clean( $this->input->post("city") );
+		$session = $this->security->xss_clean( $this->input->post("session") );
+		if($product_id == 1 ){
+			$defaultWhere = array(
+					't_pub_information.form_type'	=> $product_id,
+					't_frequencies.month'	=> $issue_month,
+					't_frequencies.year'	=> $issue_year,
+					't_pub_information.city'	=> $city,
+					't_frequencies.session'	=> $session
+				);
+		}
+		if( $product_id == 2 ){
+			$defaultWhere = array(
+					't_pub_information.form_type'	=> $product_id,
+					't_frequencies.month'	=> $issue_month,
+					't_frequencies.year'	=> $issue_year
+				);
+		}
+
+		if( $product_id == 3 ){
+			$defaultWhere = array(
+					't_pub_information.form_type'	=> $product_id,
+					't_frequencies.month'	=> $issue_month,
+					't_frequencies.year'	=> $issue_year,
+					't_frequencies.adtype_id'	=> $adtype_id
+				);
+		}
+
 	            if(empty($current_page) || $current_page == 1){
 	                 $start_no = 0;
 	            }else{
 	                $start_no = ($current_page-1) * $this->perPage;
 	            }
-		$data  = $this->be_reports->GetDetailsForIssueReport( $userdata->group_id, $this->perPage, $start_no);
+		$data  = $this->be_reports->GetDetailsForIssueReport( $userdata->group_id, $this->perPage, $start_no, $defaultWhere );
 		echo json_encode( $data );
 		die;
 

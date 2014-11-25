@@ -9,10 +9,10 @@
 			<div class="table-responsive no-border">
 				<div>
 				<form name='reportdata' id='reportdata'>
-					<div style="width:200px; float:left;">
+					<div style="width:250px; float:left;">
 					<label>Product: </label>
 					<select name='products' id='products'>
-						<option></option>
+						<option value=''>Select Product</option>
 					              {foreach from=$products item=product key=i}
 					              	<option value='{$product.form_type_id}'> {$product.form_type_code} </option>
 					              {/foreach}
@@ -35,6 +35,42 @@
 						<option value='12'>Dec</option>
 					</select>
 					</div>
+					<div id='div_issue_date' style="display:none; width:200px; float:left">
+					<label> Issue Date : </label>
+					<select name='issue_date' id='issue_date'>
+						<option value='1'>1</option>
+						<option value='2'>2</option>
+						<option value='3'>3</option>
+						<option value='4'>4</option>
+						<option value='5'>5</option>
+						<option value='6'>6</option>
+						<option value='7'>7</option>
+						<option value='8'>8</option>
+						<option value='9'>9</option>
+						<option value='10'>10</option>
+						<option value='11'>11</option>
+						<option value='12'>12</option>
+						<option value='13'>13</option>
+						<option value='14'>14</option>
+						<option value='15'>15</option>
+						<option value='16'>16</option>
+						<option value='17'>17</option>
+						<option value='18'>18</option>
+						<option value='19'>19</option>
+						<option value='20'>20</option>
+						<option value='21'>21</option>
+						<option value='22'>22</option>
+						<option value='23'>23</option>
+						<option value='24'>24</option>
+						<option value='25'>25</option>
+						<option value='26'>26</option>
+						<option value='27'>27</option>
+						<option value='28'>28</option>
+						<option value='29'>29</option>
+						<option value='30'>30</option>
+						<option value='31'>31</option>
+					</select>
+					</div>
 
 					<div id='div_issue_year' style="display:none; width:200px; float:left;">
 					<label> Issue Year : </label>
@@ -47,6 +83,15 @@
 					</select>
 					</div>					
 
+					<div id='div_issue_type' style="display:none; width:200px; float:left;">
+					<label> Type : </label>
+					<select name='form_type' id='form_type'>
+						<option value=''>Form Type</option>
+						{foreach from=$form_types item=form_type key=i}
+							<option value='{$form_type.adtype_id}'>{$form_type.ad_type_code}</option>
+						{/foreach}
+					</select>
+					</div>
 					<div id='div_cities' style="display:none; float:left;">
 					<label> Cities : </label>
 					<select name='cities' id='cities'>
@@ -67,7 +112,7 @@
 					</div>		
 
 					<div id='div_button' style="float:left;">
-						<input type='button' name='go' class='btn-sign-in btn-facebook' id='go' value='Go' />
+						<input type='button' name='go' class='btn-sign-in btn-facebook' id='issue_report_go' value='Go' />
 					</div>
 				 </form>
 				</div>
@@ -82,7 +127,7 @@
 				</tr>
 				</thead>
 				<tbody class='list_content'>
-					<div id='loading-image' style="text-align: center"><img src="{$static_server}assets/app/images/framely.gif" align="middle" style="height:75px; width:75px;"/></div>
+					<div id='loading-image' style="display:none; text-align: center"><img src="{$static_server}assets/app/images/framely.gif" align="middle" style="height:75px; width:75px;"/></div>
 				</tbody>
 				</table>
 			</div>
@@ -105,18 +150,37 @@
 		        itemsOnPage: {/literal}{$arg.pagination} {literal},
 		        cssStyle: 'light-theme',
 		        onPageClick: function(){
-		        	//Collect_Info();
+		        	Collect_Info( params );
 		        }
 		    });
 		   // Collect_Info();
 		    
 		});
-		function Collect_Info(){
+		$("#issue_report_go").on('click', function(){
+			var product_id = $("#products").val();
+			var params = false;
+			if(product_id == 1)
+			{
+				params = 'product_id='+product_id+'&issue_month='+$("#issue_month").val()+'&issue_year='+$("#issue_year").val()+'&city='+$("#cities").val()+'&session='+$("#session").val();
+			}else if( product_id == 2 )
+			{
+				params = 'product_id='+product_id+'&issue_month='+$("#issue_month").val()+'&issue_year='+$("#issue_year").val();
+			}else if( product_id == 3 ){
+				params = 'product_id='+product_id+'&issue_month='+$("#issue_month").val()+'&issue_year='+$("#issue_year").val()+'&issue_date='+$("#issue_date").val()+'&form_type='+$("#form_type").val();
+			}
+			if(product_id == '' ){
+				alert("Please select Product");
+				return false;
+			}
+			Collect_Info( params );
+		});
+
+		function Collect_Info( params ){
+			//alert(params);
 			var current_page = $('.current').text();
-			
 		              $.ajax({
 		                            type: "POST",
-		                            data: 'current_page='+current_page,
+		                            data: 'current_page='+current_page+'&'+params,
 		                            dataType:'JSON',
 		                            beforeSend: function(){
 		                            	$("#loading-image").show();
@@ -138,6 +202,9 @@
 					  	objdata += '<td>'+obj.offered_rate+'</td>'; 
 					  	objdata += '</tr>';
 					});
+					if(objdata == null ){
+						objdata = 'No Data Available';
+					}
 					$(".list_content").html(objdata);
 		                            }
 		               });

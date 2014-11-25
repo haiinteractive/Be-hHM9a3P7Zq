@@ -43,10 +43,10 @@ class Be_Reports
 		return $response;
 	}
 
-    function GetDetailsForIssueReport( $group_id, $perPage, $starts_from )
+    function GetDetailsForIssueReport( $group_id, $perPage, $starts_from, $defaultWhere )
     {
          $response = false;
-        $response = $this->_CI->reports_model->GetDetailsForIssueReport( $group_id, $perPage, $starts_from );
+        $response = $this->_CI->reports_model->GetDetailsForIssueReport( $group_id, $perPage, $starts_from, $defaultWhere );
         return $response;
     }
 
@@ -61,6 +61,13 @@ class Be_Reports
     {
          $response = false;
         $response = $this->_CI->reports_model->GetAllCities( $group_id );
+        return $response;
+    }
+
+    function GetFormTypes( $group_id )
+    {
+         $response = false;
+        $response = $this->_CI->reports_model->GetFormTypes( $group_id );
         return $response;
     }
 

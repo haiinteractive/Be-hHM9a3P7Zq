@@ -154,8 +154,11 @@ var base_url = '';
 		}else if( product_id == 2)
 		{
 			Display_EG();
+		}else if( product_id == 3){
+			Display_Digital();
 		}else{
-
+			alert("Error!");
+			return false;
 		}
 	});
 
@@ -377,12 +380,27 @@ $("#companybtn").on('click', function(){
 		$("#div_issue_year").css('display', 'block');
 		$("#div_cities").css('display', 'block');
 		$("#div_session").css('display', 'block');
+		$("#div_issue_type").css('display', 'none');
+		$("#div_issue_date").css('display', 'none');
 	}
 
 	function Display_EG()
 	{
 		$("#div_issue_month").css('display', 'block');
 		$("#div_issue_year").css('display', 'block');
+		$("#div_cities").css('display', 'none');
+		$("#div_session").css('display', 'none');
+		$("#div_issue_type").css('display', 'none');
+		$("#div_issue_date").css('display', 'none');
+
+	}
+
+	function Display_Digital()
+	{
+		$("#div_issue_month").css('display', 'block');
+		$("#div_issue_year").css('display', 'block');
+		$("#div_issue_type").css('display', 'block');
+		$("#div_issue_date").css('display', 'block');
 		$("#div_cities").css('display', 'none');
 		$("#div_session").css('display', 'none');
 	}
